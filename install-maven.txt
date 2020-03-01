@@ -1,0 +1,1 @@
+mvn install:install-file -Dfile=neodatis-rdb.jar -DgroupId=org.neodatis.rdb -DartifactId=neodatis-rdb -Dversion=1.10 -Dpackaging=jar

@@ -1,0 +1,300 @@
+
+package com.mycompany.example;
+
+import br.com.jconcept.database.DatabaseService;
+import br.com.jconcept.database.SelectQuery;
+import br.com.jconcept.database.query.*;
+import br.com.jconcept.database.*;
+import br.com.jconcept.database.service.DefaultDatabaseService;
+import br.com.jconcept.tools.Tracer;
+import br.com.jconcept.tools.StopWatch;
+import com.mycompany.myobjects.*;
+import com.mycompany.dbmapping.ClientDBHelper;
+import com.mycompany.dbmapping.SaleDBHelper;
+
+import java.util.Date;
+import java.util.List;
+import java.math.BigDecimal;
+
+
+/* A simple class that shows the use of jconcept.database package
+@version 16/07/2002 - Olivier : Creation
+*/
+
+public class Example1MySql {
+
+
+
+    /** Insert a client, a product and a sale
+     *
+     */
+    public void insert() throws Exception {
+        // Creates a database service
+        DatabaseService dbService = new DefaultDatabaseService();
+
+
+        // Create a client object
+        Client client = new Client();
+
+        // Create a Product object
+        Product product = new Product();
+
+        // Create a Sale object
+        Sale sale = new Sale();
+
+        // Populate the client object
+        //client.setClientId(getNextId());
+        client.setBirthDate(new Date());
+        client.setName("Olivier smadja");
+        client.setStreet("Rue de rennes");
+        client.setStreetNumber(new Long(151) );
+        client.setCredit(new Double(10));
+        client.setDebit(new Double(120));
+
+        // Populate the product object
+        //product.setProductId( getNextId() );
+        product.setName("Palm Pilot V");
+        product.setUnitPrice(new Double(500.50));
+        product.setDescription("A very nice palm computer!");
+
+        // Populate the sale object
+        //sale.setSaleId( getNextId() );
+        sale.setClientId( client.getClientId() );
+        sale.setProductId( product.getProductId() );
+        sale.setQuantity( new Long(1) );
+        sale.setSaleDate( new Date() );
+
+        // Now inserts object into database
+        dbService.executeUpdate( new DefaultInsertQuery(client) );
+        dbService.executeUpdate( new DefaultInsertQuery(product) );
+        dbService.executeUpdate( new DefaultInsertQuery(sale) );
+
+    }
+
+
+    /** Select objects from database
+     *
+     */
+    public void selectAll() throws Exception {
+        // Creates a database service
+        DatabaseService dbService = new DefaultDatabaseService();
+
+        // Selects all clients
+        QueryResult clientResult = dbService.executeQuery( new DefaultSelectQuery(Client.class) );
+        System.out.println("Client list : \n" + clientResult.toString() );
+
+        // Selects all products
+        QueryResult productResult = dbService.executeQuery( new DefaultSelectQuery(Product.class) );
+        System.out.println("Product list : \n" + productResult.toString() );
+
+        // Selects all sales
+        QueryResult saleResult = dbService.executeQuery( new DefaultSelectQuery(Sale.class) );
+        System.out.println("Sale list : \n" + saleResult.toString() );
+
+        // Displays the one client
+        Client client = null;
+
+        if( clientResult.hasObjects() ) {
+            client = (Client) clientResult.getObject(0);
+
+            System.out.println("One client : \n" + client.toString() );
+        }else {
+            System.out.println("No client found");
+        }
+    }
+
+
+    /** Select objects from database
+     *
+     */
+    public void selectSalesOfOneCLient() throws Exception {
+        // Creates a database service
+        DatabaseService dbService = new DefaultDatabaseService();
+
+        Where where = new DefaultWhere(SaleDBHelper.CLIENT_ID , WhereOperator.EQUAL , "1" );
+        System.out.println("Where " + where.getSql(true));
+
+        // Selects all sales
+        QueryResult saleResult = dbService.executeQuery( new DefaultSelectQuery(Sale.class , where ) );
+        System.out.println("Sale list : \n" + saleResult.toString() );
+
+    }
+
+    /** Select objects from database with join
+     *
+     */
+    public void selectWithJoin() throws Exception {
+        // Creates a database service
+        DatabaseService dbService = new DefaultDatabaseService();
+
+        Where where = new DefaultWhere(SaleDBHelper.CLIENT_ID , WhereOperator.EQUAL , ClientDBHelper.CLIENT_ID);
+
+        DefaultSelectQuery selectQuery = new  DefaultSelectQuery( );
+
+        selectQuery.addSingleTableSelect( new DefaultSingleTableSelectQuery(Client.class));
+        selectQuery.addSingleTableSelect( new DefaultSingleTableSelectQuery(Sale.class));
+
+        selectQuery.setWhere( where );
+
+        // Selects all sales
+        QueryResult result = dbService.executeQuery( selectQuery );
+        System.out.println("Sale list : \n" + result.toString() );
+
+    }
+
+
+    /** Deletes objects from database
+     *
+     */
+    public void deleteSalesOfOneCLient() throws Exception {
+        // Creates a database service
+        DatabaseService dbService = new DefaultDatabaseService();
+
+        Where where = new DefaultWhere( SaleDBHelper.CLIENT_ID , WhereOperator.EQUAL , "1");
+        // Selects all sales
+        int nNbDeleted = dbService.executeUpdate( new DefaultDeleteQuery(Sale.class , where ) );
+        System.out.println(nNbDeleted + " sales were deleted!" );
+
+    }
+
+    /** Update objects from database
+     *
+     */
+    public void updateClient() throws Exception {
+        // Creates a database service
+        DatabaseService dbService = new DefaultDatabaseService();
+
+        QueryResult result = dbService.executeQuery(new DefaultSelectQuery(Client.class));
+        Client client = null;
+
+        if( result.hasObjects() )
+        {
+            client = (Client) result.getObject(0);
+
+            client.setDebit(new Double(Math.random()*1000));
+            // Updates the client
+            int nNbUpdates = dbService.executeUpdate( new DefaultUpdateQuery(client) );
+            System.out.println(nNbUpdates + " clients were updated!" );
+        }
+        else
+        {
+            System.out.println("No client found!");
+        }
+    }
+
+
+    void countingObjects() throws Exception{
+        // Creates a database service
+        DatabaseService dbService = new DefaultDatabaseService();
+
+        System.out.println("Number of Clients = " + dbService.count(new DefaultSelectQuery(Client.class)) );
+
+    }
+
+
+
+    /** Insert a client, a product and a sale
+     *
+     */
+    public void insertQuantity(int in_nQuantity) throws Exception {
+        // Creates a database service
+        DatabaseService dbService = new DefaultDatabaseService();
+
+
+        // Create a client object
+        Client client = new Client();
+
+        // Create a Product object
+        Product product = new Product();
+
+        // Create a Sale object
+        Sale sale = new Sale();
+
+        StopWatch sw = new StopWatch();
+        sw.start();
+        for( int i = 0 ; i < in_nQuantity ; i ++ )
+        {
+            // Populate the client object
+            //client.setClientId(getNextId());
+            client.setBirthDate(new Date());
+            client.setName("Olivier smadja");
+            client.setStreet("Rue de rennes");
+            client.setStreetNumber(new Long(151) );
+            client.setCredit(new Double(10));
+            client.setDebit(new Double(120));
+
+            // Populate the product object
+            //product.setProductId( getNextId() );
+            product.setName("Palm Pilot V");
+            product.setUnitPrice(new Double(500.50));
+            product.setDescription("A very nice palm computer!");
+
+            // Populate the sale object
+            //sale.setSaleId( getNextId() );
+            sale.setClientId( client.getClientId() );
+            sale.setProductId( product.getProductId() );
+            sale.setQuantity( new Long(1) );
+            sale.setSaleDate( new Date() );
+
+            // Now inserts object into database
+            dbService.executeQuery( new DefaultInsertQuery(client) );
+            dbService.executeQuery( new DefaultInsertQuery(product) );
+            dbService.executeQuery( new DefaultInsertQuery(sale) );
+        }
+        sw.end();
+
+        System.out.println(in_nQuantity + " loops : Time for each loop = " + sw.getDurationInMiliseconds()/in_nQuantity);
+    }
+
+
+    /** This should return the id of a sequence....
+     *
+     */
+    protected Long getNextId() {
+        return new Long(1);
+    }
+
+
+
+    public static void main(String[] args) throws Exception {
+
+        boolean bPerformanceTest = false;
+
+        Tracer.traceAll(true);
+        Example1MySql example1 = new Example1MySql();
+
+        if( !bPerformanceTest )
+        {
+
+            System.out.println("\n\n ** DELETING SALES OF ONE CLIENT ** \n\n");
+            example1.deleteSalesOfOneCLient();
+
+            System.out.println("\n\n ** INSERTING OBJECTS ** \n\n");
+            example1.insert();
+
+            System.out.println("\n\n ** SELECTING OBJECTS ** \n\n");
+            example1.selectAll();
+
+            System.out.println("\n\n ** SELECTING SALES OF ONE CLIENT ** \n\n");
+            example1.selectSalesOfOneCLient();
+
+
+            System.out.println("\n\n ** COUNTING Clients ** \n\n");
+            example1.countingObjects();
+
+
+            System.out.println("\n\n ** SELECTING WITH JOIN ** \n\n");
+            example1.selectWithJoin();
+
+            System.out.println("\n\n ** Updating client ** \n\n");
+            example1.updateClient();
+        }
+        else
+        {
+            System.out.println("\n\n ** inserting 1000*3 objects ** \n\n");
+            example1.insertQuantity(10);
+        }
+
+    }
+
+}

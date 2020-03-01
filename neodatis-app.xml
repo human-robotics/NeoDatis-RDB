@@ -1,0 +1,1402 @@
+<neodatis-app-data name="Integris">
+	<concept name="ACAO_SISTEMA" >
+		<attribute name="ID" type="Long" is-nullable="false" is-primary-key="true" foreign-key="none" comment=""/>
+		<attribute name="TIPO_ACAO" type="Long" is-nullable="false" is-primary-key="false" foreign-key="none" comment=""/>
+		<attribute name="ID_ATIVACAO_PLANO_ACAO" type="Long" is-nullable="true" is-primary-key="false" foreign-key="ATIVACAO_PLANO_ACAO.ID" comment=""/>
+		<attribute name="DATA_ACAO" type="Date" is-nullable="true" is-primary-key="false" foreign-key="none" comment=""/>
+		<attribute name="ID_OBJETO_1" type="Long" is-nullable="true" is-primary-key="false" foreign-key="none" comment=""/>
+		<attribute name="ID_OBJETO_2" type="Long" is-nullable="true" is-primary-key="false" foreign-key="none" comment=""/>
+		<attribute name="ID_OBJETO_3" type="Long" is-nullable="true" is-primary-key="false" foreign-key="none" comment=""/>
+		<attribute name="ID_OBJETO_4" type="Long" is-nullable="true" is-primary-key="false" foreign-key="none" comment=""/>
+		<attribute name="ID_OBJETO_5" type="Long" is-nullable="true" is-primary-key="false" foreign-key="none" comment=""/>
+		<attribute name="OBSERVACAO" type="String" is-nullable="true" is-primary-key="false" foreign-key="none" comment=""/>
+	</concept>
+	<concept name="ALERTA_USUARIO" >
+		<attribute name="ID" type="Long" is-nullable="false" is-primary-key="true" foreign-key="none" comment=""/>
+		<attribute name="TIPO" type="String" is-nullable="false" is-primary-key="false" foreign-key="none" comment=""/>
+		<attribute name="DESCRICAO" type="String" is-nullable="false" is-primary-key="false" foreign-key="none" comment=""/>
+		<attribute name="CHAVE" type="String" is-nullable="false" is-primary-key="false" foreign-key="none" comment=""/>
+		<attribute name="LABEL1" type="String" is-nullable="true" is-primary-key="false" foreign-key="none" comment=""/>
+		<attribute name="LABEL2" type="String" is-nullable="true" is-primary-key="false" foreign-key="none" comment=""/>
+		<attribute name="LABEL3" type="String" is-nullable="true" is-primary-key="false" foreign-key="none" comment=""/>
+		<attribute name="LINK1" type="String" is-nullable="true" is-primary-key="false" foreign-key="none" comment=""/>
+		<attribute name="LINK2" type="String" is-nullable="true" is-primary-key="false" foreign-key="none" comment=""/>
+		<attribute name="LINK3" type="String" is-nullable="true" is-primary-key="false" foreign-key="none" comment=""/>
+		<attribute name="ESCOLHA" type="Long" is-nullable="true" is-primary-key="false" foreign-key="none" comment=""/>
+		<attribute name="DATA_CRIACAO" type="Date" is-nullable="true" is-primary-key="false" foreign-key="none" comment=""/>
+		<attribute name="DATA_ATUALIZACAO" type="Date" is-nullable="true" is-primary-key="false" foreign-key="none" comment=""/>
+		<attribute name="DATA_OK_USUARIO" type="Date" is-nullable="true" is-primary-key="false" foreign-key="none" comment=""/>
+		<attribute name="ID_USUARIO" type="Long" is-nullable="true" is-primary-key="false" foreign-key="USUARIO.ID" comment=""/>
+		<attribute name="APAGADO" type="Long" is-nullable="true" is-primary-key="false" foreign-key="none" comment=""/>
+	</concept>
+	<concept name="ALGORITMO_SAT" >
+		<attribute name="ID" type="Long" is-nullable="false" is-primary-key="true" foreign-key="none" comment=""/>
+		<attribute name="DATA_CRIACAO" type="Date" is-nullable="true" is-primary-key="false" foreign-key="none" comment=""/>
+		<attribute name="DATA_ATUALIZACAO" type="Date" is-nullable="true" is-primary-key="false" foreign-key="none" comment=""/>
+		<attribute name="ID_USUARIO" type="Long" is-nullable="false" is-primary-key="false" foreign-key="USUARIO.ID" comment=""/>
+		<attribute name="NOME" type="String" is-nullable="false" is-primary-key="false" foreign-key="none" comment=""/>
+		<attribute name="TAXA_OCUPACAO1" type="Long" is-nullable="false" is-primary-key="false" foreign-key="none" comment=""/>
+		<attribute name="TAXA_OCUPACAO2" type="Long" is-nullable="false" is-primary-key="false" foreign-key="none" comment=""/>
+		<attribute name="TAXA_OCUPACAO3" type="Long" is-nullable="false" is-primary-key="false" foreign-key="none" comment=""/>
+		<attribute name="VOLUME1" type="Long" is-nullable="false" is-primary-key="false" foreign-key="none" comment=""/>
+		<attribute name="VOLUME2" type="Long" is-nullable="false" is-primary-key="false" foreign-key="none" comment=""/>
+		<attribute name="VOLUME3" type="Long" is-nullable="false" is-primary-key="false" foreign-key="none" comment=""/>
+		<attribute name="VELOCIDADE1" type="Long" is-nullable="false" is-primary-key="false" foreign-key="none" comment=""/>
+		<attribute name="VELOCIDADE2" type="Long" is-nullable="false" is-primary-key="false" foreign-key="none" comment=""/>
+		<attribute name="VELOCIDADE3" type="Long" is-nullable="false" is-primary-key="false" foreign-key="none" comment=""/>
+		<attribute name="PARAMETRO" type="String" is-nullable="true" is-primary-key="false" foreign-key="none" comment=""/>
+		<attribute name="TIPO" type="Long" is-nullable="false" is-primary-key="false" foreign-key="none" comment=""/>
+		<attribute name="TAXA_OCUPACAO4" type="Long" is-nullable="false" is-primary-key="false" foreign-key="none" comment=""/>
+		<attribute name="VOLUME4" type="Long" is-nullable="false" is-primary-key="false" foreign-key="none" comment=""/>
+		<attribute name="VELOCIDADE4" type="Long" is-nullable="false" is-primary-key="false" foreign-key="none" comment=""/>
+	</concept>
+	<concept name="ARQUIVOS_SAT" >
+		<attribute name="ID" type="Long" is-nullable="false" is-primary-key="true" foreign-key="none" comment=""/>
+		<attribute name="NOME_ESTACAO_SAT" type="String" is-nullable="false" is-primary-key="false" foreign-key="none" comment=""/>
+		<attribute name="NOME_ARQUIVO_SAT" type="String" is-nullable="false" is-primary-key="false" foreign-key="none" comment=""/>
+		<attribute name="DATA" type="Date" is-nullable="false" is-primary-key="false" foreign-key="none" comment=""/>
+		<attribute name="ESTADO_PROCESSAMENTO" type="Long" is-nullable="false" is-primary-key="false" foreign-key="none" comment=""/>
+		<attribute name="ERRO" type="String" is-nullable="true" is-primary-key="false" foreign-key="none" comment=""/>
+	</concept>
+	<concept name="ATALHO_MENSAGEM" >
+		<attribute name="ID" type="Long" is-nullable="false" is-primary-key="true" foreign-key="none" comment=""/>
+		<attribute name="LABEL_MENSAGEM" type="String" is-nullable="true" is-primary-key="false" foreign-key="none" comment=""/>
+		<attribute name="ID_MENSAGEM" type="String" is-nullable="true" is-primary-key="false" foreign-key="none" comment=""/>
+		<attribute name="ID_USUARIO" type="Long" is-nullable="false" is-primary-key="false" foreign-key="none" comment=""/>
+		<attribute name="INDICE" type="Long" is-nullable="false" is-primary-key="false" foreign-key="none" comment=""/>
+		<attribute name="DATA_CRIACAO" type="Date" is-nullable="true" is-primary-key="false" foreign-key="none" comment=""/>
+		<attribute name="DATA_ATUALIZACAO" type="Date" is-nullable="true" is-primary-key="false" foreign-key="none" comment=""/>
+	</concept>
+	<concept name="ATIVACAO_PLANO_ACAO" >
+		<attribute name="ID" type="Long" is-nullable="false" is-primary-key="true" foreign-key="none" comment=""/>
+		<attribute name="TIPO_EVENTO" type="String" is-nullable="true" is-primary-key="false" foreign-key="none" comment=""/>
+		<attribute name="DESCRICAO_EVENTO" type="String" is-nullable="true" is-primary-key="false" foreign-key="none" comment=""/>
+		<attribute name="ID_PLANO_ACAO" type="Long" is-nullable="false" is-primary-key="false" foreign-key="PLANO_ACAO.ID" comment=""/>
+		<attribute name="ID_ESTRADA" type="Long" is-nullable="false" is-primary-key="false" foreign-key="ESTRADA.ID" comment=""/>
+		<attribute name="SENTIDO" type="String" is-nullable="true" is-primary-key="false" foreign-key="none" comment=""/>
+		<attribute name="FAIXA" type="String" is-nullable="true" is-primary-key="false" foreign-key="none" comment=""/>
+		<attribute name="LOCAL_EVENTO" type="String" is-nullable="true" is-primary-key="false" foreign-key="none" comment=""/>
+		<attribute name="SISTEMA_ORIGEM" type="String" is-nullable="false" is-primary-key="false" foreign-key="none" comment=""/>
+		<attribute name="ID_EVENTO_QUE_ORIGINOU_PLANO" type="Long" is-nullable="true" is-primary-key="false" foreign-key="EVENTO.ID" comment=""/>
+		<attribute name="ESTADO" type="Long" is-nullable="false" is-primary-key="false" foreign-key="none" comment=""/>
+		<attribute name="ID_USUARIO_ACEITOU_REJEITOU" type="Long" is-nullable="true" is-primary-key="false" foreign-key="none" comment=""/>
+		<attribute name="ID_USUARIO_FINALIZOU" type="Long" is-nullable="true" is-primary-key="false" foreign-key="none" comment=""/>
+		<attribute name="DATA_CRIACAO" type="Date" is-nullable="true" is-primary-key="false" foreign-key="none" comment=""/>
+		<attribute name="DATA_ACAO_OPERADOR" type="Date" is-nullable="true" is-primary-key="false" foreign-key="none" comment=""/>
+		<attribute name="DATA_FIM" type="Date" is-nullable="true" is-primary-key="false" foreign-key="none" comment=""/>
+		<attribute name="CONFIG_PMV_ANTES" type="String" is-nullable="true" is-primary-key="false" foreign-key="none" comment=""/>
+		<attribute name="CONFIG_PMV" type="String" is-nullable="true" is-primary-key="false" foreign-key="none" comment=""/>
+		<attribute name="CONFIG_SM_ANTES" type="String" is-nullable="true" is-primary-key="false" foreign-key="none" comment=""/>
+		<attribute name="CONFIG_SM" type="String" is-nullable="true" is-primary-key="false" foreign-key="none" comment=""/>
+		<attribute name="CONFIG_CTFV" type="String" is-nullable="true" is-primary-key="false" foreign-key="none" comment=""/>
+		<attribute name="CONFIG_CTFV_ANTES" type="String" is-nullable="true" is-primary-key="false" foreign-key="none" comment=""/>
+		<attribute name="OBSERVACAO" type="String" is-nullable="true" is-primary-key="false" foreign-key="none" comment=""/>
+	</concept>
+	<concept name="ATIVACAO_PLANO_ACAO_GENERICO" >
+		<attribute name="ID" type="Long" is-nullable="false" is-primary-key="true" foreign-key="none" comment=""/>
+		<attribute name="ID_ESTRADA" type="Long" is-nullable="false" is-primary-key="false" foreign-key="ESTRADA.ID" comment=""/>
+		<attribute name="KM_INICIO" type="BigDecimal" is-nullable="true" is-primary-key="false" foreign-key="none" comment=""/>
+		<attribute name="KM_FINAL" type="BigDecimal" is-nullable="true" is-primary-key="false" foreign-key="none" comment=""/>
+		<attribute name="KM" type="BigDecimal" is-nullable="true" is-primary-key="false" foreign-key="none" comment=""/>
+		<attribute name="ORIGEM" type="String" is-nullable="true" is-primary-key="false" foreign-key="none" comment=""/>
+		<attribute name="NOME" type="String" is-nullable="false" is-primary-key="false" foreign-key="none" comment=""/>
+		<attribute name="DESCRICAO" type="String" is-nullable="false" is-primary-key="false" foreign-key="none" comment=""/>
+		<attribute name="TIPO_ENTRADA" type="Long" is-nullable="false" is-primary-key="false" foreign-key="none" comment=""/>
+		<attribute name="DESCRICAO_ATIVACAO" type="String" is-nullable="true" is-primary-key="false" foreign-key="none" comment=""/>
+		<attribute name="ID_DESCRICAO_PLANO_ACAO_GENERICO" type="Long" is-nullable="false" is-primary-key="false" foreign-key="DESCRICAO_PLANO_ACAO_GENERICO.ID" comment=""/>
+		<attribute name="EXIBE_PMVS_MAIS_PROXIMOS" type="Long" is-nullable="false" is-primary-key="false" foreign-key="none" comment=""/>
+		<attribute name="ENVIA_MENSAGEM_PMV" type="Long" is-nullable="false" is-primary-key="false" foreign-key="none" comment=""/>
+		<attribute name="ID_MENSAGEM" type="Long" is-nullable="true" is-primary-key="false" foreign-key="BIBLIOTECA_MENSAGEM.ID" comment=""/>
+		<attribute name="EXIBE_CAMERA_MAIS_PROXIMAS" type="Long" is-nullable="false" is-primary-key="false" foreign-key="none" comment=""/>
+		<attribute name="EXIBE_VIDEO_DAS_CAMERAS" type="Long" is-nullable="false" is-primary-key="false" foreign-key="none" comment=""/>
+		<attribute name="EXIBE_VEICULOS_MAIS_PROXIMOS" type="Long" is-nullable="false" is-primary-key="false" foreign-key="none" comment=""/>
+		<attribute name="EXIBE_VEICULOS_LIVRES" type="Long" is-nullable="false" is-primary-key="false" foreign-key="none" comment=""/>
+		<attribute name="EXIBE_ENVOLVIDOS" type="Long" is-nullable="false" is-primary-key="false" foreign-key="none" comment=""/>
+		<attribute name="EXIBE_MENSAGEM_PARA_USUARIO" type="Long" is-nullable="false" is-primary-key="false" foreign-key="none" comment=""/>
+		<attribute name="MENSAGEM_PARA_USUARIO" type="String" is-nullable="true" is-primary-key="false" foreign-key="none" comment=""/>
+		<attribute name="ENVIA_EMAIL" type="Long" is-nullable="false" is-primary-key="false" foreign-key="none" comment=""/>
+		<attribute name="LISTA_EMAIL" type="String" is-nullable="true" is-primary-key="false" foreign-key="none" comment=""/>
+		<attribute name="ENVIA_SMS" type="Long" is-nullable="false" is-primary-key="false" foreign-key="none" comment=""/>
+		<attribute name="LISTA_SMS" type="String" is-nullable="true" is-primary-key="false" foreign-key="none" comment=""/>
+		<attribute name="DATA_CRIACAO" type="Date" is-nullable="true" is-primary-key="false" foreign-key="none" comment=""/>
+		<attribute name="DATA_ATUALIZACAO" type="Date" is-nullable="true" is-primary-key="false" foreign-key="none" comment=""/>
+		<attribute name="ID_USUARIO" type="Long" is-nullable="true" is-primary-key="false" foreign-key="USUARIO.ID" comment=""/>
+		<attribute name="ID_CFTV1" type="Long" is-nullable="true" is-primary-key="false" foreign-key="CFTV.ID" comment=""/>
+		<attribute name="ID_CFTV2" type="Long" is-nullable="true" is-primary-key="false" foreign-key="CFTV.ID" comment=""/>
+		<attribute name="ID_CFTV3" type="Long" is-nullable="true" is-primary-key="false" foreign-key="CFTV.ID" comment=""/>
+		<attribute name="NOME_CFTV1" type="String" is-nullable="true" is-primary-key="false" foreign-key="none" comment=""/>
+		<attribute name="NOME_CFTV2" type="String" is-nullable="true" is-primary-key="false" foreign-key="none" comment=""/>
+		<attribute name="NOME_CFTV3" type="String" is-nullable="true" is-primary-key="false" foreign-key="none" comment=""/>
+		<attribute name="DISTANCIA_CFTV1" type="BigDecimal" is-nullable="true" is-primary-key="false" foreign-key="none" comment=""/>
+		<attribute name="DISTANCIA_CFTV2" type="BigDecimal" is-nullable="true" is-primary-key="false" foreign-key="none" comment=""/>
+		<attribute name="DISTANCIA_CFTV3" type="BigDecimal" is-nullable="true" is-primary-key="false" foreign-key="none" comment=""/>
+		<attribute name="ID_VEICULO1" type="Long" is-nullable="true" is-primary-key="false" foreign-key="VEICULO.ID" comment=""/>
+		<attribute name="ID_VEICULO2" type="Long" is-nullable="true" is-primary-key="false" foreign-key="VEICULO.ID" comment=""/>
+		<attribute name="ID_VEICULO3" type="Long" is-nullable="true" is-primary-key="false" foreign-key="VEICULO.ID" comment=""/>
+		<attribute name="NOME_VEICULO1" type="String" is-nullable="true" is-primary-key="false" foreign-key="none" comment=""/>
+		<attribute name="NOME_VEICULO2" type="String" is-nullable="true" is-primary-key="false" foreign-key="none" comment=""/>
+		<attribute name="NOME_VEICULO3" type="String" is-nullable="true" is-primary-key="false" foreign-key="none" comment=""/>
+		<attribute name="DISTANCIA_VEICULO1" type="BigDecimal" is-nullable="true" is-primary-key="false" foreign-key="none" comment=""/>
+		<attribute name="DISTANCIA_VEICULO2" type="BigDecimal" is-nullable="true" is-primary-key="false" foreign-key="none" comment=""/>
+		<attribute name="DISTANCIA_VEICULO3" type="BigDecimal" is-nullable="true" is-primary-key="false" foreign-key="none" comment=""/>
+		<attribute name="ID_PMV1" type="Long" is-nullable="true" is-primary-key="false" foreign-key="PMV.ID" comment=""/>
+		<attribute name="ID_PMV2" type="Long" is-nullable="true" is-primary-key="false" foreign-key="PMV.ID" comment=""/>
+		<attribute name="ID_PMV3" type="Long" is-nullable="true" is-primary-key="false" foreign-key="PMV.ID" comment=""/>
+		<attribute name="NOME_PMV1" type="String" is-nullable="true" is-primary-key="false" foreign-key="none" comment=""/>
+		<attribute name="NOME_PMV2" type="String" is-nullable="true" is-primary-key="false" foreign-key="none" comment=""/>
+		<attribute name="NOME_PMV3" type="String" is-nullable="true" is-primary-key="false" foreign-key="none" comment=""/>
+		<attribute name="DISTANCIA_PMV1" type="BigDecimal" is-nullable="true" is-primary-key="false" foreign-key="none" comment=""/>
+		<attribute name="DISTANCIA_PMV2" type="BigDecimal" is-nullable="true" is-primary-key="false" foreign-key="none" comment=""/>
+		<attribute name="DISTANCIA_PMV3" type="BigDecimal" is-nullable="true" is-primary-key="false" foreign-key="none" comment=""/>
+		<attribute name="POSICAO_X_ESCALA_1" type="Long" is-nullable="true" is-primary-key="false" foreign-key="none" comment=""/>
+		<attribute name="POSICAO_Y_ESCALA_1" type="Long" is-nullable="true" is-primary-key="false" foreign-key="none" comment=""/>
+		<attribute name="POSICAO_X_ESCALA_2" type="Long" is-nullable="true" is-primary-key="false" foreign-key="none" comment=""/>
+		<attribute name="POSICAO_Y_ESCALA_2" type="Long" is-nullable="true" is-primary-key="false" foreign-key="none" comment=""/>
+		<attribute name="POSICAO_X_ESCALA_3" type="Long" is-nullable="true" is-primary-key="false" foreign-key="none" comment=""/>
+		<attribute name="POSICAO_Y_ESCALA_3" type="Long" is-nullable="true" is-primary-key="false" foreign-key="none" comment=""/>
+		<attribute name="LONGITUDE" type="BigDecimal" is-nullable="true" is-primary-key="false" foreign-key="none" comment=""/>
+		<attribute name="LATITUDE" type="BigDecimal" is-nullable="true" is-primary-key="false" foreign-key="none" comment=""/>
+		<attribute name="ESTADO" type="Long" is-nullable="false" is-primary-key="false" foreign-key="none" comment=""/>
+		<attribute name="ID_EVENTO_ORIGEM" type="Long" is-nullable="true" is-primary-key="false" foreign-key="EVENTO.ID" comment=""/>
+		<attribute name="DESC_ID_EVENTO_ORIGEM" type="String" is-nullable="true" is-primary-key="false" foreign-key="none" comment=""/>
+		<attribute name="RESUMO_TIPO" type="String" is-nullable="true" is-primary-key="false" foreign-key="none" comment=""/>
+		<attribute name="NUMERO_ACIONAMENTOS" type="Long" is-nullable="true" is-primary-key="false" foreign-key="none" comment=""/>
+		<attribute name="DATA_HORA_PRIMEIRO_ACIONAMENTO" type="Date" is-nullable="true" is-primary-key="false" foreign-key="none" comment=""/>
+		<attribute name="DATA_HORA_PRIMEIRA_CHEGADA" type="Date" is-nullable="true" is-primary-key="false" foreign-key="none" comment=""/>
+		<attribute name="TEMPO_PRIMEIRO_ATENDIMENTO" type="Long" is-nullable="true" is-primary-key="false" foreign-key="none" comment=""/>
+		<attribute name="OBSERVACOES" type="String" is-nullable="true" is-primary-key="false" foreign-key="none" comment=""/>
+		<attribute name="USUARIO_CRIADOR" type="String" is-nullable="true" is-primary-key="false" foreign-key="none" comment=""/>
+		<attribute name="USUARIO_ATUALIZACAO" type="String" is-nullable="true" is-primary-key="false" foreign-key="none" comment=""/>
+		<attribute name="USUARIO_TERMINO" type="String" is-nullable="true" is-primary-key="false" foreign-key="none" comment=""/>
+		<attribute name="RECURSOS" type="String" is-nullable="true" is-primary-key="false" foreign-key="none" comment=""/>
+		<attribute name="ACOES" type="String" is-nullable="true" is-primary-key="false" foreign-key="none" comment=""/>
+		<attribute name="QUANDO_RECURSO_QUE_CHEGOU_PRIMEIRO" type="Date" is-nullable="true" is-primary-key="false" foreign-key="none" comment=""/>
+		<attribute name="TEMPO_PRIMEIRO_RECURSO_NO_LOCAL_EM_SEGUNDOS" type="Long" is-nullable="true" is-primary-key="false" foreign-key="none" comment=""/>
+		<attribute name="NOME_PRIMEIRO_RECURSO_NO_LOCAL" type="String" is-nullable="true" is-primary-key="false" foreign-key="none" comment=""/>
+		<attribute name="ID_ESTADO" type="Long" is-nullable="true" is-primary-key="false" foreign-key="ESTADO.ID" comment=""/>
+		<attribute name="ID_SENTIDO" type="Long" is-nullable="true" is-primary-key="false" foreign-key="SENTIDO.ID" comment=""/>
+		<attribute name="FAIXA" type="Long" is-nullable="true" is-primary-key="false" foreign-key="none" comment=""/>
+		<attribute name="ENDERECO" type="String" is-nullable="true" is-primary-key="false" foreign-key="none" comment=""/>
+		<attribute name="TIPO_EVENTO" type="String" is-nullable="true" is-primary-key="false" foreign-key="none" comment=""/>
+	</concept>
+	<concept name="ATIVACAO_PMV" >
+		<attribute name="ID" type="Long" is-nullable="false" is-primary-key="true" foreign-key="none" comment=""/>
+		<attribute name="ID_USUARIO" type="Long" is-nullable="false" is-primary-key="false" foreign-key="none" comment=""/>
+		<attribute name="ID_PMV" type="Long" is-nullable="false" is-primary-key="false" foreign-key="none" comment=""/>
+		<attribute name="NOME_PMV" type="String" is-nullable="true" is-primary-key="false" foreign-key="none" comment=""/>
+		<attribute name="LOCALIZACAO" type="String" is-nullable="true" is-primary-key="false" foreign-key="none" comment=""/>
+		<attribute name="DATA_INICIO" type="Date" is-nullable="true" is-primary-key="false" foreign-key="none" comment=""/>
+		<attribute name="DATA_FIM" type="Date" is-nullable="true" is-primary-key="false" foreign-key="none" comment=""/>
+	</concept>
+	<concept name="AUDITORIA" >
+		<attribute name="ID" type="Long" is-nullable="false" is-primary-key="true" foreign-key="none" comment=""/>
+		<attribute name="EVENTO" type="String" is-nullable="true" is-primary-key="false" foreign-key="none" comment=""/>
+		<attribute name="QUANDO" type="Date" is-nullable="false" is-primary-key="false" foreign-key="none" comment=""/>
+		<attribute name="NOME_USUARIO" type="String" is-nullable="true" is-primary-key="false" foreign-key="none" comment=""/>
+		<attribute name="ID_USUARIO" type="Long" is-nullable="true" is-primary-key="false" foreign-key="none" comment=""/>
+		<attribute name="DESCRICAO" type="String" is-nullable="true" is-primary-key="false" foreign-key="none" comment=""/>
+		<attribute name="ORIGEM" type="String" is-nullable="true" is-primary-key="false" foreign-key="none" comment=""/>
+	</concept>
+	<concept name="BIBLIOTECA_MENSAGEM" >
+		<attribute name="ID" type="Long" is-nullable="false" is-primary-key="true" foreign-key="none" comment=""/>
+		<attribute name="NOME" type="String" is-nullable="true" is-primary-key="false" foreign-key="none" comment=""/>
+		<attribute name="TIPO" type="Long" is-nullable="true" is-primary-key="false" foreign-key="none" comment=""/>
+		<attribute name="ID_CATEGORIA_MENSAGEM" type="Long" is-nullable="true" is-primary-key="false" foreign-key="CATEGORIA_MENSAGEM.ID" comment=""/>
+		<attribute name="ID_USUARIO" type="Long" is-nullable="true" is-primary-key="false" foreign-key="none" comment=""/>
+		<attribute name="DATA_CRIACAO" type="Date" is-nullable="true" is-primary-key="false" foreign-key="none" comment=""/>
+		<attribute name="DATA_ATUALIZACAO" type="Date" is-nullable="true" is-primary-key="false" foreign-key="none" comment=""/>
+		<attribute name="APAGADO" type="Long" is-nullable="true" is-primary-key="false" foreign-key="none" comment=""/>
+		<attribute name="CRITICAL" type="Long" is-nullable="true" is-primary-key="false" foreign-key="none" comment=""/>
+		<attribute name="COM_STROBO" type="Long" is-nullable="true" is-primary-key="false" foreign-key="none" comment=""/>
+		<attribute name="NUMERO_PAGINAS" type="Long" is-nullable="true" is-primary-key="false" foreign-key="none" comment=""/>
+		<attribute name="COMANDO1" type="String" is-nullable="true" is-primary-key="false" foreign-key="none" comment=""/>
+		<attribute name="COMANDO2" type="String" is-nullable="true" is-primary-key="false" foreign-key="none" comment=""/>
+		<attribute name="COMANDO3" type="String" is-nullable="true" is-primary-key="false" foreign-key="none" comment=""/>
+		<attribute name="TEXTO" type="String" is-nullable="true" is-primary-key="false" foreign-key="none" comment=""/>
+		<attribute name="ID_RESOLUCAO" type="Long" is-nullable="true" is-primary-key="false" foreign-key="none" comment=""/>
+		<attribute name="EMERGENCIAL" type="Long" is-nullable="true" is-primary-key="false" foreign-key="none" comment=""/>
+		<attribute name="COMANDO4" type="String" is-nullable="true" is-primary-key="false" foreign-key="none" comment=""/>
+	</concept>
+	<concept name="CALLBOX" >
+		<attribute name="ID" type="Long" is-nullable="false" is-primary-key="true" foreign-key="none" comment=""/>
+		<attribute name="NOME" type="String" is-nullable="false" is-primary-key="false" foreign-key="none" comment=""/>
+		<attribute name="KM" type="BigDecimal" is-nullable="true" is-primary-key="false" foreign-key="none" comment=""/>
+		<attribute name="POSICAO_X_ESCALA_1" type="Long" is-nullable="true" is-primary-key="false" foreign-key="none" comment=""/>
+		<attribute name="POSICAO_Y_ESCALA_1" type="Long" is-nullable="true" is-primary-key="false" foreign-key="none" comment=""/>
+		<attribute name="POSICAO_X_ESCALA_2" type="Long" is-nullable="true" is-primary-key="false" foreign-key="none" comment=""/>
+		<attribute name="POSICAO_Y_ESCALA_2" type="Long" is-nullable="true" is-primary-key="false" foreign-key="none" comment=""/>
+		<attribute name="ID_ALGORITMO" type="Long" is-nullable="true" is-primary-key="false" foreign-key="none" comment=""/>
+		<attribute name="ID_ESTRADA" type="Long" is-nullable="true" is-primary-key="false" foreign-key="ESTRADA.ID" comment=""/>
+		<attribute name="ID_ESTADO" type="Long" is-nullable="true" is-primary-key="false" foreign-key="ESTADO.ID" comment=""/>
+		<attribute name="STATUS_SISTEMA" type="Long" is-nullable="true" is-primary-key="false" foreign-key="none" comment=""/>
+		<attribute name="STATUS_OPERACIONAL" type="Long" is-nullable="true" is-primary-key="false" foreign-key="none" comment=""/>
+		<attribute name="DESCRICAO_STATUS_OPERACIONAL" type="String" is-nullable="true" is-primary-key="false" foreign-key="none" comment=""/>
+		<attribute name="ULTIMA_VERIFICACAO" type="Date" is-nullable="true" is-primary-key="false" foreign-key="none" comment=""/>
+		<attribute name="ID_PROTOCOLO" type="Long" is-nullable="false" is-primary-key="false" foreign-key="PROTOCOLO.ID" comment=""/>
+		<attribute name="DATA_CRIACAO" type="Date" is-nullable="true" is-primary-key="false" foreign-key="none" comment=""/>
+		<attribute name="DATA_ATUALIZACAO" type="Date" is-nullable="true" is-primary-key="false" foreign-key="none" comment=""/>
+		<attribute name="ID_USUARIO" type="Long" is-nullable="false" is-primary-key="false" foreign-key="USUARIO.ID" comment=""/>
+		<attribute name="ENDERECO" type="String" is-nullable="true" is-primary-key="false" foreign-key="none" comment=""/>
+		<attribute name="ENDERECO_IP" type="String" is-nullable="true" is-primary-key="false" foreign-key="none" comment=""/>
+		<attribute name="PARAMETRO" type="String" is-nullable="true" is-primary-key="false" foreign-key="none" comment=""/>
+		<attribute name="PORTA" type="String" is-nullable="true" is-primary-key="false" foreign-key="none" comment=""/>
+		<attribute name="DISTANCIA" type="Long" is-nullable="true" is-primary-key="false" foreign-key="none" comment=""/>
+		<attribute name="DATA_HORA_ULTIMO_DADO" type="Date" is-nullable="true" is-primary-key="false" foreign-key="none" comment=""/>
+		<attribute name="ESCALA1" type="Long" is-nullable="true" is-primary-key="false" foreign-key="none" comment=""/>
+		<attribute name="ESCALA2" type="Long" is-nullable="true" is-primary-key="false" foreign-key="none" comment=""/>
+		<attribute name="TAMANHO_FONTE_NOME" type="Long" is-nullable="true" is-primary-key="false" foreign-key="none" comment=""/>
+		<attribute name="VISIVEL" type="Long" is-nullable="true" is-primary-key="false" foreign-key="none" comment=""/>
+		<attribute name="EXTRA_INFO1" type="String" is-nullable="true" is-primary-key="false" foreign-key="none" comment=""/>
+		<attribute name="EXTRA_INFO2" type="String" is-nullable="true" is-primary-key="false" foreign-key="none" comment=""/>
+		<attribute name="EXTRA_INFO3" type="String" is-nullable="true" is-primary-key="false" foreign-key="none" comment=""/>
+		<attribute name="TIMEOUT_CONNECT" type="Long" is-nullable="true" is-primary-key="false" foreign-key="none" comment=""/>
+		<attribute name="TIMEOUT_READ" type="Long" is-nullable="true" is-primary-key="false" foreign-key="none" comment=""/>
+		<attribute name="TIPO_COMUNICACAO" type="Long" is-nullable="true" is-primary-key="false" foreign-key="none" comment=""/>
+		<attribute name="DESCRICAO_LOCALIZACAO" type="String" is-nullable="true" is-primary-key="false" foreign-key="none" comment=""/>
+		<attribute name="ID_SENTIDO" type="Long" is-nullable="true" is-primary-key="false" foreign-key="SENTIDO.ID" comment=""/>
+		<attribute name="ORDEM" type="Long" is-nullable="true" is-primary-key="false" foreign-key="none" comment=""/>
+		<attribute name="APAGADO" type="Long" is-nullable="true" is-primary-key="false" foreign-key="none" comment=""/>
+		<attribute name="LONGITUDE" type="BigDecimal" is-nullable="true" is-primary-key="false" foreign-key="none" comment=""/>
+		<attribute name="LATITUDE" type="BigDecimal" is-nullable="true" is-primary-key="false" foreign-key="none" comment=""/>
+		<attribute name="NOME_EXTERNO" type="String" is-nullable="true" is-primary-key="false" foreign-key="none" comment=""/>
+	</concept>
+	<concept name="CATEGORIA_MENSAGEM" >
+		<attribute name="ID" type="Long" is-nullable="false" is-primary-key="true" foreign-key="none" comment=""/>
+		<attribute name="NOME" type="String" is-nullable="true" is-primary-key="false" foreign-key="none" comment=""/>
+		<attribute name="ID_USUARIO" type="Long" is-nullable="false" is-primary-key="false" foreign-key="none" comment=""/>
+		<attribute name="DATA_CRIACAO" type="Date" is-nullable="true" is-primary-key="false" foreign-key="none" comment=""/>
+		<attribute name="DATA_ATUALIZACAO" type="Date" is-nullable="true" is-primary-key="false" foreign-key="none" comment=""/>
+		<attribute name="APAGADO" type="Long" is-nullable="true" is-primary-key="false" foreign-key="none" comment=""/>
+	</concept>
+	<concept name="CFTV" >
+		<attribute name="ID" type="Long" is-nullable="false" is-primary-key="true" foreign-key="none" comment=""/>
+		<attribute name="NOME" type="String" is-nullable="false" is-primary-key="false" foreign-key="none" comment=""/>
+		<attribute name="KM" type="BigDecimal" is-nullable="true" is-primary-key="false" foreign-key="none" comment=""/>
+		<attribute name="POSICAO_X_ESCALA_1" type="Long" is-nullable="true" is-primary-key="false" foreign-key="none" comment=""/>
+		<attribute name="POSICAO_Y_ESCALA_1" type="Long" is-nullable="true" is-primary-key="false" foreign-key="none" comment=""/>
+		<attribute name="POSICAO_X_ESCALA_2" type="Long" is-nullable="true" is-primary-key="false" foreign-key="none" comment=""/>
+		<attribute name="POSICAO_Y_ESCALA_2" type="Long" is-nullable="true" is-primary-key="false" foreign-key="none" comment=""/>
+		<attribute name="ID_ALGORITMO" type="Long" is-nullable="true" is-primary-key="false" foreign-key="none" comment=""/>
+		<attribute name="ID_ESTRADA" type="Long" is-nullable="true" is-primary-key="false" foreign-key="ESTRADA.ID" comment=""/>
+		<attribute name="ID_ESTADO" type="Long" is-nullable="true" is-primary-key="false" foreign-key="ESTADO.ID" comment=""/>
+		<attribute name="STATUS_SISTEMA" type="Long" is-nullable="true" is-primary-key="false" foreign-key="none" comment=""/>
+		<attribute name="STATUS_OPERACIONAL" type="Long" is-nullable="true" is-primary-key="false" foreign-key="none" comment=""/>
+		<attribute name="DESCRICAO_STATUS_OPERACIONAL" type="String" is-nullable="true" is-primary-key="false" foreign-key="none" comment=""/>
+		<attribute name="ULTIMA_VERIFICACAO" type="Date" is-nullable="true" is-primary-key="false" foreign-key="none" comment=""/>
+		<attribute name="ID_PROTOCOLO" type="Long" is-nullable="false" is-primary-key="false" foreign-key="PROTOCOLO.ID" comment=""/>
+		<attribute name="DATA_CRIACAO" type="Date" is-nullable="true" is-primary-key="false" foreign-key="none" comment=""/>
+		<attribute name="DATA_ATUALIZACAO" type="Date" is-nullable="true" is-primary-key="false" foreign-key="none" comment=""/>
+		<attribute name="ID_USUARIO" type="Long" is-nullable="false" is-primary-key="false" foreign-key="USUARIO.ID" comment=""/>
+		<attribute name="ENDERECO" type="String" is-nullable="true" is-primary-key="false" foreign-key="none" comment=""/>
+		<attribute name="ENDERECO_IP" type="String" is-nullable="true" is-primary-key="false" foreign-key="none" comment=""/>
+		<attribute name="PARAMETRO" type="String" is-nullable="true" is-primary-key="false" foreign-key="none" comment=""/>
+		<attribute name="PORTA" type="String" is-nullable="true" is-primary-key="false" foreign-key="none" comment=""/>
+		<attribute name="DISTANCIA" type="Long" is-nullable="true" is-primary-key="false" foreign-key="none" comment=""/>
+		<attribute name="DATA_HORA_ULTIMO_DADO" type="Date" is-nullable="true" is-primary-key="false" foreign-key="none" comment=""/>
+		<attribute name="ESCALA1" type="Long" is-nullable="true" is-primary-key="false" foreign-key="none" comment=""/>
+		<attribute name="ESCALA2" type="Long" is-nullable="true" is-primary-key="false" foreign-key="none" comment=""/>
+		<attribute name="TAMANHO_FONTE_NOME" type="Long" is-nullable="true" is-primary-key="false" foreign-key="none" comment=""/>
+		<attribute name="VISIVEL" type="Long" is-nullable="true" is-primary-key="false" foreign-key="none" comment=""/>
+		<attribute name="EXTRA_INFO1" type="String" is-nullable="true" is-primary-key="false" foreign-key="none" comment=""/>
+		<attribute name="EXTRA_INFO2" type="String" is-nullable="true" is-primary-key="false" foreign-key="none" comment=""/>
+		<attribute name="EXTRA_INFO3" type="String" is-nullable="true" is-primary-key="false" foreign-key="none" comment=""/>
+		<attribute name="TIMEOUT_CONNECT" type="Long" is-nullable="true" is-primary-key="false" foreign-key="none" comment=""/>
+		<attribute name="TIMEOUT_READ" type="Long" is-nullable="true" is-primary-key="false" foreign-key="none" comment=""/>
+		<attribute name="TIPO_COMUNICACAO" type="Long" is-nullable="true" is-primary-key="false" foreign-key="none" comment=""/>
+		<attribute name="DESCRICAO_LOCALIZACAO" type="String" is-nullable="true" is-primary-key="false" foreign-key="none" comment=""/>
+		<attribute name="ID_SENTIDO" type="Long" is-nullable="true" is-primary-key="false" foreign-key="SENTIDO.ID" comment=""/>
+		<attribute name="ORDEM" type="Long" is-nullable="true" is-primary-key="false" foreign-key="none" comment=""/>
+		<attribute name="APAGADO" type="Long" is-nullable="true" is-primary-key="false" foreign-key="none" comment=""/>
+		<attribute name="URL_IMAGEM_VISUALIZACAO" type="String" is-nullable="true" is-primary-key="false" foreign-key="none" comment=""/>
+		<attribute name="URL_IMAGEM_EXPORTACAO" type="String" is-nullable="true" is-primary-key="false" foreign-key="none" comment=""/>
+		<attribute name="LONGITUDE" type="BigDecimal" is-nullable="true" is-primary-key="false" foreign-key="none" comment=""/>
+		<attribute name="LATITUDE" type="BigDecimal" is-nullable="true" is-primary-key="false" foreign-key="none" comment=""/>
+		<attribute name="NOME_EXTERNO" type="String" is-nullable="true" is-primary-key="false" foreign-key="none" comment=""/>
+	</concept>
+	<concept name="CONFIGURACAO" >
+		<attribute name="ID" type="Long" is-nullable="false" is-primary-key="true" foreign-key="none" comment=""/>
+		<attribute name="CODIGO" type="String" is-nullable="false" is-primary-key="false" foreign-key="none" comment=""/>
+		<attribute name="VALOR" type="String" is-nullable="false" is-primary-key="false" foreign-key="none" comment=""/>
+		<attribute name="DESCRICAO" type="String" is-nullable="false" is-primary-key="false" foreign-key="none" comment=""/>
+	</concept>
+	<concept name="CONFIGURACAO_USUARIO" >
+		<attribute name="ID" type="Long" is-nullable="false" is-primary-key="true" foreign-key="none" comment=""/>
+		<attribute name="ID_USUARIO" type="Long" is-nullable="false" is-primary-key="false" foreign-key="none" comment=""/>
+		<attribute name="COLUNAS_GRID" type="String" is-nullable="true" is-primary-key="false" foreign-key="none" comment=""/>
+	</concept>
+	<concept name="DADOS_CLA_COMPRIMENTO" >
+		<attribute name="ID" type="Long" is-nullable="false" is-primary-key="true" foreign-key="none" comment=""/>
+		<attribute name="NOME_ESTACAO" type="String" is-nullable="false" is-primary-key="false" foreign-key="none" comment=""/>
+		<attribute name="NOME_SENSOR" type="String" is-nullable="false" is-primary-key="false" foreign-key="none" comment=""/>
+		<attribute name="VALOR_CLASSE1" type="Long" is-nullable="false" is-primary-key="false" foreign-key="none" comment=""/>
+		<attribute name="VALOR_CLASSE2" type="Long" is-nullable="false" is-primary-key="false" foreign-key="none" comment=""/>
+		<attribute name="VALOR_CLASSE3" type="Long" is-nullable="false" is-primary-key="false" foreign-key="none" comment=""/>
+		<attribute name="VALOR_CLASSE4" type="Long" is-nullable="false" is-primary-key="false" foreign-key="none" comment=""/>
+		<attribute name="VALOR_CLASSE5" type="Long" is-nullable="false" is-primary-key="false" foreign-key="none" comment=""/>
+		<attribute name="VALOR_CLASSE6" type="Long" is-nullable="false" is-primary-key="false" foreign-key="none" comment=""/>
+		<attribute name="DATA_HORA" type="Date" is-nullable="false" is-primary-key="false" foreign-key="none" comment=""/>
+		<attribute name="PERIODO" type="Long" is-nullable="false" is-primary-key="false" foreign-key="none" comment=""/>
+	</concept>
+	<concept name="DADOS_CLA_VELOCIDADE" >
+		<attribute name="ID" type="Long" is-nullable="false" is-primary-key="true" foreign-key="none" comment=""/>
+		<attribute name="NOME_ESTACAO" type="String" is-nullable="false" is-primary-key="false" foreign-key="none" comment=""/>
+		<attribute name="NOME_SENSOR" type="String" is-nullable="false" is-primary-key="false" foreign-key="none" comment=""/>
+		<attribute name="VALOR_CLASSE1" type="Long" is-nullable="false" is-primary-key="false" foreign-key="none" comment=""/>
+		<attribute name="VALOR_CLASSE2" type="Long" is-nullable="false" is-primary-key="false" foreign-key="none" comment=""/>
+		<attribute name="VALOR_CLASSE3" type="Long" is-nullable="false" is-primary-key="false" foreign-key="none" comment=""/>
+		<attribute name="VALOR_CLASSE4" type="Long" is-nullable="false" is-primary-key="false" foreign-key="none" comment=""/>
+		<attribute name="VALOR_CLASSE5" type="Long" is-nullable="false" is-primary-key="false" foreign-key="none" comment=""/>
+		<attribute name="VALOR_CLASSE6" type="Long" is-nullable="false" is-primary-key="false" foreign-key="none" comment=""/>
+		<attribute name="DATA_HORA" type="Date" is-nullable="false" is-primary-key="false" foreign-key="none" comment=""/>
+		<attribute name="PERIODO" type="Long" is-nullable="false" is-primary-key="false" foreign-key="none" comment=""/>
+	</concept>
+	<concept name="DADOS_METEO" >
+		<attribute name="ID" type="Long" is-nullable="false" is-primary-key="true" foreign-key="none" comment=""/>
+		<attribute name="NOME_ESTACAO" type="String" is-nullable="false" is-primary-key="false" foreign-key="none" comment=""/>
+		<attribute name="VELOCIDADE_VENTO" type="BigDecimal" is-nullable="false" is-primary-key="false" foreign-key="none" comment=""/>
+		<attribute name="DIRECAO_VENTO" type="BigDecimal" is-nullable="false" is-primary-key="false" foreign-key="none" comment=""/>
+		<attribute name="VISIBILIDADE" type="BigDecimal" is-nullable="false" is-primary-key="false" foreign-key="none" comment=""/>
+		<attribute name="TEMPERATURA" type="BigDecimal" is-nullable="false" is-primary-key="false" foreign-key="none" comment=""/>
+		<attribute name="HUMIDADE_RELATIVA" type="BigDecimal" is-nullable="false" is-primary-key="false" foreign-key="none" comment=""/>
+		<attribute name="PRESSAO" type="BigDecimal" is-nullable="false" is-primary-key="false" foreign-key="none" comment=""/>
+		<attribute name="PRECIPITACAO_ULTIMA_HORA" type="BigDecimal" is-nullable="false" is-primary-key="false" foreign-key="none" comment=""/>
+		<attribute name="ESTIMATIVA_PRECIPITACAO_HORA" type="BigDecimal" is-nullable="false" is-primary-key="false" foreign-key="none" comment=""/>
+		<attribute name="DATA_HORA" type="Date" is-nullable="false" is-primary-key="false" foreign-key="none" comment=""/>
+		<attribute name="PERIODO" type="Long" is-nullable="false" is-primary-key="false" foreign-key="none" comment=""/>
+	</concept>
+	<concept name="DADOS_METEO_VENTO" >
+		<attribute name="ID" type="Long" is-nullable="false" is-primary-key="true" foreign-key="none" comment=""/>
+		<attribute name="NOME_ESTACAO" type="String" is-nullable="false" is-primary-key="false" foreign-key="none" comment=""/>
+		<attribute name="VELOCIDADE_VENTO" type="BigDecimal" is-nullable="false" is-primary-key="false" foreign-key="none" comment=""/>
+		<attribute name="DIRECAO_VENTO" type="BigDecimal" is-nullable="false" is-primary-key="false" foreign-key="none" comment=""/>
+		<attribute name="DATA_HORA" type="Date" is-nullable="false" is-primary-key="false" foreign-key="none" comment=""/>
+		<attribute name="PERIODO" type="Long" is-nullable="false" is-primary-key="false" foreign-key="none" comment=""/>
+	</concept>
+	<concept name="DADOS_NORMAIS" >
+		<attribute name="ID" type="Long" is-nullable="false" is-primary-key="true" foreign-key="none" comment=""/>
+		<attribute name="NOME_ESTACAO" type="String" is-nullable="false" is-primary-key="false" foreign-key="none" comment=""/>
+		<attribute name="NOME_SENSOR" type="String" is-nullable="false" is-primary-key="false" foreign-key="none" comment=""/>
+		<attribute name="VELOCIDADE" type="BigDecimal" is-nullable="false" is-primary-key="false" foreign-key="none" comment=""/>
+		<attribute name="QUANTIDADE" type="BigDecimal" is-nullable="false" is-primary-key="false" foreign-key="none" comment=""/>
+		<attribute name="TAXA_OCUPACAO" type="BigDecimal" is-nullable="false" is-primary-key="false" foreign-key="none" comment=""/>
+		<attribute name="GAP" type="BigDecimal" is-nullable="false" is-primary-key="false" foreign-key="none" comment=""/>
+		<attribute name="HEADWAY" type="BigDecimal" is-nullable="false" is-primary-key="false" foreign-key="none" comment=""/>
+		<attribute name="DATA_HORA" type="Date" is-nullable="false" is-primary-key="false" foreign-key="none" comment=""/>
+		<attribute name="PERIODO" type="Long" is-nullable="false" is-primary-key="false" foreign-key="none" comment=""/>
+	</concept>
+	<concept name="DESCRICAO_PLANO_ACAO_GENERICO" >
+		<attribute name="ID" type="Long" is-nullable="false" is-primary-key="true" foreign-key="none" comment=""/>
+		<attribute name="ID_ESTRADA" type="Long" is-nullable="false" is-primary-key="false" foreign-key="ESTRADA.ID" comment=""/>
+		<attribute name="KM_INICIO" type="BigDecimal" is-nullable="true" is-primary-key="false" foreign-key="none" comment=""/>
+		<attribute name="KM_FINAL" type="BigDecimal" is-nullable="true" is-primary-key="false" foreign-key="none" comment=""/>
+		<attribute name="NOME" type="String" is-nullable="false" is-primary-key="false" foreign-key="none" comment=""/>
+		<attribute name="DESCRICAO" type="String" is-nullable="false" is-primary-key="false" foreign-key="none" comment=""/>
+		<attribute name="TIPO_ENTRADA" type="Long" is-nullable="false" is-primary-key="false" foreign-key="none" comment=""/>
+		<attribute name="TIPOS_OCORRENCIA" type="String" is-nullable="true" is-primary-key="false" foreign-key="none" comment=""/>
+		<attribute name="TIPOS_EVENTO_CAMERA" type="String" is-nullable="true" is-primary-key="false" foreign-key="none" comment=""/>
+		<attribute name="LISTA_ID_SENSORES_SAT" type="String" is-nullable="true" is-primary-key="false" foreign-key="none" comment=""/>
+		<attribute name="NIVEL_SERVICO_SAT" type="Long" is-nullable="true" is-primary-key="false" foreign-key="none" comment=""/>
+		<attribute name="LISTA_ID_ESTACOES_METEO" type="String" is-nullable="true" is-primary-key="false" foreign-key="none" comment=""/>
+		<attribute name="USA_VELOCIDADE_VENTO" type="Long" is-nullable="false" is-primary-key="false" foreign-key="none" comment=""/>
+		<attribute name="LIMITE_VELOCIDADE_VENTO" type="Long" is-nullable="true" is-primary-key="false" foreign-key="none" comment=""/>
+		<attribute name="USA_DIRECAO_VENTO" type="Long" is-nullable="false" is-primary-key="false" foreign-key="none" comment=""/>
+		<attribute name="DIRECAO_VENTO_MIN" type="Long" is-nullable="true" is-primary-key="false" foreign-key="none" comment=""/>
+		<attribute name="DIRECAO_VENTO_MAX" type="Long" is-nullable="true" is-primary-key="false" foreign-key="none" comment=""/>
+		<attribute name="USA_CHUVA" type="Long" is-nullable="false" is-primary-key="false" foreign-key="none" comment=""/>
+		<attribute name="LIMITE_CHUVA" type="Long" is-nullable="true" is-primary-key="false" foreign-key="none" comment=""/>
+		<attribute name="USA_TEMPERATURA" type="Long" is-nullable="false" is-primary-key="false" foreign-key="none" comment=""/>
+		<attribute name="TEMPERATURA_MIN" type="BigDecimal" is-nullable="true" is-primary-key="false" foreign-key="none" comment=""/>
+		<attribute name="TEMPERATURA_MAX" type="BigDecimal" is-nullable="true" is-primary-key="false" foreign-key="none" comment=""/>
+		<attribute name="EXIBE_PMVS_MAIS_PROXIMOS" type="Long" is-nullable="false" is-primary-key="false" foreign-key="none" comment=""/>
+		<attribute name="ENVIA_MENSAGEM_PMV" type="Long" is-nullable="false" is-primary-key="false" foreign-key="none" comment=""/>
+		<attribute name="ID_MENSAGEM" type="Long" is-nullable="true" is-primary-key="false" foreign-key="BIBLIOTECA_MENSAGEM.ID" comment=""/>
+		<attribute name="EXIBE_CAMERA_MAIS_PROXIMAS" type="Long" is-nullable="false" is-primary-key="false" foreign-key="none" comment=""/>
+		<attribute name="EXIBE_VIDEO_DAS_CAMERAS" type="Long" is-nullable="false" is-primary-key="false" foreign-key="none" comment=""/>
+		<attribute name="EXIBE_VEICULOS_MAIS_PROXIMOS" type="Long" is-nullable="false" is-primary-key="false" foreign-key="none" comment=""/>
+		<attribute name="EXIBE_VEICULOS_LIVRES" type="Long" is-nullable="false" is-primary-key="false" foreign-key="none" comment=""/>
+		<attribute name="EXIBE_ENVOLVIDOS" type="Long" is-nullable="false" is-primary-key="false" foreign-key="none" comment=""/>
+		<attribute name="EXIBE_MENSAGEM_PARA_USUARIO" type="Long" is-nullable="false" is-primary-key="false" foreign-key="none" comment=""/>
+		<attribute name="MENSAGEM_PARA_USUARIO" type="String" is-nullable="true" is-primary-key="false" foreign-key="none" comment=""/>
+		<attribute name="ENVIA_EMAIL" type="Long" is-nullable="false" is-primary-key="false" foreign-key="none" comment=""/>
+		<attribute name="LISTA_EMAIL" type="String" is-nullable="true" is-primary-key="false" foreign-key="none" comment=""/>
+		<attribute name="ENVIA_SMS" type="Long" is-nullable="false" is-primary-key="false" foreign-key="none" comment=""/>
+		<attribute name="LISTA_SMS" type="String" is-nullable="true" is-primary-key="false" foreign-key="none" comment=""/>
+		<attribute name="DATA_CRIACAO" type="Date" is-nullable="true" is-primary-key="false" foreign-key="none" comment=""/>
+		<attribute name="DATA_ATUALIZACAO" type="Date" is-nullable="true" is-primary-key="false" foreign-key="none" comment=""/>
+		<attribute name="ID_USUARIO" type="Long" is-nullable="true" is-primary-key="false" foreign-key="USUARIO.ID" comment=""/>
+	</concept>
+	<concept name="ELEMENTO_GRUPO_PMV" >
+		<attribute name="ID" type="Long" is-nullable="false" is-primary-key="true" foreign-key="none" comment=""/>
+		<attribute name="ID_GRUPO_PMV" type="Long" is-nullable="false" is-primary-key="false" foreign-key="none" comment=""/>
+		<attribute name="ID_PMV" type="Long" is-nullable="false" is-primary-key="false" foreign-key="none" comment=""/>
+		<attribute name="APAGADO" type="Long" is-nullable="true" is-primary-key="false" foreign-key="none" comment=""/>
+	</concept>
+	<concept name="ESTACAO_METEO" >
+		<attribute name="ID" type="Long" is-nullable="false" is-primary-key="true" foreign-key="none" comment=""/>
+		<attribute name="NOME" type="String" is-nullable="false" is-primary-key="false" foreign-key="none" comment=""/>
+		<attribute name="KM" type="BigDecimal" is-nullable="true" is-primary-key="false" foreign-key="none" comment=""/>
+		<attribute name="POSICAO_X_ESCALA_1" type="Long" is-nullable="true" is-primary-key="false" foreign-key="none" comment=""/>
+		<attribute name="POSICAO_Y_ESCALA_1" type="Long" is-nullable="true" is-primary-key="false" foreign-key="none" comment=""/>
+		<attribute name="POSICAO_X_ESCALA_2" type="Long" is-nullable="true" is-primary-key="false" foreign-key="none" comment=""/>
+		<attribute name="POSICAO_Y_ESCALA_2" type="Long" is-nullable="true" is-primary-key="false" foreign-key="none" comment=""/>
+		<attribute name="ID_ALGORITMO" type="Long" is-nullable="true" is-primary-key="false" foreign-key="none" comment=""/>
+		<attribute name="ID_ESTRADA" type="Long" is-nullable="true" is-primary-key="false" foreign-key="ESTRADA.ID" comment=""/>
+		<attribute name="ID_ESTADO" type="Long" is-nullable="true" is-primary-key="false" foreign-key="ESTADO.ID" comment=""/>
+		<attribute name="STATUS_SISTEMA" type="Long" is-nullable="true" is-primary-key="false" foreign-key="none" comment=""/>
+		<attribute name="STATUS_OPERACIONAL" type="Long" is-nullable="true" is-primary-key="false" foreign-key="none" comment=""/>
+		<attribute name="DESCRICAO_STATUS_OPERACIONAL" type="String" is-nullable="true" is-primary-key="false" foreign-key="none" comment=""/>
+		<attribute name="ULTIMA_VERIFICACAO" type="Date" is-nullable="true" is-primary-key="false" foreign-key="none" comment=""/>
+		<attribute name="ID_PROTOCOLO" type="Long" is-nullable="false" is-primary-key="false" foreign-key="PROTOCOLO.ID" comment=""/>
+		<attribute name="DATA_CRIACAO" type="Date" is-nullable="true" is-primary-key="false" foreign-key="none" comment=""/>
+		<attribute name="DATA_ATUALIZACAO" type="Date" is-nullable="true" is-primary-key="false" foreign-key="none" comment=""/>
+		<attribute name="ID_USUARIO" type="Long" is-nullable="false" is-primary-key="false" foreign-key="USUARIO.ID" comment=""/>
+		<attribute name="ENDERECO" type="String" is-nullable="true" is-primary-key="false" foreign-key="none" comment=""/>
+		<attribute name="ENDERECO_IP" type="String" is-nullable="true" is-primary-key="false" foreign-key="none" comment=""/>
+		<attribute name="PARAMETRO" type="String" is-nullable="true" is-primary-key="false" foreign-key="none" comment=""/>
+		<attribute name="PORTA" type="String" is-nullable="true" is-primary-key="false" foreign-key="none" comment=""/>
+		<attribute name="DISTANCIA" type="Long" is-nullable="true" is-primary-key="false" foreign-key="none" comment=""/>
+		<attribute name="VELOCIDADE_VENTO" type="BigDecimal" is-nullable="false" is-primary-key="false" foreign-key="none" comment=""/>
+		<attribute name="DIRECAO_VENTO" type="BigDecimal" is-nullable="false" is-primary-key="false" foreign-key="none" comment=""/>
+		<attribute name="VISIBILIDADE" type="BigDecimal" is-nullable="false" is-primary-key="false" foreign-key="none" comment=""/>
+		<attribute name="TEMPERATURA" type="BigDecimal" is-nullable="false" is-primary-key="false" foreign-key="none" comment=""/>
+		<attribute name="HUMIDADE_RELATIVA" type="BigDecimal" is-nullable="false" is-primary-key="false" foreign-key="none" comment=""/>
+		<attribute name="PRESSAO" type="BigDecimal" is-nullable="false" is-primary-key="false" foreign-key="none" comment=""/>
+		<attribute name="PRECIPITACAO_ULTIMA_HORA" type="BigDecimal" is-nullable="false" is-primary-key="false" foreign-key="none" comment=""/>
+		<attribute name="ESTIMATIVA_PRECIPITACAO_HORA" type="BigDecimal" is-nullable="false" is-primary-key="false" foreign-key="none" comment=""/>
+		<attribute name="DATA_HORA_ULTIMO_DADO" type="Date" is-nullable="true" is-primary-key="false" foreign-key="none" comment=""/>
+		<attribute name="ESCALA1" type="Long" is-nullable="true" is-primary-key="false" foreign-key="none" comment=""/>
+		<attribute name="ESCALA2" type="Long" is-nullable="true" is-primary-key="false" foreign-key="none" comment=""/>
+		<attribute name="TAMANHO_FONTE_NOME" type="Long" is-nullable="true" is-primary-key="false" foreign-key="none" comment=""/>
+		<attribute name="VISIVEL" type="Long" is-nullable="true" is-primary-key="false" foreign-key="none" comment=""/>
+		<attribute name="EXTRA_INFO1" type="String" is-nullable="true" is-primary-key="false" foreign-key="none" comment=""/>
+		<attribute name="EXTRA_INFO2" type="String" is-nullable="true" is-primary-key="false" foreign-key="none" comment=""/>
+		<attribute name="EXTRA_INFO3" type="String" is-nullable="true" is-primary-key="false" foreign-key="none" comment=""/>
+		<attribute name="TIMEOUT_CONNECT" type="Long" is-nullable="true" is-primary-key="false" foreign-key="none" comment=""/>
+		<attribute name="TIMEOUT_READ" type="Long" is-nullable="true" is-primary-key="false" foreign-key="none" comment=""/>
+		<attribute name="TIPO_COMUNICACAO" type="Long" is-nullable="true" is-primary-key="false" foreign-key="none" comment=""/>
+		<attribute name="DESCRICAO_LOCALIZACAO" type="String" is-nullable="true" is-primary-key="false" foreign-key="none" comment=""/>
+		<attribute name="ID_SENTIDO" type="Long" is-nullable="true" is-primary-key="false" foreign-key="SENTIDO.ID" comment=""/>
+		<attribute name="ORDEM" type="Long" is-nullable="true" is-primary-key="false" foreign-key="none" comment=""/>
+		<attribute name="APAGADO" type="Long" is-nullable="true" is-primary-key="false" foreign-key="none" comment=""/>
+		<attribute name="LONGITUDE" type="BigDecimal" is-nullable="true" is-primary-key="false" foreign-key="none" comment=""/>
+		<attribute name="LATITUDE" type="BigDecimal" is-nullable="true" is-primary-key="false" foreign-key="none" comment=""/>
+		<attribute name="NOME_EXTERNO" type="String" is-nullable="true" is-primary-key="false" foreign-key="none" comment=""/>
+		<attribute name="NTCIP_GET_COMMUNITY" type="String" is-nullable="true" is-primary-key="false" foreign-key="none" comment=""/>
+		<attribute name="NTCIP_SET_COMMUNITY" type="String" is-nullable="true" is-primary-key="false" foreign-key="none" comment=""/>
+		<attribute name="PERIODO_DADOS" type="Long" is-nullable="true" is-primary-key="false" foreign-key="none" comment=""/>
+	</concept>
+	<concept name="ESTACAO_SAT" >
+		<attribute name="ID" type="Long" is-nullable="false" is-primary-key="true" foreign-key="none" comment=""/>
+		<attribute name="NOME" type="String" is-nullable="false" is-primary-key="false" foreign-key="none" comment=""/>
+		<attribute name="POSICAO_X_ESCALA_1" type="Long" is-nullable="true" is-primary-key="false" foreign-key="none" comment=""/>
+		<attribute name="POSICAO_Y_ESCALA_1" type="Long" is-nullable="true" is-primary-key="false" foreign-key="none" comment=""/>
+		<attribute name="POSICAO_X_ESCALA_2" type="Long" is-nullable="true" is-primary-key="false" foreign-key="none" comment=""/>
+		<attribute name="POSICAO_Y_ESCALA_2" type="Long" is-nullable="true" is-primary-key="false" foreign-key="none" comment=""/>
+		<attribute name="ID_ALGORITMO" type="Long" is-nullable="false" is-primary-key="false" foreign-key="none" comment=""/>
+		<attribute name="ID_ESTRADA" type="Long" is-nullable="true" is-primary-key="false" foreign-key="ESTRADA.ID" comment=""/>
+		<attribute name="ID_ESTADO" type="Long" is-nullable="true" is-primary-key="false" foreign-key="ESTADO.ID" comment=""/>
+		<attribute name="STATUS_SISTEMA" type="Long" is-nullable="true" is-primary-key="false" foreign-key="none" comment=""/>
+		<attribute name="STATUS_OPERACIONAL" type="Long" is-nullable="true" is-primary-key="false" foreign-key="none" comment=""/>
+		<attribute name="DESCRICAO_STATUS_OPERACIONAL" type="String" is-nullable="true" is-primary-key="false" foreign-key="none" comment=""/>
+		<attribute name="ULTIMA_VERIFICACAO" type="Date" is-nullable="true" is-primary-key="false" foreign-key="none" comment=""/>
+		<attribute name="ID_PROTOCOLO" type="Long" is-nullable="false" is-primary-key="false" foreign-key="PROTOCOLO.ID" comment=""/>
+		<attribute name="DATA_CRIACAO" type="Date" is-nullable="true" is-primary-key="false" foreign-key="none" comment=""/>
+		<attribute name="DATA_ATUALIZACAO" type="Date" is-nullable="true" is-primary-key="false" foreign-key="none" comment=""/>
+		<attribute name="ID_USUARIO" type="Long" is-nullable="false" is-primary-key="false" foreign-key="USUARIO.ID" comment=""/>
+		<attribute name="ENDERECO" type="String" is-nullable="true" is-primary-key="false" foreign-key="none" comment=""/>
+		<attribute name="ENDERECO_IP" type="String" is-nullable="true" is-primary-key="false" foreign-key="none" comment=""/>
+		<attribute name="PARAMETRO" type="String" is-nullable="true" is-primary-key="false" foreign-key="none" comment=""/>
+		<attribute name="PORTA" type="String" is-nullable="true" is-primary-key="false" foreign-key="none" comment=""/>
+		<attribute name="DISTANCIA" type="Long" is-nullable="false" is-primary-key="false" foreign-key="none" comment=""/>
+		<attribute name="LONGITUDE" type="BigDecimal" is-nullable="true" is-primary-key="false" foreign-key="none" comment=""/>
+		<attribute name="LATITUDE" type="BigDecimal" is-nullable="true" is-primary-key="false" foreign-key="none" comment=""/>
+		<attribute name="NOME_EXTERNO" type="String" is-nullable="true" is-primary-key="false" foreign-key="none" comment=""/>
+		<attribute name="TIPO_DETECCAO" type="String" is-nullable="true" is-primary-key="false" foreign-key="none" comment=""/>
+		<attribute name="NTCIP_GET_COMMUNITY" type="String" is-nullable="true" is-primary-key="false" foreign-key="none" comment=""/>
+		<attribute name="NTCIP_SET_COMMUNITY" type="String" is-nullable="true" is-primary-key="false" foreign-key="none" comment=""/>
+		<attribute name="PERIODO_DADOS" type="Long" is-nullable="true" is-primary-key="false" foreign-key="none" comment=""/>
+	</concept>
+	<concept name="ESTADO" >
+		<attribute name="ID" type="Long" is-nullable="false" is-primary-key="true" foreign-key="none" comment=""/>
+		<attribute name="NOME" type="String" is-nullable="true" is-primary-key="false" foreign-key="none" comment=""/>
+		<attribute name="DESCRICAO" type="String" is-nullable="true" is-primary-key="false" foreign-key="none" comment=""/>
+		<attribute name="APAGADO" type="Long" is-nullable="true" is-primary-key="false" foreign-key="none" comment=""/>
+		<attribute name="DATA_CRIACAO" type="Date" is-nullable="true" is-primary-key="false" foreign-key="none" comment=""/>
+		<attribute name="DATA_ATUALIZACAO" type="Date" is-nullable="true" is-primary-key="false" foreign-key="none" comment=""/>
+		<attribute name="ID_USUARIO" type="Long" is-nullable="false" is-primary-key="false" foreign-key="none" comment=""/>
+	</concept>
+	<concept name="ESTRADA" >
+		<attribute name="ID" type="Long" is-nullable="false" is-primary-key="true" foreign-key="none" comment=""/>
+		<attribute name="NOME" type="String" is-nullable="true" is-primary-key="false" foreign-key="none" comment=""/>
+		<attribute name="DESCRICAO" type="String" is-nullable="true" is-primary-key="false" foreign-key="none" comment=""/>
+		<attribute name="APAGADO" type="Long" is-nullable="true" is-primary-key="false" foreign-key="none" comment=""/>
+		<attribute name="DATA_CRIACAO" type="Date" is-nullable="true" is-primary-key="false" foreign-key="none" comment=""/>
+		<attribute name="DATA_ATUALIZACAO" type="Date" is-nullable="true" is-primary-key="false" foreign-key="none" comment=""/>
+		<attribute name="ID_USUARIO" type="Long" is-nullable="false" is-primary-key="false" foreign-key="none" comment=""/>
+		<attribute name="INDICE" type="Long" is-nullable="true" is-primary-key="false" foreign-key="none" comment=""/>
+		<attribute name="ATIVO" type="Long" is-nullable="true" is-primary-key="false" foreign-key="none" comment=""/>
+		<attribute name="NOME_IMAGEM_ESCALA1" type="String" is-nullable="true" is-primary-key="false" foreign-key="none" comment=""/>
+		<attribute name="NOME_IMAGEM_ESCALA2" type="String" is-nullable="true" is-primary-key="false" foreign-key="none" comment=""/>
+	</concept>
+	<concept name="EVENTIS_ACAO" >
+		<attribute name="ID" type="Long" is-nullable="false" is-primary-key="true" foreign-key="none" comment=""/>
+		<attribute name="DATA_INICIO" type="Date" is-nullable="true" is-primary-key="false" foreign-key="none" comment=""/>
+		<attribute name="DATA_FIM" type="Date" is-nullable="true" is-primary-key="false" foreign-key="none" comment=""/>
+		<attribute name="ID_TIPO_ACAO" type="Long" is-nullable="false" is-primary-key="false" foreign-key="EVENTIS_TIPO_ACAO.ID" comment=""/>
+		<attribute name="ID_EVENTO" type="Long" is-nullable="false" is-primary-key="false" foreign-key="EVENTIS_EVENTO.ID" comment=""/>
+	</concept>
+	<concept name="EVENTIS_ACIONAMENTO_RECURSO" >
+		<attribute name="ID" type="Long" is-nullable="false" is-primary-key="true" foreign-key="none" comment=""/>
+		<attribute name="ID_RECURSO" type="Long" is-nullable="false" is-primary-key="false" foreign-key="none" comment=""/>
+		<attribute name="ID_EVENTO" type="Long" is-nullable="false" is-primary-key="false" foreign-key="none" comment=""/>
+		<attribute name="DATA_HORA_ACIONAMENTO_MANUAL" type="Date" is-nullable="true" is-primary-key="false" foreign-key="none" comment=""/>
+		<attribute name="DATA_HORA_ACIONAMENTO_AUTOMATICO" type="Date" is-nullable="true" is-primary-key="false" foreign-key="none" comment=""/>
+		<attribute name="DATA_HORA_CHEGADA_NO_LOCAL_DIGITADA" type="Date" is-nullable="true" is-primary-key="false" foreign-key="none" comment=""/>
+		<attribute name="DATA_HORA_CHEGADA_NO_LOCAL_AUTOMATICO" type="Date" is-nullable="true" is-primary-key="false" foreign-key="none" comment=""/>
+		<attribute name="DATA_HORA_TERMINO_DIGITADA" type="Date" is-nullable="true" is-primary-key="false" foreign-key="none" comment=""/>
+		<attribute name="DATA_HORA_TERMINO_AUTOMATICO" type="Date" is-nullable="true" is-primary-key="false" foreign-key="none" comment=""/>
+		<attribute name="LOCALIZACAO_QUANDO_ACIONADO" type="String" is-nullable="true" is-primary-key="false" foreign-key="none" comment=""/>
+		<attribute name="LOCALIZACAO_QUANDO_CHEGADA_NO_LOCAL_MANUAL" type="String" is-nullable="true" is-primary-key="false" foreign-key="none" comment=""/>
+		<attribute name="LOCALIZACAO_QUANDO_CHEGADA_NO_LOCAL_AUTOMATICO" type="String" is-nullable="true" is-primary-key="false" foreign-key="none" comment=""/>
+		<attribute name="LOCALIZACAO_QUANDO_TERMINO_MANUAL" type="String" is-nullable="true" is-primary-key="false" foreign-key="none" comment=""/>
+		<attribute name="LOCALIZACAO_QUANDO_TERMINO_AUTOMATICO" type="String" is-nullable="true" is-primary-key="false" foreign-key="none" comment=""/>
+		<attribute name="OBSERVACAO" type="String" is-nullable="true" is-primary-key="false" foreign-key="none" comment=""/>
+		<attribute name="ID_SITUACAO_ACIONAMENTO" type="Long" is-nullable="true" is-primary-key="false" foreign-key="none" comment=""/>
+		<attribute name="ID_USUARIO_QUE_ACIONOU" type="Long" is-nullable="false" is-primary-key="false" foreign-key="none" comment=""/>
+		<attribute name="ID_USUARIO_QUE_INFORMOU_CHEGADA_NO_LOCAL_MANUAL" type="Long" is-nullable="false" is-primary-key="false" foreign-key="none" comment=""/>
+		<attribute name="ID_USUARIO_QUE_INFORMOU_TERMINO_MANUAL" type="Long" is-nullable="false" is-primary-key="false" foreign-key="none" comment=""/>
+		<attribute name="ID_OPERADOR" type="Long" is-nullable="false" is-primary-key="false" foreign-key="none" comment=""/>
+		<attribute name="ID_ACAO" type="Long" is-nullable="false" is-primary-key="false" foreign-key="none" comment=""/>
+	</concept>
+	<concept name="EVENTIS_CENTRO_CONTROLE" >
+		<attribute name="ID" type="Long" is-nullable="false" is-primary-key="true" foreign-key="none" comment=""/>
+		<attribute name="NOME" type="String" is-nullable="false" is-primary-key="false" foreign-key="none" comment=""/>
+		<attribute name="DESCRICAO" type="String" is-nullable="false" is-primary-key="false" foreign-key="none" comment=""/>
+		<attribute name="INDICE" type="Long" is-nullable="true" is-primary-key="false" foreign-key="none" comment=""/>
+	</concept>
+	<concept name="EVENTIS_DETALHE_EVENTO" >
+		<attribute name="ID" type="Long" is-nullable="false" is-primary-key="true" foreign-key="none" comment=""/>
+		<attribute name="ID_EVENTO" type="Long" is-nullable="false" is-primary-key="false" foreign-key="EVENTIS_EVENTO.ID" comment=""/>
+		<attribute name="DISTRIBUIDO" type="Long" is-nullable="false" is-primary-key="false" foreign-key="none" comment=""/>
+		<attribute name="ID_TIPO_EQUIPAMANETO_DIGIDADO_INICIAL" type="Long" is-nullable="true" is-primary-key="false" foreign-key="EVENTIS_TIPO_EQUIPAMENTO_DIGITACAO.ID" comment=""/>
+		<attribute name="ID_TIPO_EQUIPAMANETO_DIGIDADO_ATAULIZACAO" type="Long" is-nullable="true" is-primary-key="false" foreign-key="EVENTIS_TIPO_EQUIPAMENTO_DIGITACAO.ID" comment=""/>
+		<attribute name="ENDERECO_EQUIPAMENTO_DIGITACAO_INICIAL" type="String" is-nullable="true" is-primary-key="false" foreign-key="none" comment=""/>
+		<attribute name="ENDERECO_EQUIPAMENTO_ATUALIZACAO" type="String" is-nullable="true" is-primary-key="false" foreign-key="none" comment=""/>
+		<attribute name="PODE_SER_EXPORTADO_WEB" type="Long" is-nullable="true" is-primary-key="false" foreign-key="none" comment=""/>
+		<attribute name="PODE_SER_EXTERNO" type="Long" is-nullable="true" is-primary-key="false" foreign-key="none" comment=""/>
+	</concept>
+	<concept name="EVENTIS_EMPRESA" >
+		<attribute name="ID" type="Long" is-nullable="false" is-primary-key="true" foreign-key="none" comment=""/>
+		<attribute name="NOME" type="String" is-nullable="true" is-primary-key="false" foreign-key="none" comment=""/>
+		<attribute name="CNPJ" type="String" is-nullable="true" is-primary-key="false" foreign-key="none" comment=""/>
+		<attribute name="CODIGO" type="String" is-nullable="true" is-primary-key="false" foreign-key="none" comment=""/>
+		<attribute name="ID_SITUACAO" type="Long" is-nullable="false" is-primary-key="false" foreign-key="EVENTIS_TIPO_SITUACAO.ID" comment=""/>
+	</concept>
+	<concept name="EVENTIS_EVENTO" >
+		<attribute name="ID" type="Long" is-nullable="false" is-primary-key="true" foreign-key="none" comment=""/>
+		<attribute name="UUID" type="String" is-nullable="false" is-primary-key="false" foreign-key="none" comment=""/>
+		<attribute name="NUMERO" type="Long" is-nullable="false" is-primary-key="false" foreign-key="none" comment=""/>
+		<attribute name="ID_CATEGORIA" type="Long" is-nullable="false" is-primary-key="false" foreign-key="EVENTIS_TIPO_CATEGORIA_EVENTO.ID" comment=""/>
+		<attribute name="ID_TIPO" type="Long" is-nullable="false" is-primary-key="false" foreign-key="EVENTIS_TIPO_EVENTO.ID" comment=""/>
+		<attribute name="ID_SUB_TIPO" type="Long" is-nullable="false" is-primary-key="false" foreign-key="EVENTIS_TIPO_SUBTIPO_EVENTO.ID" comment=""/>
+		<attribute name="ID_CENTRO_CONTROLE" type="Long" is-nullable="true" is-primary-key="false" foreign-key="EVENTIS_CENTRO_CONTROLE.ID" comment=""/>
+		<attribute name="OBSERVACAO" type="String" is-nullable="true" is-primary-key="false" foreign-key="none" comment=""/>
+		<attribute name="ID_ESTADO" type="Long" is-nullable="true" is-primary-key="false" foreign-key="ESTADO.ID" comment=""/>
+		<attribute name="ID_RODOVIA" type="Long" is-nullable="true" is-primary-key="false" foreign-key="ESTRADA.ID" comment=""/>
+		<attribute name="ID_SENTIDO" type="Long" is-nullable="true" is-primary-key="false" foreign-key="SENTIDO.ID" comment=""/>
+		<attribute name="FAIXA" type="Long" is-nullable="true" is-primary-key="false" foreign-key="none" comment=""/>
+		<attribute name="KM" type="BigDecimal" is-nullable="true" is-primary-key="false" foreign-key="none" comment=""/>
+		<attribute name="ENDERECO" type="String" is-nullable="true" is-primary-key="false" foreign-key="none" comment=""/>
+		<attribute name="REFERENCIA_ENDERECO" type="String" is-nullable="true" is-primary-key="false" foreign-key="none" comment=""/>
+		<attribute name="LONGITUDE" type="BigDecimal" is-nullable="true" is-primary-key="false" foreign-key="none" comment=""/>
+		<attribute name="LATITUDE" type="BigDecimal" is-nullable="true" is-primary-key="false" foreign-key="none" comment=""/>
+		<attribute name="DATA_HORA_CRIACAO_EVENTO" type="Date" is-nullable="true" is-primary-key="false" foreign-key="none" comment=""/>
+		<attribute name="DATA_HORA_INICIO_EVENTO" type="Date" is-nullable="true" is-primary-key="false" foreign-key="none" comment=""/>
+		<attribute name="DATA_HORA_ATUALIZACAO_EVENTO" type="Date" is-nullable="true" is-primary-key="false" foreign-key="none" comment=""/>
+		<attribute name="DATA_HORA_TERMINO_DIGITADO" type="Date" is-nullable="true" is-primary-key="false" foreign-key="none" comment=""/>
+		<attribute name="PRIORIDADE" type="Long" is-nullable="true" is-primary-key="false" foreign-key="none" comment=""/>
+		<attribute name="ID_ORIGEM_EVENTO" type="Long" is-nullable="true" is-primary-key="false" foreign-key="EVENTIS_TIPO_ORIGEM_EVENTO.ID" comment=""/>
+		<attribute name="DESCRICAO_ORIGEM_EVENTO" type="String" is-nullable="true" is-primary-key="false" foreign-key="none" comment=""/>
+		<attribute name="ID_SITUACAO_EVENTO" type="Long" is-nullable="false" is-primary-key="false" foreign-key="EVENTIS_TIPO_SITUACAO.ID" comment=""/>
+		<attribute name="ID_RAZAO_FECHAMENTO" type="Long" is-nullable="true" is-primary-key="false" foreign-key="EVENTIS_TIPO_RAZAO_FECHAMENTO_EVENTO.ID" comment=""/>
+		<attribute name="ID_OPERADOR_RESPONSAVEL" type="Long" is-nullable="false" is-primary-key="false" foreign-key="EVENTIS_OPERADOR.ID" comment=""/>
+		<attribute name="ID_EXTERNO" type="String" is-nullable="true" is-primary-key="false" foreign-key="none" comment=""/>
+	</concept>
+	<concept name="EVENTIS_OPERADOR" >
+		<attribute name="ID" type="Long" is-nullable="false" is-primary-key="true" foreign-key="none" comment=""/>
+		<attribute name="NOME" type="String" is-nullable="false" is-primary-key="false" foreign-key="none" comment=""/>
+		<attribute name="ID_EMPRESA" type="Long" is-nullable="false" is-primary-key="false" foreign-key="EVENTIS_EMPRESA.ID" comment=""/>
+		<attribute name="MATRICULA" type="String" is-nullable="false" is-primary-key="false" foreign-key="none" comment=""/>
+		<attribute name="ID_SITUACAO" type="Long" is-nullable="false" is-primary-key="false" foreign-key="EVENTIS_TIPO_SITUACAO.ID" comment=""/>
+	</concept>
+	<concept name="EVENTIS_PRAZO" >
+		<attribute name="ID" type="Long" is-nullable="false" is-primary-key="true" foreign-key="none" comment=""/>
+		<attribute name="ID_TIPO_PRAZO" type="Long" is-nullable="false" is-primary-key="false" foreign-key="none" comment=""/>
+		<attribute name="VALOR_PRAZO" type="Long" is-nullable="true" is-primary-key="false" foreign-key="none" comment=""/>
+		<attribute name="ID_UNIDADE_PRAZO" type="Long" is-nullable="false" is-primary-key="false" foreign-key="EVENTIS_TIPO_UNIDADE_PRAZO.ID" comment=""/>
+		<attribute name="ID_CATEGORIA_PRAZO" type="Long" is-nullable="false" is-primary-key="false" foreign-key="EVENTIS_TIPO_CATEGORIA_PRAZO.ID" comment=""/>
+	</concept>
+	<concept name="EVENTIS_TIPO_ACAO" >
+		<attribute name="ID" type="Long" is-nullable="false" is-primary-key="true" foreign-key="none" comment=""/>
+		<attribute name="NOME" type="String" is-nullable="true" is-primary-key="false" foreign-key="none" comment=""/>
+		<attribute name="DESCRICAO" type="String" is-nullable="true" is-primary-key="false" foreign-key="none" comment=""/>
+	</concept>
+	<concept name="EVENTIS_TIPO_CATEGORIA_EVENTO" >
+		<attribute name="ID" type="Long" is-nullable="false" is-primary-key="true" foreign-key="none" comment=""/>
+		<attribute name="NOME" type="String" is-nullable="false" is-primary-key="false" foreign-key="none" comment=""/>
+		<attribute name="DESCRICAO" type="String" is-nullable="false" is-primary-key="false" foreign-key="none" comment=""/>
+		<attribute name="INDICE" type="Long" is-nullable="true" is-primary-key="false" foreign-key="none" comment=""/>
+	</concept>
+	<concept name="EVENTIS_TIPO_CATEGORIA_PRAZO" >
+		<attribute name="ID" type="Long" is-nullable="false" is-primary-key="true" foreign-key="none" comment=""/>
+		<attribute name="CODIGO" type="String" is-nullable="true" is-primary-key="false" foreign-key="none" comment=""/>
+		<attribute name="NOME" type="String" is-nullable="true" is-primary-key="false" foreign-key="none" comment=""/>
+	</concept>
+	<concept name="EVENTIS_TIPO_EQUIPAMENTO_DIGITACAO" >
+		<attribute name="ID" type="Long" is-nullable="false" is-primary-key="true" foreign-key="none" comment=""/>
+		<attribute name="NOME" type="String" is-nullable="false" is-primary-key="false" foreign-key="none" comment=""/>
+		<attribute name="DESCRICAO" type="String" is-nullable="false" is-primary-key="false" foreign-key="none" comment=""/>
+		<attribute name="INDICE" type="Long" is-nullable="true" is-primary-key="false" foreign-key="none" comment=""/>
+	</concept>
+	<concept name="EVENTIS_TIPO_EVENTO" >
+		<attribute name="ID" type="Long" is-nullable="false" is-primary-key="true" foreign-key="none" comment=""/>
+		<attribute name="NOME" type="String" is-nullable="false" is-primary-key="false" foreign-key="none" comment=""/>
+		<attribute name="DESCRICAO" type="String" is-nullable="false" is-primary-key="false" foreign-key="none" comment=""/>
+		<attribute name="INDICE" type="Long" is-nullable="true" is-primary-key="false" foreign-key="none" comment=""/>
+	</concept>
+	<concept name="EVENTIS_TIPO_ORIGEM_EVENTO" >
+		<attribute name="ID" type="Long" is-nullable="false" is-primary-key="true" foreign-key="none" comment=""/>
+		<attribute name="NOME" type="String" is-nullable="false" is-primary-key="false" foreign-key="none" comment=""/>
+		<attribute name="DESCRICAO" type="String" is-nullable="false" is-primary-key="false" foreign-key="none" comment=""/>
+		<attribute name="INDICE" type="Long" is-nullable="true" is-primary-key="false" foreign-key="none" comment=""/>
+	</concept>
+	<concept name="EVENTIS_TIPO_PRAZO" >
+		<attribute name="ID" type="Long" is-nullable="false" is-primary-key="true" foreign-key="none" comment=""/>
+		<attribute name="NOME" type="String" is-nullable="true" is-primary-key="false" foreign-key="none" comment=""/>
+		<attribute name="CODIGO_OBJETO_PRAZO" type="String" is-nullable="true" is-primary-key="false" foreign-key="none" comment=""/>
+	</concept>
+	<concept name="EVENTIS_TIPO_RAZAO_FECHAMENTO_EVENTO" >
+		<attribute name="ID" type="Long" is-nullable="false" is-primary-key="true" foreign-key="none" comment=""/>
+		<attribute name="NOME" type="String" is-nullable="false" is-primary-key="false" foreign-key="none" comment=""/>
+		<attribute name="DESCRICAO" type="String" is-nullable="false" is-primary-key="false" foreign-key="none" comment=""/>
+		<attribute name="INDICE" type="Long" is-nullable="true" is-primary-key="false" foreign-key="none" comment=""/>
+	</concept>
+	<concept name="EVENTIS_TIPO_SITUACAO" >
+		<attribute name="ID" type="Long" is-nullable="false" is-primary-key="true" foreign-key="none" comment=""/>
+		<attribute name="NOME" type="String" is-nullable="false" is-primary-key="false" foreign-key="none" comment=""/>
+		<attribute name="DESCRICAO" type="String" is-nullable="false" is-primary-key="false" foreign-key="none" comment=""/>
+		<attribute name="INDICE" type="Long" is-nullable="true" is-primary-key="false" foreign-key="none" comment=""/>
+	</concept>
+	<concept name="EVENTIS_TIPO_SUBTIPO_EVENTO" >
+		<attribute name="ID" type="Long" is-nullable="false" is-primary-key="true" foreign-key="none" comment=""/>
+		<attribute name="NOME" type="String" is-nullable="false" is-primary-key="false" foreign-key="none" comment=""/>
+		<attribute name="DESCRICAO" type="String" is-nullable="false" is-primary-key="false" foreign-key="none" comment=""/>
+		<attribute name="INDICE" type="Long" is-nullable="true" is-primary-key="false" foreign-key="none" comment=""/>
+	</concept>
+	<concept name="EVENTIS_TIPO_UNIDADE_PRAZO" >
+		<attribute name="ID" type="Long" is-nullable="false" is-primary-key="true" foreign-key="none" comment=""/>
+		<attribute name="CODIGO" type="String" is-nullable="true" is-primary-key="false" foreign-key="none" comment=""/>
+		<attribute name="NOME" type="String" is-nullable="true" is-primary-key="false" foreign-key="none" comment=""/>
+	</concept>
+	<concept name="EVENTO" >
+		<attribute name="ID" type="Long" is-nullable="false" is-primary-key="true" foreign-key="none" comment=""/>
+		<attribute name="ID_EXTERNO" type="String" is-nullable="false" is-primary-key="false" foreign-key="none" comment=""/>
+		<attribute name="ORIGEM" type="String" is-nullable="false" is-primary-key="false" foreign-key="none" comment=""/>
+		<attribute name="ESTRADA" type="String" is-nullable="false" is-primary-key="false" foreign-key="none" comment=""/>
+		<attribute name="TIPO" type="String" is-nullable="false" is-primary-key="false" foreign-key="none" comment=""/>
+		<attribute name="TIPO_GENERICO" type="String" is-nullable="false" is-primary-key="false" foreign-key="none" comment=""/>
+		<attribute name="SENTIDO" type="String" is-nullable="false" is-primary-key="false" foreign-key="none" comment=""/>
+		<attribute name="FAIXAS" type="String" is-nullable="true" is-primary-key="false" foreign-key="none" comment=""/>
+		<attribute name="LOCALIZACAOOUKM" type="String" is-nullable="false" is-primary-key="false" foreign-key="none" comment=""/>
+		<attribute name="DATA_GRAVACAO" type="Date" is-nullable="true" is-primary-key="false" foreign-key="none" comment=""/>
+		<attribute name="DATA_CRIACAO" type="Date" is-nullable="true" is-primary-key="false" foreign-key="none" comment=""/>
+		<attribute name="DATA_ATUALIZACAO" type="Date" is-nullable="true" is-primary-key="false" foreign-key="none" comment=""/>
+		<attribute name="DESCRICAO" type="String" is-nullable="true" is-primary-key="false" foreign-key="none" comment=""/>
+		<attribute name="PARAMETRO1" type="String" is-nullable="true" is-primary-key="false" foreign-key="none" comment=""/>
+		<attribute name="PARAMETRO2" type="String" is-nullable="true" is-primary-key="false" foreign-key="none" comment=""/>
+		<attribute name="PARAMETRO3" type="String" is-nullable="true" is-primary-key="false" foreign-key="none" comment=""/>
+		<attribute name="PARAMETRO4" type="String" is-nullable="true" is-primary-key="false" foreign-key="none" comment=""/>
+		<attribute name="PARAMETRO5" type="String" is-nullable="true" is-primary-key="false" foreign-key="none" comment=""/>
+		<attribute name="STATUS_TRATAMENTO" type="Long" is-nullable="false" is-primary-key="false" foreign-key="none" comment=""/>
+		<attribute name="STATUS_EVENTO" type="Long" is-nullable="false" is-primary-key="false" foreign-key="none" comment=""/>
+		<attribute name="TIPO_OBJETO" type="Long" is-nullable="true" is-primary-key="false" foreign-key="none" comment=""/>
+		<attribute name="USUARIO_CRIADOR" type="String" is-nullable="true" is-primary-key="false" foreign-key="none" comment=""/>
+		<attribute name="USUARIO_ATUALIZACAO" type="String" is-nullable="true" is-primary-key="false" foreign-key="none" comment=""/>
+		<attribute name="USUARIO_TERMINO" type="String" is-nullable="true" is-primary-key="false" foreign-key="none" comment=""/>
+		<attribute name="RECURSOS" type="String" is-nullable="true" is-primary-key="false" foreign-key="none" comment=""/>
+		<attribute name="ACOES" type="String" is-nullable="true" is-primary-key="false" foreign-key="none" comment=""/>
+		<attribute name="QUANDO_RECURSO_QUE_CHEGOU_PRIMEIRO" type="Date" is-nullable="true" is-primary-key="false" foreign-key="none" comment=""/>
+		<attribute name="TEMPO_PRIMEIRO_RECURSO_NO_LOCAL_EM_SEGUNDOS" type="Long" is-nullable="true" is-primary-key="false" foreign-key="none" comment=""/>
+		<attribute name="NOME_PRIMEIRO_RECURSO_NO_LOCAL" type="String" is-nullable="true" is-primary-key="false" foreign-key="none" comment=""/>
+		<attribute name="ID_ESTADO" type="Long" is-nullable="true" is-primary-key="false" foreign-key="ESTADO.ID" comment=""/>
+		<attribute name="ID_SENTIDO" type="Long" is-nullable="true" is-primary-key="false" foreign-key="SENTIDO.ID" comment=""/>
+		<attribute name="FAIXA" type="Long" is-nullable="true" is-primary-key="false" foreign-key="none" comment=""/>
+		<attribute name="ENDERECO" type="String" is-nullable="true" is-primary-key="false" foreign-key="none" comment=""/>
+	</concept>
+	<concept name="FLUXO" >
+		<attribute name="ID" type="Long" is-nullable="false" is-primary-key="true" foreign-key="none" comment=""/>
+		<attribute name="ID_EQUIPAMENTO" type="Long" is-nullable="true" is-primary-key="false" foreign-key="RADAR.ID" comment=""/>
+		<attribute name="TIPO" type="Long" is-nullable="false" is-primary-key="false" foreign-key="none" comment=""/>
+		<attribute name="SEQUENCIAL_UNICO_OCORRENCIA" type="Long" is-nullable="false" is-primary-key="false" foreign-key="none" comment=""/>
+		<attribute name="DATA_AFERICAO" type="Date" is-nullable="false" is-primary-key="false" foreign-key="none" comment=""/>
+		<attribute name="DATA_HORA_PASSAGEM" type="Date" is-nullable="false" is-primary-key="false" foreign-key="none" comment=""/>
+		<attribute name="DATA_HORA_INSERIDO_EM_BANCO" type="Date" is-nullable="false" is-primary-key="false" foreign-key="none" comment=""/>
+		<attribute name="DATA_HORA_PRIMERIRO_ENVIO" type="Date" is-nullable="true" is-primary-key="false" foreign-key="none" comment=""/>
+		<attribute name="DATA_HORA_ULTIMO_ENVIO" type="Date" is-nullable="true" is-primary-key="false" foreign-key="none" comment=""/>
+		<attribute name="VELOCIDADE_AFERIDA" type="BigDecimal" is-nullable="false" is-primary-key="false" foreign-key="none" comment=""/>
+		<attribute name="VELOCIDADE_REGULAMENTADA" type="BigDecimal" is-nullable="false" is-primary-key="false" foreign-key="none" comment=""/>
+		<attribute name="CLASSIFICACAO" type="Long" is-nullable="true" is-primary-key="false" foreign-key="none" comment=""/>
+		<attribute name="PLACA" type="String" is-nullable="false" is-primary-key="false" foreign-key="none" comment=""/>
+		<attribute name="GAP" type="BigDecimal" is-nullable="true" is-primary-key="false" foreign-key="none" comment=""/>
+		<attribute name="TAXA_OCUPACAO" type="BigDecimal" is-nullable="true" is-primary-key="false" foreign-key="none" comment=""/>
+		<attribute name="TAMANHO_VEICULO_EM_CM" type="Long" is-nullable="true" is-primary-key="false" foreign-key="none" comment=""/>
+		<attribute name="CODIGO_EQUIPAMENTO" type="String" is-nullable="false" is-primary-key="false" foreign-key="none" comment=""/>
+		<attribute name="CODIGO_LOCAL" type="Long" is-nullable="false" is-primary-key="false" foreign-key="none" comment=""/>
+		<attribute name="FAIXA" type="String" is-nullable="true" is-primary-key="false" foreign-key="none" comment=""/>
+		<attribute name="PROTOCOLO_VERIFICACAO_ENVIO" type="String" is-nullable="true" is-primary-key="false" foreign-key="none" comment=""/>
+		<attribute name="STATUS_ENVIO" type="Long" is-nullable="true" is-primary-key="false" foreign-key="none" comment=""/>
+		<attribute name="NUMERO_ENVIO" type="Long" is-nullable="true" is-primary-key="false" foreign-key="none" comment=""/>
+		<attribute name="DESCRICAO_ERRO_ENVIO" type="String" is-nullable="true" is-primary-key="false" foreign-key="none" comment=""/>
+		<attribute name="ENDERECO_CPU_DRIVER" type="String" is-nullable="true" is-primary-key="false" foreign-key="none" comment=""/>
+		<attribute name="NOME_USUARIO_QUE_ATUALIZOU" type="String" is-nullable="true" is-primary-key="false" foreign-key="none" comment=""/>
+		<attribute name="DATA_HORA_ATUALIZACAO_POR_USUARIO" type="Date" is-nullable="true" is-primary-key="false" foreign-key="none" comment=""/>
+		<attribute name="TIPO_ATUALIZACAO_POR_USUARIO" type="String" is-nullable="true" is-primary-key="false" foreign-key="none" comment=""/>
+		<attribute name="TEVE_INFRACAO" type="Long" is-nullable="false" is-primary-key="false" foreign-key="none" comment=""/>
+		<attribute name="NUMERO_IMAGENS" type="Long" is-nullable="false" is-primary-key="false" foreign-key="none" comment=""/>
+	</concept>
+	<concept name="FLUXOVEICULOSRESUMO" >
+		<attribute name="DT_DATE" type="Date" is-nullable="false" is-primary-key="false" foreign-key="none" comment=""/>
+		<attribute name="ID_LOCAL" type="Long" is-nullable="false" is-primary-key="false" foreign-key="none" comment=""/>
+		<attribute name="FLUXOMEDIO" type="Long" is-nullable="false" is-primary-key="false" foreign-key="none" comment=""/>
+		<attribute name="DT_ATUALIZADA" type="Date" is-nullable="false" is-primary-key="false" foreign-key="none" comment=""/>
+	</concept>
+	<concept name="FLUXO_IMAGEM" >
+		<attribute name="ID" type="Long" is-nullable="false" is-primary-key="true" foreign-key="none" comment=""/>
+		<attribute name="ID_FLUXO" type="Long" is-nullable="true" is-primary-key="false" foreign-key="FLUXO.ID" comment=""/>
+		<attribute name="TIPO_FORMATO_IMAGEM" type="Long" is-nullable="false" is-primary-key="false" foreign-key="none" comment=""/>
+		<attribute name="TAMANHO_IMAGEM" type="Long" is-nullable="false" is-primary-key="false" foreign-key="none" comment=""/>
+		<attribute name="TIPO_FOCO" type="Long" is-nullable="false" is-primary-key="false" foreign-key="none" comment=""/>
+		<attribute name="SEQUENCIAL_UNICO_IMAGEM" type="Long" is-nullable="false" is-primary-key="false" foreign-key="none" comment=""/>
+		<attribute name="CODIGO_INFRACAO" type="String" is-nullable="false" is-primary-key="false" foreign-key="none" comment=""/>
+		<attribute name="NOME_IMAGEM" type="String" is-nullable="false" is-primary-key="false" foreign-key="none" comment=""/>
+		<attribute name="TEMPO_SINAL_VERMELHO" type="Long" is-nullable="true" is-primary-key="false" foreign-key="none" comment=""/>
+		<attribute name="TEMPO_PARADA_FAIXA" type="Long" is-nullable="true" is-primary-key="false" foreign-key="none" comment=""/>
+		<attribute name="BYTES_IMAGEM" type="byte[]" is-nullable="false" is-primary-key="false" foreign-key="none" comment=""/>
+	</concept>
+	<concept name="FUNCAO" >
+		<attribute name="ID" type="Long" is-nullable="false" is-primary-key="true" foreign-key="none" comment=""/>
+		<attribute name="CODIGO" type="String" is-nullable="true" is-primary-key="false" foreign-key="none" comment=""/>
+		<attribute name="DESCRICAO" type="String" is-nullable="true" is-primary-key="false" foreign-key="none" comment=""/>
+	</concept>
+	<concept name="FUNCAOPERFIL" >
+		<attribute name="ID" type="Long" is-nullable="false" is-primary-key="true" foreign-key="none" comment=""/>
+		<attribute name="FUNCAO_ID" type="Long" is-nullable="true" is-primary-key="false" foreign-key="none" comment=""/>
+		<attribute name="PERFIL_ID" type="Long" is-nullable="true" is-primary-key="false" foreign-key="none" comment=""/>
+		<attribute name="VERSION" type="Long" is-nullable="true" is-primary-key="false" foreign-key="none" comment=""/>
+		<attribute name="ID_FUNCAO" type="Long" is-nullable="false" is-primary-key="false" foreign-key="none" comment=""/>
+		<attribute name="ID_PERFIL" type="Long" is-nullable="false" is-primary-key="false" foreign-key="none" comment=""/>
+	</concept>
+	<concept name="FUNCAO_PERFIL" >
+		<attribute name="ID" type="Long" is-nullable="false" is-primary-key="true" foreign-key="none" comment=""/>
+		<attribute name="ID_PERFIL" type="Long" is-nullable="false" is-primary-key="false" foreign-key="PERFIL.ID" comment=""/>
+		<attribute name="ID_FUNCAO" type="Long" is-nullable="false" is-primary-key="false" foreign-key="FUNCAO.ID" comment=""/>
+		<attribute name="VERSION" type="Long" is-nullable="true" is-primary-key="false" foreign-key="none" comment=""/>
+		<attribute name="FUNCAO_ID" type="Long" is-nullable="true" is-primary-key="false" foreign-key="none" comment=""/>
+		<attribute name="PERFIL_ID" type="Long" is-nullable="true" is-primary-key="false" foreign-key="none" comment=""/>
+	</concept>
+	<concept name="GRUPO_PMV" >
+		<attribute name="ID" type="Long" is-nullable="false" is-primary-key="true" foreign-key="none" comment=""/>
+		<attribute name="NOME" type="String" is-nullable="true" is-primary-key="false" foreign-key="none" comment=""/>
+		<attribute name="DESCRICAO" type="String" is-nullable="true" is-primary-key="false" foreign-key="none" comment=""/>
+		<attribute name="ID_USUARIO" type="Long" is-nullable="false" is-primary-key="false" foreign-key="none" comment=""/>
+		<attribute name="DATA_CRIACAO" type="Date" is-nullable="true" is-primary-key="false" foreign-key="none" comment=""/>
+		<attribute name="DATA_ATUALIZACAO" type="Date" is-nullable="true" is-primary-key="false" foreign-key="none" comment=""/>
+		<attribute name="APAGADO" type="Long" is-nullable="true" is-primary-key="false" foreign-key="none" comment=""/>
+	</concept>
+	<concept name="HORA_INVALIDA_DADOS_SAT" >
+		<attribute name="ID" type="Long" is-nullable="false" is-primary-key="true" foreign-key="none" comment=""/>
+		<attribute name="ID_ESTACAO" type="Long" is-nullable="false" is-primary-key="false" foreign-key="none" comment=""/>
+		<attribute name="DATA_HORA" type="Date" is-nullable="false" is-primary-key="false" foreign-key="none" comment=""/>
+		<attribute name="HORA" type="Long" is-nullable="false" is-primary-key="false" foreign-key="none" comment=""/>
+	</concept>
+	<concept name="IP_AUTORIZADO" >
+		<attribute name="ID" type="Long" is-nullable="false" is-primary-key="true" foreign-key="none" comment=""/>
+		<attribute name="IP" type="String" is-nullable="false" is-primary-key="false" foreign-key="none" comment=""/>
+		<attribute name="FUNCAO" type="String" is-nullable="true" is-primary-key="false" foreign-key="none" comment=""/>
+		<attribute name="DESCRICAO" type="String" is-nullable="true" is-primary-key="false" foreign-key="none" comment=""/>
+	</concept>
+	<concept name="LOG_ALARME" >
+		<attribute name="ID" type="Long" is-nullable="false" is-primary-key="true" foreign-key="none" comment=""/>
+		<attribute name="DATA_ALARME" type="Date" is-nullable="true" is-primary-key="false" foreign-key="none" comment=""/>
+		<attribute name="TIPO_EQUIPAMENTO" type="String" is-nullable="true" is-primary-key="false" foreign-key="none" comment=""/>
+		<attribute name="TIPO_ALARME" type="String" is-nullable="true" is-primary-key="false" foreign-key="none" comment=""/>
+		<attribute name="NOME_EQUIPAMENTO" type="String" is-nullable="true" is-primary-key="false" foreign-key="none" comment=""/>
+		<attribute name="ID_EQUIPAMENTO" type="Long" is-nullable="true" is-primary-key="false" foreign-key="none" comment=""/>
+		<attribute name="DESCRICAO" type="String" is-nullable="true" is-primary-key="false" foreign-key="none" comment=""/>
+		<attribute name="ID_EXTERNO" type="String" is-nullable="true" is-primary-key="false" foreign-key="none" comment=""/>
+		<attribute name="PARAMETRO1" type="String" is-nullable="true" is-primary-key="false" foreign-key="none" comment=""/>
+		<attribute name="PARAMETRO2" type="String" is-nullable="true" is-primary-key="false" foreign-key="none" comment=""/>
+	</concept>
+	<concept name="MAPEAMENTO_POSICAO" >
+		<attribute name="ID" type="Long" is-nullable="false" is-primary-key="true" foreign-key="none" comment=""/>
+		<attribute name="KM" type="BigDecimal" is-nullable="true" is-primary-key="false" foreign-key="none" comment=""/>
+		<attribute name="FAIXA" type="Long" is-nullable="true" is-primary-key="false" foreign-key="none" comment=""/>
+		<attribute name="LATITUDE" type="BigDecimal" is-nullable="true" is-primary-key="false" foreign-key="none" comment=""/>
+		<attribute name="LONGITUDE" type="BigDecimal" is-nullable="true" is-primary-key="false" foreign-key="none" comment=""/>
+		<attribute name="POSICAO_X_ESCALA_1" type="Long" is-nullable="true" is-primary-key="false" foreign-key="none" comment=""/>
+		<attribute name="POSICAO_Y_ESCALA_1" type="Long" is-nullable="true" is-primary-key="false" foreign-key="none" comment=""/>
+		<attribute name="POSICAO_X_ESCALA_2" type="Long" is-nullable="true" is-primary-key="false" foreign-key="none" comment=""/>
+		<attribute name="POSICAO_Y_ESCALA_2" type="Long" is-nullable="true" is-primary-key="false" foreign-key="none" comment=""/>
+		<attribute name="POSICAO_X_ESCALA_3" type="Long" is-nullable="true" is-primary-key="false" foreign-key="none" comment=""/>
+		<attribute name="POSICAO_Y_ESCALA_3" type="Long" is-nullable="true" is-primary-key="false" foreign-key="none" comment=""/>
+		<attribute name="TIPO" type="Long" is-nullable="true" is-primary-key="false" foreign-key="none" comment=""/>
+		<attribute name="ROAD_ID" type="Long" is-nullable="true" is-primary-key="false" foreign-key="none" comment=""/>
+		<attribute name="STATE_ID" type="Long" is-nullable="true" is-primary-key="false" foreign-key="none" comment=""/>
+		<attribute name="WAY_ID" type="Long" is-nullable="true" is-primary-key="false" foreign-key="none" comment=""/>
+	</concept>
+	<concept name="MENSAGEM_PMV_ENVIADA" >
+		<attribute name="ID" type="Long" is-nullable="false" is-primary-key="true" foreign-key="none" comment=""/>
+		<attribute name="DATA_CRIACAO" type="Date" is-nullable="true" is-primary-key="false" foreign-key="none" comment=""/>
+		<attribute name="DATA_INICIO" type="Date" is-nullable="true" is-primary-key="false" foreign-key="none" comment=""/>
+		<attribute name="DATA_FIM" type="Date" is-nullable="true" is-primary-key="false" foreign-key="none" comment=""/>
+		<attribute name="TIPO" type="Long" is-nullable="true" is-primary-key="false" foreign-key="none" comment=""/>
+		<attribute name="ID_PMV" type="Long" is-nullable="false" is-primary-key="false" foreign-key="none" comment=""/>
+		<attribute name="STATUS" type="Long" is-nullable="true" is-primary-key="false" foreign-key="none" comment=""/>
+		<attribute name="NIVEL_LUMINOSIDADE" type="Long" is-nullable="true" is-primary-key="false" foreign-key="none" comment=""/>
+		<attribute name="NOME" type="String" is-nullable="true" is-primary-key="false" foreign-key="none" comment=""/>
+		<attribute name="TIPO_ENVIO" type="String" is-nullable="true" is-primary-key="false" foreign-key="none" comment=""/>
+		<attribute name="ID_CATEGORIA_MENSAGEM" type="Long" is-nullable="false" is-primary-key="false" foreign-key="none" comment=""/>
+		<attribute name="ID_USUARIO" type="Long" is-nullable="false" is-primary-key="false" foreign-key="none" comment=""/>
+		<attribute name="DATA_ATUALIZACAO" type="Date" is-nullable="true" is-primary-key="false" foreign-key="none" comment=""/>
+		<attribute name="DATA_CONFIRMACAO" type="Date" is-nullable="true" is-primary-key="false" foreign-key="none" comment=""/>
+		<attribute name="DATA_CANCELAMENTO" type="Date" is-nullable="true" is-primary-key="false" foreign-key="none" comment=""/>
+		<attribute name="ID_RESOLUCAO" type="Long" is-nullable="false" is-primary-key="false" foreign-key="RESOLUCAO.ID" comment=""/>
+		<attribute name="APAGADO" type="Long" is-nullable="true" is-primary-key="false" foreign-key="none" comment=""/>
+		<attribute name="EMERGENCIAL" type="Long" is-nullable="true" is-primary-key="false" foreign-key="none" comment=""/>
+		<attribute name="COM_STROBO" type="Long" is-nullable="true" is-primary-key="false" foreign-key="none" comment=""/>
+		<attribute name="ATIVO" type="Long" is-nullable="true" is-primary-key="false" foreign-key="none" comment=""/>
+		<attribute name="COMANDO1" type="String" is-nullable="true" is-primary-key="false" foreign-key="none" comment=""/>
+		<attribute name="COMANDO2" type="String" is-nullable="true" is-primary-key="false" foreign-key="none" comment=""/>
+		<attribute name="COMANDO3" type="String" is-nullable="true" is-primary-key="false" foreign-key="none" comment=""/>
+		<attribute name="TEXTO" type="String" is-nullable="true" is-primary-key="false" foreign-key="none" comment=""/>
+		<attribute name="NUMERO_PAGINAS" type="Long" is-nullable="true" is-primary-key="false" foreign-key="none" comment=""/>
+		<attribute name="ID_MENSAGEM_BIBLIOTECA" type="Long" is-nullable="true" is-primary-key="false" foreign-key="none" comment=""/>
+		<attribute name="TEM_VARIAVEL" type="Long" is-nullable="true" is-primary-key="false" foreign-key="none" comment=""/>
+		<attribute name="COMANDO4" type="String" is-nullable="true" is-primary-key="false" foreign-key="none" comment=""/>
+		<attribute name="TEXTO_COMPLETO" type="String" is-nullable="true" is-primary-key="false" foreign-key="none" comment=""/>
+	</concept>
+	<concept name="OBJETO_MAPA" >
+		<attribute name="ID" type="Long" is-nullable="false" is-primary-key="false" foreign-key="none" comment=""/>
+		<attribute name="ID_TIPO_OBJETO" type="Long" is-nullable="true" is-primary-key="false" foreign-key="TIPO_OBJETO_MAPA.ID" comment=""/>
+		<attribute name="NOME" type="String" is-nullable="true" is-primary-key="false" foreign-key="none" comment=""/>
+		<attribute name="DESCRICAO" type="String" is-nullable="true" is-primary-key="false" foreign-key="none" comment=""/>
+		<attribute name="COR1" type="String" is-nullable="true" is-primary-key="false" foreign-key="none" comment=""/>
+		<attribute name="COR2" type="String" is-nullable="true" is-primary-key="false" foreign-key="none" comment=""/>
+		<attribute name="ESTADO" type="Long" is-nullable="true" is-primary-key="false" foreign-key="none" comment=""/>
+		<attribute name="POSICAO_X_ESCALA_1" type="Long" is-nullable="true" is-primary-key="false" foreign-key="none" comment=""/>
+		<attribute name="POSICAO_Y_ESCALA_1" type="Long" is-nullable="true" is-primary-key="false" foreign-key="none" comment=""/>
+		<attribute name="POSICAO_X_ESCALA_2" type="Long" is-nullable="true" is-primary-key="false" foreign-key="none" comment=""/>
+		<attribute name="POSICAO_Y_ESCALA_2" type="Long" is-nullable="true" is-primary-key="false" foreign-key="none" comment=""/>
+		<attribute name="ROTACAO_ESCALA_1" type="Long" is-nullable="true" is-primary-key="false" foreign-key="none" comment=""/>
+		<attribute name="ROTACAO_ESCALA_2" type="Long" is-nullable="true" is-primary-key="false" foreign-key="none" comment=""/>
+		<attribute name="TAMANHO_X_ESCALA_1" type="Long" is-nullable="true" is-primary-key="false" foreign-key="none" comment=""/>
+		<attribute name="TAMANHO_Y_ESCALA_1" type="Long" is-nullable="true" is-primary-key="false" foreign-key="none" comment=""/>
+		<attribute name="TAMANHO_X_ESCALA_2" type="Long" is-nullable="true" is-primary-key="false" foreign-key="none" comment=""/>
+		<attribute name="TAMANHO_Y_ESCALA_2" type="Long" is-nullable="true" is-primary-key="false" foreign-key="none" comment=""/>
+		<attribute name="ID_ESTRADA" type="Long" is-nullable="true" is-primary-key="false" foreign-key="none" comment=""/>
+		<attribute name="ID_SENTIDO" type="Long" is-nullable="true" is-primary-key="false" foreign-key="none" comment=""/>
+		<attribute name="LOCAL" type="String" is-nullable="true" is-primary-key="false" foreign-key="none" comment=""/>
+		<attribute name="LOCAL_INICIO" type="BigDecimal" is-nullable="true" is-primary-key="false" foreign-key="none" comment=""/>
+		<attribute name="LOCAL_FIM" type="BigDecimal" is-nullable="true" is-primary-key="false" foreign-key="none" comment=""/>
+		<attribute name="TIPO_LOCALIZACAO" type="Long" is-nullable="true" is-primary-key="false" foreign-key="none" comment=""/>
+		<attribute name="FAIXA" type="String" is-nullable="true" is-primary-key="false" foreign-key="none" comment=""/>
+		<attribute name="ENDERECO_IP" type="String" is-nullable="true" is-primary-key="false" foreign-key="none" comment=""/>
+		<attribute name="PORTA" type="Long" is-nullable="true" is-primary-key="false" foreign-key="none" comment=""/>
+		<attribute name="ENDERECO" type="String" is-nullable="true" is-primary-key="false" foreign-key="none" comment=""/>
+		<attribute name="PARAMETRO1" type="String" is-nullable="true" is-primary-key="false" foreign-key="none" comment=""/>
+		<attribute name="PARAMETRO2" type="String" is-nullable="true" is-primary-key="false" foreign-key="none" comment=""/>
+		<attribute name="PARAMETRO3" type="String" is-nullable="true" is-primary-key="false" foreign-key="none" comment=""/>
+		<attribute name="MOSTRA_CAMERA" type="Long" is-nullable="true" is-primary-key="false" foreign-key="none" comment=""/>
+	</concept>
+	<concept name="PAGINA_BIBLIOTECA_MENSAGEM" >
+		<attribute name="ID" type="Long" is-nullable="false" is-primary-key="true" foreign-key="none" comment=""/>
+		<attribute name="CONTEUDO_NOVO" type="byte[]" is-nullable="true" is-primary-key="false" foreign-key="none" comment=""/>
+		<attribute name="DATA_CRIACAO" type="Date" is-nullable="true" is-primary-key="false" foreign-key="none" comment=""/>
+		<attribute name="DATA_ATUALIZACAO" type="Date" is-nullable="true" is-primary-key="false" foreign-key="none" comment=""/>
+		<attribute name="APAGADO" type="Long" is-nullable="true" is-primary-key="false" foreign-key="none" comment=""/>
+		<attribute name="ID_CATEGORIA_MENSAGEM" type="Long" is-nullable="true" is-primary-key="false" foreign-key="CATEGORIA_MENSAGEM.ID" comment=""/>
+		<attribute name="ID_RESOLUCAO" type="Long" is-nullable="false" is-primary-key="false" foreign-key="none" comment=""/>
+		<attribute name="NOME" type="String" is-nullable="false" is-primary-key="false" foreign-key="none" comment=""/>
+		<attribute name="IMPORTADO" type="Long" is-nullable="true" is-primary-key="false" foreign-key="none" comment=""/>
+		<attribute name="VERSAO_SERIALIZACAO" type="Long" is-nullable="true" is-primary-key="false" foreign-key="none" comment=""/>
+	</concept>
+	<concept name="PAGINA_MENSAGEM_PMV_ENVIADA" >
+		<attribute name="ID" type="Long" is-nullable="false" is-primary-key="true" foreign-key="none" comment=""/>
+		<attribute name="ID_MENSAGEM_PMV_ENVIADA" type="Long" is-nullable="true" is-primary-key="false" foreign-key="MENSAGEM_PMV_ENVIADA.ID" comment=""/>
+		<attribute name="INDICE_PAGINA" type="Long" is-nullable="true" is-primary-key="false" foreign-key="none" comment=""/>
+		<attribute name="CONTEUDO" type="byte[]" is-nullable="true" is-primary-key="false" foreign-key="none" comment=""/>
+		<attribute name="DURACAO" type="Long" is-nullable="false" is-primary-key="false" foreign-key="none" comment=""/>
+		<attribute name="APAGADO" type="Long" is-nullable="true" is-primary-key="false" foreign-key="none" comment=""/>
+		<attribute name="ID_RESOLUCAO" type="Long" is-nullable="false" is-primary-key="false" foreign-key="RESOLUCAO.ID" comment=""/>
+		<attribute name="VERSAO_SERIALIZACAO" type="Long" is-nullable="true" is-primary-key="false" foreign-key="none" comment=""/>
+	</concept>
+	<concept name="PERFIL" >
+		<attribute name="ID" type="Long" is-nullable="false" is-primary-key="true" foreign-key="none" comment=""/>
+		<attribute name="CODIGO" type="String" is-nullable="true" is-primary-key="false" foreign-key="none" comment=""/>
+		<attribute name="DESCRICAO" type="String" is-nullable="true" is-primary-key="false" foreign-key="none" comment=""/>
+		<attribute name="VERSION" type="Long" is-nullable="true" is-primary-key="false" foreign-key="none" comment=""/>
+	</concept>
+	<concept name="PLANO_ACAO" >
+		<attribute name="ID" type="Long" is-nullable="false" is-primary-key="true" foreign-key="none" comment=""/>
+		<attribute name="NOME" type="String" is-nullable="false" is-primary-key="false" foreign-key="none" comment=""/>
+		<attribute name="SISTEMA_ORIGEM" type="String" is-nullable="false" is-primary-key="false" foreign-key="none" comment=""/>
+		<attribute name="ID_ESTRADA" type="Long" is-nullable="false" is-primary-key="false" foreign-key="ESTRADA.ID" comment=""/>
+		<attribute name="TIPO_EVENTO" type="String" is-nullable="true" is-primary-key="false" foreign-key="none" comment=""/>
+		<attribute name="SENTIDO" type="String" is-nullable="true" is-primary-key="false" foreign-key="none" comment=""/>
+		<attribute name="ID_SENTIDO" type="Long" is-nullable="true" is-primary-key="false" foreign-key="SENTIDO.ID" comment=""/>
+		<attribute name="FAIXAS" type="String" is-nullable="true" is-primary-key="false" foreign-key="none" comment=""/>
+		<attribute name="LOCAL_INICIO_PLANO" type="BigDecimal" is-nullable="true" is-primary-key="false" foreign-key="none" comment=""/>
+		<attribute name="LOCAL_FIM_PLANO" type="BigDecimal" is-nullable="true" is-primary-key="false" foreign-key="none" comment=""/>
+		<attribute name="OUTRO_LOCAL" type="String" is-nullable="true" is-primary-key="false" foreign-key="none" comment=""/>
+		<attribute name="TIPO_PLANO_ACAO" type="Long" is-nullable="false" is-primary-key="false" foreign-key="none" comment=""/>
+		<attribute name="TIPO_ATIVACAO" type="Long" is-nullable="false" is-primary-key="false" foreign-key="none" comment=""/>
+		<attribute name="CONFIG_PMV" type="String" is-nullable="true" is-primary-key="false" foreign-key="none" comment=""/>
+		<attribute name="CONFIG_SM" type="String" is-nullable="true" is-primary-key="false" foreign-key="none" comment=""/>
+		<attribute name="CONFIG_CTFV" type="String" is-nullable="true" is-primary-key="false" foreign-key="none" comment=""/>
+		<attribute name="DATA_CRIACAO" type="Date" is-nullable="true" is-primary-key="false" foreign-key="none" comment=""/>
+		<attribute name="DATA_ATUALIZACAO" type="Date" is-nullable="true" is-primary-key="false" foreign-key="none" comment=""/>
+		<attribute name="ID_USUARIO" type="Long" is-nullable="true" is-primary-key="false" foreign-key="none" comment=""/>
+		<attribute name="TIPO_OBJETO" type="Long" is-nullable="true" is-primary-key="false" foreign-key="none" comment=""/>
+		<attribute name="PARAMETRO1" type="String" is-nullable="true" is-primary-key="false" foreign-key="none" comment=""/>
+		<attribute name="PARAMETRO2" type="String" is-nullable="true" is-primary-key="false" foreign-key="none" comment=""/>
+		<attribute name="PARAMETRO3" type="String" is-nullable="true" is-primary-key="false" foreign-key="none" comment=""/>
+		<attribute name="PARAMETRO4" type="String" is-nullable="true" is-primary-key="false" foreign-key="none" comment=""/>
+		<attribute name="PARAMETRO5" type="String" is-nullable="true" is-primary-key="false" foreign-key="none" comment=""/>
+	</concept>
+	<concept name="PMV" >
+		<attribute name="ID" type="Long" is-nullable="false" is-primary-key="true" foreign-key="none" comment=""/>
+		<attribute name="TIPO_COMUNICACAO" type="Long" is-nullable="true" is-primary-key="false" foreign-key="none" comment=""/>
+		<attribute name="ENDERECO_PMV" type="String" is-nullable="true" is-primary-key="false" foreign-key="none" comment=""/>
+		<attribute name="PORTA" type="String" is-nullable="true" is-primary-key="false" foreign-key="none" comment=""/>
+		<attribute name="NOME" type="String" is-nullable="true" is-primary-key="false" foreign-key="none" comment=""/>
+		<attribute name="ID_ESTRADA" type="Long" is-nullable="true" is-primary-key="false" foreign-key="ESTRADA.ID" comment=""/>
+		<attribute name="ID_ESTADO" type="Long" is-nullable="true" is-primary-key="false" foreign-key="ESTADO.ID" comment=""/>
+		<attribute name="ID_SENTIDO" type="Long" is-nullable="true" is-primary-key="false" foreign-key="SENTIDO.ID" comment=""/>
+		<attribute name="ORDEM" type="Long" is-nullable="true" is-primary-key="false" foreign-key="none" comment=""/>
+		<attribute name="KM" type="BigDecimal" is-nullable="true" is-primary-key="false" foreign-key="none" comment=""/>
+		<attribute name="APAGADO" type="Long" is-nullable="true" is-primary-key="false" foreign-key="none" comment=""/>
+		<attribute name="STATUS_SISTEMA" type="Long" is-nullable="true" is-primary-key="false" foreign-key="none" comment=""/>
+		<attribute name="STATUS_OPERACIONAL" type="Long" is-nullable="true" is-primary-key="false" foreign-key="none" comment=""/>
+		<attribute name="DESCRICAO_STATUS_OPERACIONAL" type="String" is-nullable="true" is-primary-key="false" foreign-key="none" comment=""/>
+		<attribute name="ULTIMA_VERIFICACAO" type="Date" is-nullable="true" is-primary-key="false" foreign-key="none" comment=""/>
+		<attribute name="ID_PROTOCOLO" type="Long" is-nullable="false" is-primary-key="false" foreign-key="PROTOCOLO.ID" comment=""/>
+		<attribute name="DATA_CRIACAO" type="Date" is-nullable="true" is-primary-key="false" foreign-key="none" comment=""/>
+		<attribute name="DATA_ATUALIZACAO" type="Date" is-nullable="true" is-primary-key="false" foreign-key="none" comment=""/>
+		<attribute name="ID_USUARIO" type="Long" is-nullable="false" is-primary-key="false" foreign-key="USUARIO.ID" comment=""/>
+		<attribute name="E_PMV_MOVEL" type="Long" is-nullable="true" is-primary-key="false" foreign-key="none" comment=""/>
+		<attribute name="TEM_STROBO" type="Long" is-nullable="true" is-primary-key="false" foreign-key="none" comment=""/>
+		<attribute name="DESCRICAO_LOCALIZACAO" type="String" is-nullable="true" is-primary-key="false" foreign-key="none" comment=""/>
+		<attribute name="ID_ATIVACAO" type="Long" is-nullable="true" is-primary-key="false" foreign-key="ATIVACAO_PMV.ID" comment=""/>
+		<attribute name="SUPORTA_FULL_MATRIX" type="Long" is-nullable="true" is-primary-key="false" foreign-key="none" comment=""/>
+		<attribute name="ID_RESOLUCAO" type="Long" is-nullable="false" is-primary-key="false" foreign-key="none" comment=""/>
+		<attribute name="ID_MENSAGEM_CORRENTE" type="Long" is-nullable="true" is-primary-key="false" foreign-key="MENSAGEM_PMV_ENVIADA.ID" comment=""/>
+		<attribute name="ID_MENSAGEM_ENVIADA" type="Long" is-nullable="true" is-primary-key="false" foreign-key="MENSAGEM_PMV_ENVIADA.ID" comment=""/>
+		<attribute name="COR_BORDA" type="String" is-nullable="true" is-primary-key="false" foreign-key="none" comment=""/>
+		<attribute name="ENDERECO_IP" type="String" is-nullable="true" is-primary-key="false" foreign-key="none" comment=""/>
+		<attribute name="ESCALA1" type="Long" is-nullable="true" is-primary-key="false" foreign-key="none" comment=""/>
+		<attribute name="ESCALA2" type="Long" is-nullable="true" is-primary-key="false" foreign-key="none" comment=""/>
+		<attribute name="POSICAO_X_ESCALA_1" type="Long" is-nullable="true" is-primary-key="false" foreign-key="none" comment=""/>
+		<attribute name="POSICAO_Y_ESCALA_1" type="Long" is-nullable="true" is-primary-key="false" foreign-key="none" comment=""/>
+		<attribute name="POSICAO_X_ESCALA_2" type="Long" is-nullable="true" is-primary-key="false" foreign-key="none" comment=""/>
+		<attribute name="POSICAO_Y_ESCALA_2" type="Long" is-nullable="true" is-primary-key="false" foreign-key="none" comment=""/>
+		<attribute name="ORIGEM_ANCORA_ESCALA_1" type="Long" is-nullable="true" is-primary-key="false" foreign-key="none" comment=""/>
+		<attribute name="X_ANCORA_ESCALA_1" type="Long" is-nullable="true" is-primary-key="false" foreign-key="none" comment=""/>
+		<attribute name="Y_ANCORA_ESCALA_1" type="Long" is-nullable="true" is-primary-key="false" foreign-key="none" comment=""/>
+		<attribute name="ORIGEM_ANCORA_ESCALA_2" type="Long" is-nullable="true" is-primary-key="false" foreign-key="none" comment=""/>
+		<attribute name="X_ANCORA_ESCALA_2" type="Long" is-nullable="true" is-primary-key="false" foreign-key="none" comment=""/>
+		<attribute name="Y_ANCORA_ESCALA_2" type="Long" is-nullable="true" is-primary-key="false" foreign-key="none" comment=""/>
+		<attribute name="TAMANHO_FONTE_NOME" type="Long" is-nullable="true" is-primary-key="false" foreign-key="none" comment=""/>
+		<attribute name="VISIVEL" type="Long" is-nullable="true" is-primary-key="false" foreign-key="none" comment=""/>
+		<attribute name="EXTRA_INFO1" type="String" is-nullable="true" is-primary-key="false" foreign-key="none" comment=""/>
+		<attribute name="EXTRA_INFO2" type="String" is-nullable="true" is-primary-key="false" foreign-key="none" comment=""/>
+		<attribute name="EXTRA_INFO3" type="String" is-nullable="true" is-primary-key="false" foreign-key="none" comment=""/>
+		<attribute name="TIMEOUT_CONNECT" type="Long" is-nullable="true" is-primary-key="false" foreign-key="none" comment=""/>
+		<attribute name="TIMEOUT_READ" type="Long" is-nullable="true" is-primary-key="false" foreign-key="none" comment=""/>
+		<attribute name="LONGITUDE" type="BigDecimal" is-nullable="true" is-primary-key="false" foreign-key="none" comment=""/>
+		<attribute name="LATITUDE" type="BigDecimal" is-nullable="true" is-primary-key="false" foreign-key="none" comment=""/>
+		<attribute name="NOME_EXTERNO" type="String" is-nullable="true" is-primary-key="false" foreign-key="none" comment=""/>
+	</concept>
+	<concept name="POSICAO" >
+		<attribute name="ID" type="Long" is-nullable="false" is-primary-key="true" foreign-key="none" comment=""/>
+		<attribute name="ID_DRIVER" type="Long" is-nullable="true" is-primary-key="false" foreign-key="none" comment=""/>
+		<attribute name="ID_MODULO" type="Long" is-nullable="true" is-primary-key="false" foreign-key="none" comment=""/>
+		<attribute name="LATITUDE" type="BigDecimal" is-nullable="true" is-primary-key="false" foreign-key="none" comment=""/>
+		<attribute name="LONGITUDE" type="BigDecimal" is-nullable="true" is-primary-key="false" foreign-key="none" comment=""/>
+		<attribute name="HORIMETRO" type="Long" is-nullable="true" is-primary-key="false" foreign-key="none" comment=""/>
+		<attribute name="HODOMETRO" type="Long" is-nullable="true" is-primary-key="false" foreign-key="none" comment=""/>
+		<attribute name="TENSAO" type="BigDecimal" is-nullable="true" is-primary-key="false" foreign-key="none" comment=""/>
+		<attribute name="TEMPERATURA" type="Long" is-nullable="true" is-primary-key="false" foreign-key="none" comment=""/>
+		<attribute name="VELOCIDADE" type="Long" is-nullable="true" is-primary-key="false" foreign-key="none" comment=""/>
+		<attribute name="DIRECAO" type="Long" is-nullable="true" is-primary-key="false" foreign-key="none" comment=""/>
+		<attribute name="DATA_HORA_GPS" type="Date" is-nullable="true" is-primary-key="false" foreign-key="none" comment=""/>
+		<attribute name="DATA_HORA_GRAVACAO" type="Date" is-nullable="true" is-primary-key="false" foreign-key="none" comment=""/>
+		<attribute name="QTD_SATELITE" type="Long" is-nullable="true" is-primary-key="false" foreign-key="none" comment=""/>
+		<attribute name="PRECISAO" type="Long" is-nullable="true" is-primary-key="false" foreign-key="none" comment=""/>
+		<attribute name="CONTADOR" type="Long" is-nullable="true" is-primary-key="false" foreign-key="none" comment=""/>
+		<attribute name="ESTADOS" type="Long" is-nullable="true" is-primary-key="false" foreign-key="none" comment=""/>
+		<attribute name="ESTADOS_EXTRA" type="Long" is-nullable="true" is-primary-key="false" foreign-key="none" comment=""/>
+		<attribute name="TAMANHO_PACOTE_RECEBIDO" type="Long" is-nullable="true" is-primary-key="false" foreign-key="none" comment=""/>
+		<attribute name="TAMANHO_PACOTE_ENVIADO" type="Long" is-nullable="true" is-primary-key="false" foreign-key="none" comment=""/>
+		<attribute name="MOTIVO_ENVIO" type="Long" is-nullable="true" is-primary-key="false" foreign-key="none" comment=""/>
+		<attribute name="PLACA" type="String" is-nullable="true" is-primary-key="false" foreign-key="none" comment=""/>
+	</concept>
+	<concept name="POSITIONMAPPING" >
+		<attribute name="ID" type="Long" is-nullable="false" is-primary-key="true" foreign-key="none" comment=""/>
+		<attribute name="KM" type="BigDecimal" is-nullable="true" is-primary-key="false" foreign-key="none" comment=""/>
+		<attribute name="FAIXA" type="Long" is-nullable="true" is-primary-key="false" foreign-key="none" comment=""/>
+		<attribute name="LATITUDE" type="BigDecimal" is-nullable="true" is-primary-key="false" foreign-key="none" comment=""/>
+		<attribute name="LONGITUDE" type="BigDecimal" is-nullable="true" is-primary-key="false" foreign-key="none" comment=""/>
+		<attribute name="ID_ESTRADA" type="Long" is-nullable="true" is-primary-key="false" foreign-key="none" comment=""/>
+		<attribute name="X_ESCALA1" type="Long" is-nullable="true" is-primary-key="false" foreign-key="none" comment=""/>
+		<attribute name="Y_ESCALA1" type="Long" is-nullable="true" is-primary-key="false" foreign-key="none" comment=""/>
+		<attribute name="X_ESCALA2" type="Long" is-nullable="true" is-primary-key="false" foreign-key="none" comment=""/>
+		<attribute name="Y_ESCALA2" type="Long" is-nullable="true" is-primary-key="false" foreign-key="none" comment=""/>
+		<attribute name="X_ESCALA3" type="Long" is-nullable="true" is-primary-key="false" foreign-key="none" comment=""/>
+		<attribute name="Y_ESCALA3" type="Long" is-nullable="true" is-primary-key="false" foreign-key="none" comment=""/>
+		<attribute name="TIPO" type="Long" is-nullable="true" is-primary-key="false" foreign-key="none" comment=""/>
+		<attribute name="ID_SENTIDO" type="Long" is-nullable="true" is-primary-key="false" foreign-key="none" comment=""/>
+		<attribute name="ROAD_ID" type="Long" is-nullable="true" is-primary-key="false" foreign-key="none" comment=""/>
+		<attribute name="WAY_ID" type="Long" is-nullable="true" is-primary-key="false" foreign-key="none" comment=""/>
+		<attribute name="STATE_ID" type="Long" is-nullable="true" is-primary-key="false" foreign-key="none" comment=""/>
+	</concept>
+	<concept name="PROGRAMACAO_MENSAGEM" >
+		<attribute name="ID" type="Long" is-nullable="false" is-primary-key="true" foreign-key="none" comment=""/>
+		<attribute name="ID_USUARIO" type="Long" is-nullable="false" is-primary-key="false" foreign-key="none" comment=""/>
+		<attribute name="NOME" type="String" is-nullable="true" is-primary-key="false" foreign-key="none" comment=""/>
+		<attribute name="ID_GRUPO_PMV" type="Long" is-nullable="false" is-primary-key="false" foreign-key="none" comment=""/>
+		<attribute name="DATA_CRIACAO" type="Date" is-nullable="true" is-primary-key="false" foreign-key="none" comment=""/>
+		<attribute name="INICIO_VALIDADE" type="Date" is-nullable="true" is-primary-key="false" foreign-key="none" comment=""/>
+		<attribute name="FIM_VALIDADE" type="Date" is-nullable="true" is-primary-key="false" foreign-key="none" comment=""/>
+		<attribute name="ID_CATEGORIA" type="Long" is-nullable="false" is-primary-key="false" foreign-key="none" comment=""/>
+		<attribute name="TYPO_LUMINOSIDADE" type="Long" is-nullable="true" is-primary-key="false" foreign-key="none" comment=""/>
+		<attribute name="COM_STROBO" type="Long" is-nullable="true" is-primary-key="false" foreign-key="none" comment=""/>
+		<attribute name="TIME_BETWEEN_PAGES" type="Long" is-nullable="true" is-primary-key="false" foreign-key="none" comment=""/>
+		<attribute name="SEGUNDA" type="Long" is-nullable="true" is-primary-key="false" foreign-key="none" comment=""/>
+		<attribute name="TERCA" type="Long" is-nullable="true" is-primary-key="false" foreign-key="none" comment=""/>
+		<attribute name="QUARTA" type="Long" is-nullable="true" is-primary-key="false" foreign-key="none" comment=""/>
+		<attribute name="QUINTA" type="Long" is-nullable="true" is-primary-key="false" foreign-key="none" comment=""/>
+		<attribute name="SEXTA" type="Long" is-nullable="true" is-primary-key="false" foreign-key="none" comment=""/>
+		<attribute name="SABADO" type="Long" is-nullable="true" is-primary-key="false" foreign-key="none" comment=""/>
+		<attribute name="DOMINGO" type="Long" is-nullable="true" is-primary-key="false" foreign-key="none" comment=""/>
+		<attribute name="HORA_INICIO" type="String" is-nullable="true" is-primary-key="false" foreign-key="none" comment=""/>
+		<attribute name="HORA_FIM" type="String" is-nullable="true" is-primary-key="false" foreign-key="none" comment=""/>
+		<attribute name="DATA_CRIACAO_BY" type="Long" is-nullable="true" is-primary-key="false" foreign-key="none" comment=""/>
+		<attribute name="ATIVO" type="Long" is-nullable="true" is-primary-key="false" foreign-key="none" comment=""/>
+		<attribute name="TEMPO_PARA_CADA_MENSAGEM" type="Long" is-nullable="true" is-primary-key="false" foreign-key="none" comment=""/>
+	</concept>
+	<concept name="PROTOCOLO" >
+		<attribute name="ID" type="Long" is-nullable="false" is-primary-key="true" foreign-key="none" comment=""/>
+		<attribute name="NOME" type="String" is-nullable="true" is-primary-key="false" foreign-key="none" comment=""/>
+		<attribute name="DESCRICAO" type="String" is-nullable="true" is-primary-key="false" foreign-key="none" comment=""/>
+		<attribute name="APAGADO" type="Long" is-nullable="true" is-primary-key="false" foreign-key="none" comment=""/>
+		<attribute name="DATA_CRIACAO" type="Date" is-nullable="true" is-primary-key="false" foreign-key="none" comment=""/>
+		<attribute name="DATA_ATUALIZACAO" type="Date" is-nullable="true" is-primary-key="false" foreign-key="none" comment=""/>
+		<attribute name="ID_USUARIO" type="Long" is-nullable="false" is-primary-key="false" foreign-key="none" comment=""/>
+	</concept>
+	<concept name="RADAR" >
+		<attribute name="ID" type="Long" is-nullable="false" is-primary-key="true" foreign-key="none" comment=""/>
+		<attribute name="NOME" type="String" is-nullable="false" is-primary-key="false" foreign-key="none" comment=""/>
+		<attribute name="POSICAO_X_ESCALA_1" type="Long" is-nullable="true" is-primary-key="false" foreign-key="none" comment=""/>
+		<attribute name="POSICAO_Y_ESCALA_1" type="Long" is-nullable="true" is-primary-key="false" foreign-key="none" comment=""/>
+		<attribute name="POSICAO_X_ESCALA_2" type="Long" is-nullable="true" is-primary-key="false" foreign-key="none" comment=""/>
+		<attribute name="POSICAO_Y_ESCALA_2" type="Long" is-nullable="true" is-primary-key="false" foreign-key="none" comment=""/>
+		<attribute name="ID_ALGORITMO" type="Long" is-nullable="false" is-primary-key="false" foreign-key="none" comment=""/>
+		<attribute name="ID_ESTRADA" type="Long" is-nullable="true" is-primary-key="false" foreign-key="ESTRADA.ID" comment=""/>
+		<attribute name="ID_ESTADO" type="Long" is-nullable="true" is-primary-key="false" foreign-key="ESTADO.ID" comment=""/>
+		<attribute name="STATUS_SISTEMA" type="Long" is-nullable="true" is-primary-key="false" foreign-key="none" comment=""/>
+		<attribute name="STATUS_OPERACIONAL" type="Long" is-nullable="true" is-primary-key="false" foreign-key="none" comment=""/>
+		<attribute name="DESCRICAO_STATUS_OPERACIONAL" type="String" is-nullable="true" is-primary-key="false" foreign-key="none" comment=""/>
+		<attribute name="ULTIMA_VERIFICACAO" type="Date" is-nullable="true" is-primary-key="false" foreign-key="none" comment=""/>
+		<attribute name="ID_PROTOCOLO" type="Long" is-nullable="false" is-primary-key="false" foreign-key="PROTOCOLO.ID" comment=""/>
+		<attribute name="DATA_CRIACAO" type="Date" is-nullable="true" is-primary-key="false" foreign-key="none" comment=""/>
+		<attribute name="DATA_ATUALIZACAO" type="Date" is-nullable="true" is-primary-key="false" foreign-key="none" comment=""/>
+		<attribute name="ID_USUARIO" type="Long" is-nullable="false" is-primary-key="false" foreign-key="USUARIO.ID" comment=""/>
+		<attribute name="ENDERECO" type="String" is-nullable="true" is-primary-key="false" foreign-key="none" comment=""/>
+		<attribute name="ENDERECO_IP" type="String" is-nullable="true" is-primary-key="false" foreign-key="none" comment=""/>
+		<attribute name="PARAMETRO" type="String" is-nullable="true" is-primary-key="false" foreign-key="none" comment=""/>
+		<attribute name="PORTA" type="String" is-nullable="true" is-primary-key="false" foreign-key="none" comment=""/>
+		<attribute name="DISTANCIA" type="Long" is-nullable="false" is-primary-key="false" foreign-key="none" comment=""/>
+		<attribute name="LONGITUDE" type="BigDecimal" is-nullable="true" is-primary-key="false" foreign-key="none" comment=""/>
+		<attribute name="LATITUDE" type="BigDecimal" is-nullable="true" is-primary-key="false" foreign-key="none" comment=""/>
+		<attribute name="NOME_EXTERNO" type="String" is-nullable="true" is-primary-key="false" foreign-key="none" comment=""/>
+		<attribute name="TIPO_DETECCAO" type="String" is-nullable="true" is-primary-key="false" foreign-key="none" comment=""/>
+		<attribute name="NTCIP_GET_COMMUNITY" type="String" is-nullable="true" is-primary-key="false" foreign-key="none" comment=""/>
+		<attribute name="NTCIP_SET_COMMUNITY" type="String" is-nullable="true" is-primary-key="false" foreign-key="none" comment=""/>
+		<attribute name="PERIODO_DADOS" type="Long" is-nullable="true" is-primary-key="false" foreign-key="none" comment=""/>
+		<attribute name="USUARIO" type="String" is-nullable="true" is-primary-key="false" foreign-key="none" comment=""/>
+		<attribute name="SENHA" type="String" is-nullable="true" is-primary-key="false" foreign-key="none" comment=""/>
+		<attribute name="PORTA_FTP" type="Long" is-nullable="true" is-primary-key="false" foreign-key="none" comment=""/>
+		<attribute name="DIRETORIO_REMOTO_FTP" type="String" is-nullable="true" is-primary-key="false" foreign-key="none" comment=""/>
+		<attribute name="TIMEOUT_CONEXAO" type="Long" is-nullable="true" is-primary-key="false" foreign-key="none" comment=""/>
+		<attribute name="TIMEOUT_LEITURA" type="Long" is-nullable="true" is-primary-key="false" foreign-key="none" comment=""/>
+		<attribute name="EXTRA_INFO1" type="String" is-nullable="true" is-primary-key="false" foreign-key="none" comment=""/>
+		<attribute name="EXTRA_INFO2" type="String" is-nullable="true" is-primary-key="false" foreign-key="none" comment=""/>
+		<attribute name="EXTRA_INFO3" type="String" is-nullable="true" is-primary-key="false" foreign-key="none" comment=""/>
+		<attribute name="DATA_HORA_ULTIMO_DADO" type="Date" is-nullable="true" is-primary-key="false" foreign-key="none" comment=""/>
+	</concept>
+	<concept name="REL_PAGINA_MSG_BIBLIOTECA" >
+		<attribute name="ID" type="Long" is-nullable="false" is-primary-key="true" foreign-key="none" comment=""/>
+		<attribute name="ID_PAGINA_BIBLIOTECA_MENSAGEM" type="Long" is-nullable="false" is-primary-key="false" foreign-key="PAGINA_BIBLIOTECA_MENSAGEM.ID" comment=""/>
+		<attribute name="ID_BIBLIOTECA_MENSAGEM" type="Long" is-nullable="false" is-primary-key="false" foreign-key="BIBLIOTECA_MENSAGEM.ID" comment=""/>
+		<attribute name="INDICE_PAGINA" type="Long" is-nullable="false" is-primary-key="false" foreign-key="none" comment=""/>
+		<attribute name="TEMPO_PAGINA" type="Long" is-nullable="true" is-primary-key="false" foreign-key="none" comment=""/>
+	</concept>
+	<concept name="RESOLUCAO" >
+		<attribute name="ID" type="Long" is-nullable="false" is-primary-key="true" foreign-key="none" comment=""/>
+		<attribute name="ID_PROTOCOLO" type="Long" is-nullable="false" is-primary-key="false" foreign-key="none" comment=""/>
+		<attribute name="NOME" type="String" is-nullable="true" is-primary-key="false" foreign-key="none" comment=""/>
+		<attribute name="LARGURA" type="Long" is-nullable="false" is-primary-key="false" foreign-key="none" comment=""/>
+		<attribute name="ALTURA" type="Long" is-nullable="false" is-primary-key="false" foreign-key="none" comment=""/>
+		<attribute name="SUPORTA_FULL_MATRIX" type="Long" is-nullable="false" is-primary-key="false" foreign-key="none" comment=""/>
+		<attribute name="SUPORTA_TEXTO" type="Long" is-nullable="false" is-primary-key="false" foreign-key="none" comment=""/>
+		<attribute name="NUM_LINHAS" type="Long" is-nullable="true" is-primary-key="false" foreign-key="none" comment=""/>
+		<attribute name="NUM_LETRAS_POR_LINHA" type="Long" is-nullable="true" is-primary-key="false" foreign-key="none" comment=""/>
+		<attribute name="NUM_PAGINAS_TEXTO" type="Long" is-nullable="true" is-primary-key="false" foreign-key="none" comment=""/>
+		<attribute name="NUM_PAGINAS_GRAFICAS" type="Long" is-nullable="true" is-primary-key="false" foreign-key="none" comment=""/>
+		<attribute name="TEM_STROBO" type="Long" is-nullable="true" is-primary-key="false" foreign-key="none" comment=""/>
+		<attribute name="TEM_PICTO" type="Long" is-nullable="true" is-primary-key="false" foreign-key="none" comment=""/>
+		<attribute name="LARGURA_PICTO" type="Long" is-nullable="true" is-primary-key="false" foreign-key="none" comment=""/>
+		<attribute name="ALTURA_PICTO" type="Long" is-nullable="true" is-primary-key="false" foreign-key="none" comment=""/>
+		<attribute name="TEM_CONTROLE_LUMINOSIDADE" type="Long" is-nullable="true" is-primary-key="false" foreign-key="none" comment=""/>
+		<attribute name="CORES" type="String" is-nullable="true" is-primary-key="false" foreign-key="none" comment=""/>
+		<attribute name="LARGURA_TEXTO" type="Long" is-nullable="true" is-primary-key="false" foreign-key="none" comment=""/>
+		<attribute name="ALTURA_TEXTO" type="Long" is-nullable="true" is-primary-key="false" foreign-key="none" comment=""/>
+	</concept>
+	<concept name="SENSOR_SAT" >
+		<attribute name="ID" type="Long" is-nullable="false" is-primary-key="true" foreign-key="none" comment=""/>
+		<attribute name="ID_ESTACAO_SAT" type="Long" is-nullable="false" is-primary-key="false" foreign-key="none" comment=""/>
+		<attribute name="ID_GRUPO_SENSOR" type="Long" is-nullable="true" is-primary-key="false" foreign-key="none" comment=""/>
+		<attribute name="SUB_ESTACAO" type="Long" is-nullable="true" is-primary-key="false" foreign-key="none" comment=""/>
+		<attribute name="STATUS_OPERACIONAL" type="Long" is-nullable="true" is-primary-key="false" foreign-key="none" comment=""/>
+		<attribute name="DESCRICAO_STATUS_OPERACIONAL" type="String" is-nullable="true" is-primary-key="false" foreign-key="none" comment=""/>
+		<attribute name="TIPO_SENSOR" type="Long" is-nullable="false" is-primary-key="false" foreign-key="none" comment=""/>
+		<attribute name="POSICAO_X_ESCALA_1" type="Long" is-nullable="true" is-primary-key="false" foreign-key="none" comment=""/>
+		<attribute name="POSICAO_Y_ESCALA_1" type="Long" is-nullable="true" is-primary-key="false" foreign-key="none" comment=""/>
+		<attribute name="POSICAO_X_ESCALA_2" type="Long" is-nullable="true" is-primary-key="false" foreign-key="none" comment=""/>
+		<attribute name="POSICAO_Y_ESCALA_2" type="Long" is-nullable="true" is-primary-key="false" foreign-key="none" comment=""/>
+		<attribute name="NOME" type="String" is-nullable="false" is-primary-key="false" foreign-key="none" comment=""/>
+		<attribute name="DATA_CRIACAO" type="Date" is-nullable="true" is-primary-key="false" foreign-key="none" comment=""/>
+		<attribute name="DATA_ATUALIZACAO" type="Date" is-nullable="true" is-primary-key="false" foreign-key="none" comment=""/>
+		<attribute name="ID_USUARIO" type="Long" is-nullable="false" is-primary-key="false" foreign-key="USUARIO.ID" comment=""/>
+		<attribute name="ID_SENTIDO" type="Long" is-nullable="true" is-primary-key="false" foreign-key="SENTIDO.ID" comment=""/>
+		<attribute name="FAIXA" type="Long" is-nullable="false" is-primary-key="false" foreign-key="none" comment=""/>
+		<attribute name="VELOCIDADE" type="BigDecimal" is-nullable="true" is-primary-key="false" foreign-key="none" comment=""/>
+		<attribute name="QUANTIDADE" type="BigDecimal" is-nullable="true" is-primary-key="false" foreign-key="none" comment=""/>
+		<attribute name="TAXA_OCUPACAO" type="BigDecimal" is-nullable="true" is-primary-key="false" foreign-key="none" comment=""/>
+		<attribute name="GAP" type="BigDecimal" is-nullable="true" is-primary-key="false" foreign-key="none" comment=""/>
+		<attribute name="HEADWAY" type="BigDecimal" is-nullable="true" is-primary-key="false" foreign-key="none" comment=""/>
+		<attribute name="NIVEL_SERVICO" type="Long" is-nullable="true" is-primary-key="false" foreign-key="none" comment=""/>
+		<attribute name="COR" type="String" is-nullable="true" is-primary-key="false" foreign-key="none" comment=""/>
+		<attribute name="DATA_HORA" type="Date" is-nullable="true" is-primary-key="false" foreign-key="none" comment=""/>
+		<attribute name="PARAMETRO" type="String" is-nullable="true" is-primary-key="false" foreign-key="none" comment=""/>
+		<attribute name="TIPO_VISUALIZACAO_ESCALA1" type="Long" is-nullable="true" is-primary-key="false" foreign-key="none" comment=""/>
+		<attribute name="LARGURA_VISUALIZACAO_ESCALA1" type="Long" is-nullable="true" is-primary-key="false" foreign-key="none" comment=""/>
+		<attribute name="ALTURA_VISUALIZACAO_ESCALA1" type="Long" is-nullable="true" is-primary-key="false" foreign-key="none" comment=""/>
+		<attribute name="TIPO_VISUALIZACAO_ESCALA2" type="Long" is-nullable="true" is-primary-key="false" foreign-key="none" comment=""/>
+		<attribute name="LARGURA_VISUALIZACAO_ESCALA2" type="Long" is-nullable="true" is-primary-key="false" foreign-key="none" comment=""/>
+		<attribute name="ALTURA_VISUALIZACAO_ESCALA2" type="Long" is-nullable="true" is-primary-key="false" foreign-key="none" comment=""/>
+		<attribute name="ANGULO_VISUALIZACAO_ESCALA1" type="Long" is-nullable="true" is-primary-key="false" foreign-key="none" comment=""/>
+		<attribute name="ANGULO_VISUALIZACAO_ESCALA2" type="Long" is-nullable="true" is-primary-key="false" foreign-key="none" comment=""/>
+		<attribute name="LONGITUDE" type="BigDecimal" is-nullable="true" is-primary-key="false" foreign-key="none" comment=""/>
+		<attribute name="LATITUDE" type="BigDecimal" is-nullable="true" is-primary-key="false" foreign-key="none" comment=""/>
+		<attribute name="NOME_EXTERNO" type="String" is-nullable="true" is-primary-key="false" foreign-key="none" comment=""/>
+	</concept>
+	<concept name="SENSOR_VIRTUAL_SAT" >
+		<attribute name="ID" type="Long" is-nullable="false" is-primary-key="true" foreign-key="none" comment=""/>
+		<attribute name="STATUS_OPERACIONAL" type="Long" is-nullable="true" is-primary-key="false" foreign-key="none" comment=""/>
+		<attribute name="STATUS_SISTEMA" type="Long" is-nullable="true" is-primary-key="false" foreign-key="none" comment=""/>
+		<attribute name="TIPO_SENSOR" type="Long" is-nullable="false" is-primary-key="false" foreign-key="none" comment=""/>
+		<attribute name="POSICAO_X_ESCALA_1" type="Long" is-nullable="true" is-primary-key="false" foreign-key="none" comment=""/>
+		<attribute name="POSICAO_Y_ESCALA_1" type="Long" is-nullable="true" is-primary-key="false" foreign-key="none" comment=""/>
+		<attribute name="POSICAO_X_ESCALA_2" type="Long" is-nullable="true" is-primary-key="false" foreign-key="none" comment=""/>
+		<attribute name="POSICAO_Y_ESCALA_2" type="Long" is-nullable="true" is-primary-key="false" foreign-key="none" comment=""/>
+		<attribute name="NOME" type="String" is-nullable="false" is-primary-key="false" foreign-key="none" comment=""/>
+		<attribute name="DATA_CRIACAO" type="Date" is-nullable="true" is-primary-key="false" foreign-key="none" comment=""/>
+		<attribute name="DATA_ATUALIZACAO" type="Date" is-nullable="true" is-primary-key="false" foreign-key="none" comment=""/>
+		<attribute name="ID_USUARIO" type="Long" is-nullable="false" is-primary-key="false" foreign-key="USUARIO.ID" comment=""/>
+		<attribute name="IDS_SENSORES_AT_PARA_SOMAR" type="String" is-nullable="true" is-primary-key="false" foreign-key="none" comment=""/>
+		<attribute name="IDS_SENSORES_AT_PARA_SUBSTRAIR" type="String" is-nullable="true" is-primary-key="false" foreign-key="none" comment=""/>
+		<attribute name="VALOR" type="BigDecimal" is-nullable="true" is-primary-key="false" foreign-key="none" comment=""/>
+		<attribute name="DATA_HORA" type="Date" is-nullable="true" is-primary-key="false" foreign-key="none" comment=""/>
+		<attribute name="NIVEL_SERVICO" type="Long" is-nullable="true" is-primary-key="false" foreign-key="none" comment=""/>
+		<attribute name="COR" type="String" is-nullable="true" is-primary-key="false" foreign-key="none" comment=""/>
+		<attribute name="ID_ALGORITMO" type="Long" is-nullable="true" is-primary-key="false" foreign-key="none" comment=""/>
+		<attribute name="PARAMETRO" type="String" is-nullable="true" is-primary-key="false" foreign-key="none" comment=""/>
+	</concept>
+	<concept name="SENTIDO" >
+		<attribute name="ID" type="Long" is-nullable="false" is-primary-key="true" foreign-key="none" comment=""/>
+		<attribute name="NOME" type="String" is-nullable="true" is-primary-key="false" foreign-key="none" comment=""/>
+		<attribute name="DESCRICAO" type="String" is-nullable="true" is-primary-key="false" foreign-key="none" comment=""/>
+		<attribute name="KM_AUMENTA" type="Long" is-nullable="false" is-primary-key="false" foreign-key="none" comment=""/>
+		<attribute name="APAGADO" type="Long" is-nullable="true" is-primary-key="false" foreign-key="none" comment=""/>
+		<attribute name="DATA_CRIACAO" type="Date" is-nullable="true" is-primary-key="false" foreign-key="none" comment=""/>
+		<attribute name="DATA_ATUALIZACAO" type="Date" is-nullable="true" is-primary-key="false" foreign-key="none" comment=""/>
+		<attribute name="ID_USUARIO" type="Long" is-nullable="false" is-primary-key="false" foreign-key="none" comment=""/>
+	</concept>
+	<concept name="TAREFA_ATIVACAO_PLANO_ACAO_GENERICO" >
+		<attribute name="ID" type="Long" is-nullable="false" is-primary-key="false" foreign-key="none" comment=""/>
+		<attribute name="ID_ATIVACAO_PLANO_ACAO_GENERICO" type="Long" is-nullable="false" is-primary-key="false" foreign-key="none" comment=""/>
+		<attribute name="TITULO" type="String" is-nullable="false" is-primary-key="false" foreign-key="none" comment=""/>
+		<attribute name="DESCRICAO" type="String" is-nullable="false" is-primary-key="false" foreign-key="none" comment=""/>
+		<attribute name="OBRIGATORIO" type="Long" is-nullable="false" is-primary-key="false" foreign-key="none" comment=""/>
+		<attribute name="COMPLETADO" type="Long" is-nullable="false" is-primary-key="false" foreign-key="none" comment=""/>
+		<attribute name="DATA_CRIACAO" type="Date" is-nullable="true" is-primary-key="false" foreign-key="none" comment=""/>
+		<attribute name="DATA_ATUALIZACAO" type="Date" is-nullable="true" is-primary-key="false" foreign-key="none" comment=""/>
+	</concept>
+	<concept name="TAREFA_DESCRICAO_PLANO_ACAO_GENERICO" >
+		<attribute name="ID" type="Long" is-nullable="false" is-primary-key="false" foreign-key="none" comment=""/>
+		<attribute name="ID_DESCRICAO_PLANO_ACAO_GENERICO" type="Long" is-nullable="false" is-primary-key="false" foreign-key="none" comment=""/>
+		<attribute name="TITULO" type="String" is-nullable="false" is-primary-key="false" foreign-key="none" comment=""/>
+		<attribute name="DESCRICAO" type="String" is-nullable="false" is-primary-key="false" foreign-key="none" comment=""/>
+		<attribute name="OBRIGATORIO" type="Long" is-nullable="false" is-primary-key="false" foreign-key="none" comment=""/>
+	</concept>
+	<concept name="TEST_CONNECTIONS" >
+		<attribute name="ID" type="Long" is-nullable="true" is-primary-key="false" foreign-key="none" comment=""/>
+		<attribute name="NAME" type="String" is-nullable="true" is-primary-key="false" foreign-key="none" comment=""/>
+	</concept>
+	<concept name="TIPO_EVENTO_PLANO_ACAO" >
+		<attribute name="ID" type="Long" is-nullable="false" is-primary-key="true" foreign-key="none" comment=""/>
+		<attribute name="TIPO" type="Long" is-nullable="false" is-primary-key="false" foreign-key="none" comment=""/>
+		<attribute name="DESCRICAO" type="String" is-nullable="true" is-primary-key="false" foreign-key="none" comment=""/>
+		<attribute name="SISTEMA_ORIGEM" type="String" is-nullable="true" is-primary-key="false" foreign-key="none" comment=""/>
+	</concept>
+	<concept name="TIPO_EVENTO_PLANO_ACAO_GENERICO" >
+		<attribute name="ID" type="Long" is-nullable="false" is-primary-key="true" foreign-key="none" comment=""/>
+		<attribute name="TIPO" type="String" is-nullable="false" is-primary-key="false" foreign-key="none" comment=""/>
+		<attribute name="DESCRICAO" type="String" is-nullable="true" is-primary-key="false" foreign-key="none" comment=""/>
+		<attribute name="SISTEMA_ORIGEM" type="String" is-nullable="true" is-primary-key="false" foreign-key="none" comment=""/>
+		<attribute name="NOME_IMAGEM1" type="String" is-nullable="true" is-primary-key="false" foreign-key="none" comment=""/>
+		<attribute name="NOME_IMAGEM2" type="String" is-nullable="true" is-primary-key="false" foreign-key="none" comment=""/>
+		<attribute name="NOME_IMAGEM3" type="String" is-nullable="true" is-primary-key="false" foreign-key="none" comment=""/>
+	</concept>
+	<concept name="TIPO_OBJETO_MAPA" >
+		<attribute name="ID" type="Long" is-nullable="false" is-primary-key="true" foreign-key="none" comment=""/>
+		<attribute name="CODIGO" type="String" is-nullable="true" is-primary-key="false" foreign-key="none" comment=""/>
+		<attribute name="NOME" type="String" is-nullable="true" is-primary-key="false" foreign-key="none" comment=""/>
+		<attribute name="DESCRICAO" type="String" is-nullable="true" is-primary-key="false" foreign-key="none" comment=""/>
+		<attribute name="TIPO_GRAFICO" type="Long" is-nullable="false" is-primary-key="false" foreign-key="none" comment=""/>
+		<attribute name="COMPONENTE" type="String" is-nullable="true" is-primary-key="false" foreign-key="none" comment=""/>
+		<attribute name="COR1" type="String" is-nullable="true" is-primary-key="false" foreign-key="none" comment=""/>
+		<attribute name="COR2" type="String" is-nullable="true" is-primary-key="false" foreign-key="none" comment=""/>
+		<attribute name="TAMANHO_X_ESCALA_1" type="Long" is-nullable="true" is-primary-key="false" foreign-key="none" comment=""/>
+		<attribute name="TAMANHO_Y_ESCALA_1" type="Long" is-nullable="true" is-primary-key="false" foreign-key="none" comment=""/>
+		<attribute name="TAMANHO_X_ESCALA_2" type="Long" is-nullable="true" is-primary-key="false" foreign-key="none" comment=""/>
+		<attribute name="TAMANHO_Y_ESCALA_2" type="Long" is-nullable="true" is-primary-key="false" foreign-key="none" comment=""/>
+		<attribute name="NOME_IMAGEM2" type="String" is-nullable="true" is-primary-key="false" foreign-key="none" comment=""/>
+		<attribute name="NOME_IMAGEM1" type="String" is-nullable="true" is-primary-key="false" foreign-key="none" comment=""/>
+		<attribute name="NOME_IMAGEM3" type="String" is-nullable="true" is-primary-key="false" foreign-key="none" comment=""/>
+	</concept>
+	<concept name="TIPO_VEICULO" >
+		<attribute name="ID" type="Long" is-nullable="false" is-primary-key="true" foreign-key="none" comment=""/>
+		<attribute name="DESCRICAO" type="String" is-nullable="true" is-primary-key="false" foreign-key="none" comment=""/>
+		<attribute name="NOME" type="String" is-nullable="true" is-primary-key="false" foreign-key="none" comment=""/>
+	</concept>
+	<concept name="ULTIMA_POSICAO" >
+		<attribute name="ID" type="Long" is-nullable="false" is-primary-key="true" foreign-key="none" comment=""/>
+		<attribute name="ID_MODULO" type="Long" is-nullable="true" is-primary-key="false" foreign-key="none" comment=""/>
+		<attribute name="LATITUDE" type="BigDecimal" is-nullable="true" is-primary-key="false" foreign-key="none" comment=""/>
+		<attribute name="LONGITUDE" type="BigDecimal" is-nullable="true" is-primary-key="false" foreign-key="none" comment=""/>
+		<attribute name="HORIMETRO" type="Long" is-nullable="true" is-primary-key="false" foreign-key="none" comment=""/>
+		<attribute name="HODOMETRO" type="Long" is-nullable="true" is-primary-key="false" foreign-key="none" comment=""/>
+		<attribute name="TENSAO" type="BigDecimal" is-nullable="true" is-primary-key="false" foreign-key="none" comment=""/>
+		<attribute name="TEMPERATURA" type="Long" is-nullable="true" is-primary-key="false" foreign-key="none" comment=""/>
+		<attribute name="VELOCIDADE" type="Long" is-nullable="true" is-primary-key="false" foreign-key="none" comment=""/>
+		<attribute name="DIRECAO" type="Long" is-nullable="true" is-primary-key="false" foreign-key="none" comment=""/>
+		<attribute name="DATA_HORA_GPS" type="Date" is-nullable="true" is-primary-key="false" foreign-key="none" comment=""/>
+		<attribute name="DATA_HORA_GRAVACAO" type="Date" is-nullable="true" is-primary-key="false" foreign-key="none" comment=""/>
+		<attribute name="QTD_SATELITE" type="Long" is-nullable="true" is-primary-key="false" foreign-key="none" comment=""/>
+		<attribute name="PRECISAO" type="Long" is-nullable="true" is-primary-key="false" foreign-key="none" comment=""/>
+		<attribute name="CONTADOR" type="Long" is-nullable="true" is-primary-key="false" foreign-key="none" comment=""/>
+		<attribute name="ESTADOS" type="Long" is-nullable="true" is-primary-key="false" foreign-key="none" comment=""/>
+		<attribute name="ESTADOS_EXTRA" type="Long" is-nullable="true" is-primary-key="false" foreign-key="none" comment=""/>
+		<attribute name="TAMANHO_PACOTE_RECEBIDO" type="Long" is-nullable="true" is-primary-key="false" foreign-key="none" comment=""/>
+		<attribute name="TAMANHO_PACOTE_ENVIADO" type="Long" is-nullable="true" is-primary-key="false" foreign-key="none" comment=""/>
+		<attribute name="MOTIVO_ENVIO" type="Long" is-nullable="true" is-primary-key="false" foreign-key="none" comment=""/>
+		<attribute name="PLACA" type="String" is-nullable="true" is-primary-key="false" foreign-key="none" comment=""/>
+	</concept>
+	<concept name="USUARIO" >
+		<attribute name="ID" type="Long" is-nullable="false" is-primary-key="true" foreign-key="none" comment=""/>
+		<attribute name="ID_PERFIL" type="Long" is-nullable="false" is-primary-key="false" foreign-key="PERFIL.ID" comment=""/>
+		<attribute name="LOGIN" type="String" is-nullable="true" is-primary-key="false" foreign-key="none" comment=""/>
+		<attribute name="NOME" type="String" is-nullable="true" is-primary-key="false" foreign-key="none" comment=""/>
+		<attribute name="SENHA" type="String" is-nullable="true" is-primary-key="false" foreign-key="none" comment=""/>
+		<attribute name="EMAIL" type="String" is-nullable="true" is-primary-key="false" foreign-key="none" comment=""/>
+		<attribute name="DATA_CRIACAO" type="Date" is-nullable="true" is-primary-key="false" foreign-key="none" comment=""/>
+		<attribute name="DATA_ATUALIZACAO" type="Date" is-nullable="true" is-primary-key="false" foreign-key="none" comment=""/>
+		<attribute name="ULTIMO_LOGIN" type="Date" is-nullable="true" is-primary-key="false" foreign-key="none" comment=""/>
+		<attribute name="STATUS" type="Long" is-nullable="true" is-primary-key="false" foreign-key="none" comment=""/>
+		<attribute name="NUM_LOGIN_REJEITADOS" type="Long" is-nullable="true" is-primary-key="false" foreign-key="none" comment=""/>
+		<attribute name="APAGADO" type="Long" is-nullable="true" is-primary-key="false" foreign-key="none" comment=""/>
+		<attribute name="ID_USUARIO_MASTER" type="Long" is-nullable="true" is-primary-key="false" foreign-key="none" comment=""/>
+		<attribute name="FORCA_ATUALIZACAO_SENHA" type="Long" is-nullable="true" is-primary-key="false" foreign-key="none" comment=""/>
+		<attribute name="VERSION" type="Long" is-nullable="true" is-primary-key="false" foreign-key="none" comment=""/>
+		<attribute name="DENHA" type="String" is-nullable="true" is-primary-key="false" foreign-key="none" comment=""/>
+		<attribute name="PERFIL_ID" type="Long" is-nullable="true" is-primary-key="false" foreign-key="none" comment=""/>
+	</concept>
+	<concept name="VEHICLE" >
+		<attribute name="ID" type="Long" is-nullable="false" is-primary-key="true" foreign-key="none" comment=""/>
+		<attribute name="LATITUDE" type="BigDecimal" is-nullable="true" is-primary-key="false" foreign-key="none" comment=""/>
+		<attribute name="LONGITUDE" type="BigDecimal" is-nullable="true" is-primary-key="false" foreign-key="none" comment=""/>
+		<attribute name="NOME" type="String" is-nullable="true" is-primary-key="false" foreign-key="none" comment=""/>
+		<attribute name="TYPE_ID" type="Long" is-nullable="true" is-primary-key="false" foreign-key="VEHICLETYPE.ID" comment=""/>
+		<attribute name="ULTIMAINFOPOSICAO" type="Date" is-nullable="true" is-primary-key="false" foreign-key="none" comment=""/>
+		<attribute name="X_ESCALA1" type="Long" is-nullable="true" is-primary-key="false" foreign-key="none" comment=""/>
+		<attribute name="Y_ESCALA1" type="Long" is-nullable="true" is-primary-key="false" foreign-key="none" comment=""/>
+		<attribute name="X_ESCALA2" type="Long" is-nullable="true" is-primary-key="false" foreign-key="none" comment=""/>
+		<attribute name="Y_ESCALA2" type="Long" is-nullable="true" is-primary-key="false" foreign-key="none" comment=""/>
+		<attribute name="X_ESCALA3" type="Long" is-nullable="true" is-primary-key="false" foreign-key="none" comment=""/>
+		<attribute name="Y_ESCALA3" type="Long" is-nullable="true" is-primary-key="false" foreign-key="none" comment=""/>
+		<attribute name="STATUS" type="Long" is-nullable="true" is-primary-key="false" foreign-key="none" comment=""/>
+	</concept>
+	<concept name="VEHICLETYPE" >
+		<attribute name="ID" type="Long" is-nullable="false" is-primary-key="true" foreign-key="none" comment=""/>
+		<attribute name="DESCRICAO" type="String" is-nullable="true" is-primary-key="false" foreign-key="none" comment=""/>
+		<attribute name="NOME" type="String" is-nullable="true" is-primary-key="false" foreign-key="none" comment=""/>
+	</concept>
+	<concept name="VEICULO" >
+		<attribute name="ID" type="Long" is-nullable="false" is-primary-key="true" foreign-key="none" comment=""/>
+		<attribute name="ID_ESTRADA" type="Long" is-nullable="true" is-primary-key="false" foreign-key="ESTRADA.ID" comment=""/>
+		<attribute name="ID_ESTADO" type="Long" is-nullable="true" is-primary-key="false" foreign-key="ESTADO.ID" comment=""/>
+		<attribute name="ID_SENTIDO" type="Long" is-nullable="true" is-primary-key="false" foreign-key="SENTIDO.ID" comment=""/>
+		<attribute name="DATA_ULTIMA_POSICAO" type="Date" is-nullable="true" is-primary-key="false" foreign-key="none" comment=""/>
+		<attribute name="LATITUDE" type="BigDecimal" is-nullable="true" is-primary-key="false" foreign-key="none" comment=""/>
+		<attribute name="LONGITUDE" type="BigDecimal" is-nullable="true" is-primary-key="false" foreign-key="none" comment=""/>
+		<attribute name="KM" type="BigDecimal" is-nullable="true" is-primary-key="false" foreign-key="none" comment=""/>
+		<attribute name="NOME" type="String" is-nullable="true" is-primary-key="false" foreign-key="none" comment=""/>
+		<attribute name="POSICAO_X_ESCALA_1" type="Long" is-nullable="true" is-primary-key="false" foreign-key="none" comment=""/>
+		<attribute name="POSICAO_Y_ESCALA_1" type="Long" is-nullable="true" is-primary-key="false" foreign-key="none" comment=""/>
+		<attribute name="POSICAO_X_ESCALA_2" type="Long" is-nullable="true" is-primary-key="false" foreign-key="none" comment=""/>
+		<attribute name="POSICAO_Y_ESCALA_2" type="Long" is-nullable="true" is-primary-key="false" foreign-key="none" comment=""/>
+		<attribute name="POSICAO_X_ESCALA_3" type="Long" is-nullable="true" is-primary-key="false" foreign-key="none" comment=""/>
+		<attribute name="POSICAO_Y_ESCALA_3" type="Long" is-nullable="true" is-primary-key="false" foreign-key="none" comment=""/>
+		<attribute name="STATUS" type="Long" is-nullable="true" is-primary-key="false" foreign-key="none" comment=""/>
+		<attribute name="ID_TIPO" type="Long" is-nullable="true" is-primary-key="false" foreign-key="TIPO_VEICULO.ID" comment=""/>
+		<attribute name="PLACA" type="String" is-nullable="true" is-primary-key="false" foreign-key="none" comment=""/>
+		<attribute name="CHASSIS" type="String" is-nullable="true" is-primary-key="false" foreign-key="none" comment=""/>
+		<attribute name="RENAVAN" type="String" is-nullable="true" is-primary-key="false" foreign-key="none" comment=""/>
+		<attribute name="COR" type="String" is-nullable="true" is-primary-key="false" foreign-key="none" comment=""/>
+		<attribute name="ANO_MODELO" type="Long" is-nullable="true" is-primary-key="false" foreign-key="none" comment=""/>
+		<attribute name="ANO_FABRICACAO" type="Long" is-nullable="true" is-primary-key="false" foreign-key="none" comment=""/>
+		<attribute name="DATA_VENCIMENTO_GESTORA" type="Date" is-nullable="true" is-primary-key="false" foreign-key="none" comment=""/>
+		<attribute name="DATA_VENCIMENTO_SEGURADORA" type="Date" is-nullable="true" is-primary-key="false" foreign-key="none" comment=""/>
+		<attribute name="DATA_CRIACAO" type="Date" is-nullable="true" is-primary-key="false" foreign-key="none" comment=""/>
+		<attribute name="DATA_ATUALIZACAO" type="Date" is-nullable="true" is-primary-key="false" foreign-key="none" comment=""/>
+		<attribute name="STATUS_SISTEMA" type="Long" is-nullable="true" is-primary-key="false" foreign-key="none" comment=""/>
+		<attribute name="STATUS_OPERACIONAL" type="Long" is-nullable="true" is-primary-key="false" foreign-key="none" comment=""/>
+		<attribute name="DESCRICAO_STATUS_OPERACIONAL" type="String" is-nullable="true" is-primary-key="false" foreign-key="none" comment=""/>
+		<attribute name="FAIXA" type="String" is-nullable="true" is-primary-key="false" foreign-key="none" comment=""/>
+		<attribute name="CODIGO" type="String" is-nullable="true" is-primary-key="false" foreign-key="none" comment=""/>
+		<attribute name="VELOCIDADE" type="BigDecimal" is-nullable="true" is-primary-key="false" foreign-key="none" comment=""/>
+		<attribute name="ID_EXTERNO" type="String" is-nullable="true" is-primary-key="false" foreign-key="none" comment=""/>
+	</concept>
+</neodatis-app-data>

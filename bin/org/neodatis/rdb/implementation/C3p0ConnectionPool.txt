@@ -1,0 +1,456 @@
+package org.neodatis.rdb.implementation;
+
+import java.io.InputStream;
+import java.io.PrintWriter;
+import java.io.StringWriter;
+import java.net.InetAddress;
+import java.net.URL;
+import java.sql.Connection;
+import java.sql.SQLException;
+import java.util.HashMap;
+import java.util.Map;
+import java.util.MissingResourceException;
+import java.util.Properties;
+
+import javax.sql.DataSource;
+
+import org.apache.log4j.Category;
+import org.neodatis.rdb.Config;
+import org.neodatis.rdb.ConnectionPool;
+
+//import com.mchange.v2.c3p0.DataSources;
+//import com.mchange.v2.c3p0.PooledDataSource;
+
+
+/**
+ * a database connection pool using CP3O
+ * 
+ */
+
+public class C3p0ConnectionPool implements ConnectionPool {
+	/** Creates the root */
+	static Category _log = Category.getInstance(DefaultPrimaryKey.class.getName());
+
+	/** The connection Pool release */
+	static final String _RELEASE = "15/02/2012 0.99";
+
+	/** The number of spool connection */
+	static int _nNbConnections;
+
+	/** To check if the object is ok */
+	static boolean _bOk = false;
+
+	/** To check if the object is ok */
+	static boolean _bReady = false;
+
+	/** To check resource init status */
+	static boolean _bResourceOk = false;
+
+	/** To get init parameters */
+	static Properties _resource;
+
+	/** The name of the initialization file */
+	static final String DEFAULT_FILE_NAME = "/ConnectionPool";
+
+	/** To keep connection info */
+	static ConnectionPoolInfo _connectionPoolInfo;
+	
+	
+	
+	protected DataSource unpooled;
+	protected PooledDataSource pooled;
+
+	protected static C3p0ConnectionPool instance;
+	
+	public static synchronized C3p0ConnectionPool getInstance() throws Exception{
+		if(instance==null){
+			instance = new C3p0ConnectionPool();
+			instance.init();
+		}
+		return instance;
+	}
+
+
+	/**
+	 * 
+	 * Inits the pool - creates all connections
+	 * @throws Exception 
+	 * 
+	 */
+	synchronized public void init() throws Exception {
+		// If pool is already initializaed , do nothing
+		if (_bReady) {
+			return;
+		}
+
+		_bOk = false;
+
+		// To get config parameters
+		initResource();
+
+		// If config file has been found
+		if (_bResourceOk) {
+			try {
+				// Get the indicator to know if pool must be dynamic : if it can
+				// grow on demand
+				String sTemp = getInitParameter("DynamicPool", "no");
+
+				String sPool = null;
+				int nPool = 0;
+
+				// Gets the number of connection of the pool
+				sPool = getInitParameter("pool.size");
+				if(sPool==null){
+					_log.error("Please use pool.size instead of pool to specify the size of the pool");
+					sPool = getInitParameter("pool");
+				}
+				
+				String databaseType = getInitParameter("database_type");
+				
+				Config.databaseType = databaseType;
+
+				// Create a connection pool info
+				_connectionPoolInfo = new ConnectionPoolInfo("default pool", getInitParameter("user"), getInitParameter("password"),
+						getInitParameter("driver"), getInitParameter("url"), nPool, 0, false, null, 0);
+
+				// Connects and creates connections
+				_bOk = connect(_connectionPoolInfo);
+
+				_bReady = true;
+			} catch (MissingResourceException e) {
+
+				StringWriter sw = new StringWriter();
+				e.printStackTrace(new PrintWriter(sw));
+				_log.error(sw.toString());
+				_log.fatal("Resource does not contain all parameters(driver,url,user,password,pool)");
+				_bOk = false;
+			}
+		}
+
+		if (_bOk) {
+			_log.info("Neodatis RDB ConnectionPool (CP3O) OK");
+		} else {
+			_log.fatal("DefaultConnectionPool NOT OK");
+			throw new DatabaseProblemException("DefaultConnectionPool NOT OK");
+		}
+
+	}
+
+	/**
+	 * 
+	 * Inits the resource to read initialization file
+	 * 
+	 * */
+	void initResource2() {
+		String configFile = DEFAULT_FILE_NAME+".properties";
+		try {
+			_log.debug("Looking for database config file : " + configFile + " in classpath ");
+
+			// _resource = ResourceBundle.getBundle( DEFAULT_FILE_NAME );
+			_bResourceOk = true;
+		} catch (Exception e) {
+			_log.fatal("Default Resource not found : " + configFile);
+			_bResourceOk = false;
+
+			// tries to get property file with ip
+			try {
+				String ip = InetAddress.getLocalHost().getHostAddress();
+
+				configFile = DEFAULT_FILE_NAME + "_" + ip+".properties";
+
+				_log.debug("Looking for database config file : " + configFile + " in classpath");
+
+				// _resource = ResourceBundle.getBundle( configFile );
+				_bResourceOk = true;
+			} catch (Exception e1) {
+				_bResourceOk = false;
+				throw new RuntimeException("Resource not found : " + configFile, e1);
+			}
+		}
+	}
+
+	/**
+	 * 
+	 * Inits the resource to read initialization file
+	 * 
+	 * */
+	void initResource() {
+		String configFile = DEFAULT_FILE_NAME+".properties";
+		try {
+			InputStream is = null;
+			String propertyUrl = System.getProperty("neadatis.rdb.url.property.file");
+			if(propertyUrl!=null){
+				_log.info("Loding property file from url " + propertyUrl);
+				is = new URL(propertyUrl).openStream();
+			}else{
+				_log.debug("Looking for database config file : " + configFile + " in classpath ");
+				is = C3p0ConnectionPool.class.getResourceAsStream(configFile);
+			}
+			
+
+			if (is == null) {
+				throw new Exception("File not found " + configFile);
+			}
+
+			_resource = new Properties();
+			_resource.load(is);
+			_bResourceOk = true;
+		} catch (Exception e) {
+			_log.fatal("Default Resource not found : " + configFile);
+			_bResourceOk = false;
+
+			// tries to get property file with ip
+			try {
+				String ip = InetAddress.getLocalHost().getHostAddress();
+
+				configFile = DEFAULT_FILE_NAME + "_" + ip+".properties";
+
+				_log.info("Looking for database config file : " + configFile + "in classpath");
+
+				InputStream is = C3p0ConnectionPool.class.getResourceAsStream(configFile);
+
+				if (is == null) {
+					throw new Exception("File not found " + configFile);
+				}
+
+				_resource = new Properties();
+				_resource.load(is);
+				_bResourceOk = true;
+			} catch (Exception e1) {
+				_bResourceOk = false;
+				throw new RuntimeException("Resource not found : " + configFile, e1);
+			}
+		}
+	}
+
+	/**
+	 * 
+	 * Closes the pool => Closes all connections
+	 * @throws SQLException 
+	 * 
+	 */
+	public void close() throws SQLException {
+		pooled.close();
+	}
+
+	/**
+	 * 
+	 * Creates a spool of connection
+	 * 
+	 * @return boolean The status
+	 * @param ConnectionPoolInfo
+	 *            The data of connection
+	 * @throws Exception 
+	 * 
+	 * 
+	 */
+	boolean connect(ConnectionPoolInfo in_connectionPoolInfo) throws Exception {
+		try {
+			boolean bOk = false;
+
+			
+			String sNbConnections = System.getProperty(Constants.NB_CONNECTIONS);
+			int nbConnections = in_connectionPoolInfo.getNbConnections();
+			if(sNbConnections!=null){
+				nbConnections = Integer.parseInt(sNbConnections);
+			}
+			
+			_log.error("** NeoDatis RDB (cp3o): " + _RELEASE);
+			_log.error("**Connection  " + in_connectionPoolInfo.getConnectionName() + " : ");
+			_log.error("\t*Driver\t\t= " + in_connectionPoolInfo.getDriver());
+			_log.error("\t*URL\t\t= " + in_connectionPoolInfo.getUrl());
+			_log.error("\t*User\t\t= " + in_connectionPoolInfo.getUserName());
+			_log.error("\t*NbConnections\t= " + nbConnections);
+			_log.error("\t*AutomaticClosingTimeOut\t= " + in_connectionPoolInfo.getTimeOut() + " ms");
+			_log.error("\t*DatabaseType\t= " + Config.databaseType);
+
+
+			Map<String,String> overrides = new HashMap<String, String>();
+			overrides.put("maxStatements", "200");
+			overrides.put("maxPoolSize", String.valueOf(in_connectionPoolInfo.nbConnections));
+			//overrides.put("automaticTestTable", "test_connections");
+			//overrides.put("testConnectionOnCheckout", "true");
+			overrides.put("idleConnectionTestPeriod", "10");
+			overrides.put("acquireRetryAttempts", "10");
+			overrides.put("acquireRetryDelay", "100");
+			overrides.put("breakAfterAcquireFailure", "true");
+			overrides.put("acquireIncrement", "1");
+			overrides.put("debugUnreturnedConnectionStackTraces", "true");
+			overrides.put("unreturnedConnectionTimeout", "60");
+			overrides.put("initialPoolSize", "1");
+			
+			Class.forName(in_connectionPoolInfo.getDriver());
+			unpooled = DataSources.unpooledDataSource(in_connectionPoolInfo.getUrl(), in_connectionPoolInfo.getUserName(), in_connectionPoolInfo.getPassword());
+			pooled = (PooledDataSource) DataSources.pooledDataSource(unpooled,overrides);
+			
+			Connection connection = pooled.getConnection();
+			connection.close();
+			_log.info("\t*CP3O Pool is ok");
+			
+
+			bOk = true;
+
+			return bOk;
+		} catch (Exception e) {
+			_log.error("Error while creating cp3o connection pool", e);
+			throw e;
+		}
+	}
+
+	
+	/**
+	 * 
+	 * Gets a connection from pool
+	 * 
+	 * @return Connection The available connection from spool
+	 * @throws Exception 
+	 * 
+	 * 
+	 */
+	public Connection getConnection() throws Exception {
+		return pooled.getConnection();
+	}
+
+
+	/**
+	 * 
+	 * releases a connection
+	 * @throws SQLException 
+	 * 
+	 * */
+	synchronized public void releaseConnection(Connection in_connection) throws SQLException {
+		in_connection.close();
+	}
+
+	/**
+	 * 
+	 * Get the number of available connections
+	 * 
+	 * @return The connection index
+	 * @throws SQLException 
+	 * 
+	 * 
+	 * */
+	public synchronized int getNumberOfAvailableConnections() throws SQLException {
+		return pooled.getNumConnectionsAllUsers() - pooled.getNumBusyConnectionsAllUsers();
+	}
+
+	/**
+	 * 
+	 * Gets the number of free connectsions
+	 * 
+	 * @return int The number of free connections
+	 * @throws SQLException 
+	 * 
+	 * 
+	 **/
+	public int getNbFreeConnections() throws SQLException {
+		return pooled.getNumConnectionsAllUsers() - pooled.getNumBusyConnectionsAllUsers();
+	}
+
+	/**
+	 * 
+	 * Gets the number of connections
+	 * 
+	 * @return int The number of connections
+	 * @throws SQLException 
+	 * 
+	 * 
+	 **/
+	public int getNbConnections() throws SQLException {
+		return pooled.getNumConnectionsAllUsers();
+	}
+
+	/**
+	 * 
+	 * Gets the number of closed connectsions
+	 * 
+	 * @return int The number of closed connections
+	 * 
+	 * 
+	 **/
+	public int getNbClosedConnections() {
+		return 0;
+	}
+
+	/**
+	 * 
+	 * Gets all unavailable connectsions
+	 * 
+	 * @return String Name of unavaible connections
+	 * 
+	 * 
+	 */
+	public String getConnectionsStatus() {
+
+		return "?";
+	}
+
+	/**
+	 * 
+	 * Gets a parameter from resource
+	 * 
+	 * @return String The value of teh parameter
+	 * @param String
+	 *            The Parameter to return
+	 */
+	String getInitParameter(String in_sParameter) throws MissingResourceException {
+		return _resource.getProperty(in_sParameter);
+	}
+
+	/**
+	 * Gets a parameter from resource and gives a default value
+	 * 
+	 * @return String The value of teh parameter
+	 * @param String
+	 *            The Parameter to return
+	 * @param String
+	 *            The default value
+	 */
+	String getInitParameter(String in_sParameter, String in_sDefaultValue) {
+		try {
+			String v = getInitParameter(in_sParameter);
+			if(v == null){
+				return in_sDefaultValue;
+			}
+			return v;
+		} catch (MissingResourceException e) {
+			return in_sDefaultValue;
+		}
+	}
+
+	/**
+	 * To check if object is ready
+	 * 
+	 * @return boolean
+	 */
+	boolean isReady() {
+		return _bReady;
+	}
+
+	public String getConnectionPoolInfo() {
+		return _connectionPoolInfo.toString();
+	}
+
+	public static void main(String in_args[]) throws Exception {
+		_log.info("starting...");
+		Connection c = null;
+		// ConnectionSpool spool = new ConnectionSpool();
+		C3p0ConnectionPool pool = C3p0ConnectionPool.getInstance();
+		pool.init();
+
+		for (int i = 0; i < 10; i++) {
+			c = pool.getConnection();
+
+			System.out.println(pool.getConnectionsStatus());
+
+			pool.releaseConnection(c);
+
+			System.out.println("free connection=" + pool.getNbFreeConnections());
+		}
+
+	}
+
+}
+
+

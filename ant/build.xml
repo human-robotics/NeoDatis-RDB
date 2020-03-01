@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<project name="NeoDatisRDB" default="default" basedir=".." xmlns:ivy="antlib:org.apache.ivy.ant">
+	<description>
+            description
+    </description>
+
+	<!-- ================================= 
+          target: default              
+         ================================= -->
+	<target name="default" depends="depends" description="description">
+		<delete dir="classes" />
+		<mkdir dir="classes" />
+		<mkdir dir="dist" />
+		<javac srcdir="src" classpath="lib/log4j-1.2.6.jar;lib/c3p0-0.9.1.2.jar" destdir="classes" debug="true" />
+
+		<copy todir="classes">
+			<fileset dir="dbspecifics/" />
+		</copy>
+
+		<jar destfile="dist/neodatis-rdb.jar" basedir="classes" />
+	</target>
+
+	<!-- - - - - - - - - - - - - - - - - - 
+          target: depends                      
+         - - - - - - - - - - - - - - - - - -->
+	<target name="depends">
+	</target>
+
+</project>

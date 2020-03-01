@@ -1,0 +1,13 @@
+
+
+#DERBY
+url=jdbc:derby://localhost/integris;
+driver=org.apache.derby.jdbc.ClientDriver
+user=jconcept
+password=jconcept1234
+database_type=derby
+pool.size=1
+database_type=derby
+test.connections=false
+test.query=select 1 from configuracao
+test.connections.period.in.ms=2000

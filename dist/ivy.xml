@@ -1,0 +1,9 @@
+<ivy-module version="2.0">
+	<info organisation="neodatis" module="rdb" revision="current" status="integration" publication="20120213161818"/>
+	<publications>
+		<artifact name="neodatis-rdb" type="jar" ext="jar"/>
+	</publications>
+	<dependencies>
+		<dependency org="junit" name="junit" rev="3.8.2"/>
+	</dependencies>
+</ivy-module>
