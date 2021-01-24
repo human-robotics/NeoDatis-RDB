@@ -13,7 +13,7 @@ public class TestInserts extends TestCase{
 	
 	public void testPerf() throws Exception{
 		System.out.println("Ola");
-		int size = 1000000;
+		int size = 100;
 		for(int i=0;i<size;i++){
 			Test1 t1 = new Test1();
 			t1.setDt(new Date());

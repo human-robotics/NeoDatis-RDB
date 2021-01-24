@@ -664,6 +664,7 @@ public class DefaultRDB implements RDB {
 	}
 
 	/**
+	 * @deprecated Use the one with prepared statement
 	 * Builds the sql string to update the object
 	 * 
 	 * @param updateQuery

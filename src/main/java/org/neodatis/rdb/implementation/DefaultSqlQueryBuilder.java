@@ -390,6 +390,7 @@ public class DefaultSqlQueryBuilder {
 	}
 
 	/**
+	 * @deprecated
 	 * Builds the UPDATE Clause
 	 * 
 	 * @param String

@@ -14,6 +14,7 @@ import org.neodatis.rdb.DBTable;
 import org.neodatis.rdb.Sqlable;
 import org.neodatis.rdb.Where;
 import org.neodatis.rdb.implementation.DbSpecific;
+import org.neodatis.tools.SqlInjection;
 import org.neodatis.tools.StringUtils;
 
 /* A simple where clause
@@ -26,6 +27,7 @@ public class WhereImpl implements Where {
 	static Category _log = Category.getInstance(WhereImpl.class.getName());
 
 	Stack _stack;
+	SqlInjection sqlInjection ;
 
 	/**
 	 * 
@@ -115,6 +117,7 @@ public class WhereImpl implements Where {
 	 * 
 	 */
 	protected void init() {
+		sqlInjection = new SqlInjection();
 		_stack = new Stack();
 	}
 
@@ -151,9 +154,9 @@ public class WhereImpl implements Where {
 				sLeftOperand = getSql(leftOperand, in_bWithAlias);
 				sRightOperand = getSql(rightOperand, in_bWithAlias);
 
-				System.out.println("Left operand is : " + sLeftOperand);
-				System.out.println("Connector is : " + object.toString());
-				System.out.println("Right operand is : " + sRightOperand);
+//				System.out.println("Left operand is : " + sLeftOperand);
+//				System.out.println("Connector is : " + object.toString());
+//				System.out.println("Right operand is : " + sRightOperand);
 
 				sSql = new StringBuffer(sLeftOperand).append(object.toString()).append(sRightOperand).toString();
 				tempStack.push(sSql);
@@ -406,7 +409,7 @@ public class WhereImpl implements Where {
 									}
 									Object o = iterator.next();
 									if (o instanceof String) {
-										buffer.append("'").append(o.toString()).append("'");
+										buffer.append("'").append(sqlInjection.escapeSql(o.toString())).append("'");
 									} else {
 										buffer.append(o.toString());
 									}
@@ -423,7 +426,7 @@ public class WhereImpl implements Where {
 							sql.append(column.getSql(in_bWithAlias)).append(connector.toString());
 
 							if (rightOperand != null) {
-								sql.append("'").append(rightOperand).append("'");
+								sql.append("'").append(sqlInjection.escapeSql(rightOperand.toString())).append("'");
 							} else {
 								sql.append("null");
 							}
@@ -448,7 +451,7 @@ public class WhereImpl implements Where {
 
 						if (!bOk) {
 							if (rightOperand != null) {
-								sql.append(column.getSql(in_bWithAlias)).append(connector.toString()).append(rightOperand);
+								sql.append(column.getSql(in_bWithAlias)).append(connector.toString()).append(sqlInjection.escapeSql(rightOperand.toString()));
 							} else {
 								sql.append(column.getSql(in_bWithAlias)).append(connector.toString()).append("null");
 							}
