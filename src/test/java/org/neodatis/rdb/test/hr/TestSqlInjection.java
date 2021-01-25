@@ -8,7 +8,6 @@ import java.util.Date;
 import java.util.List;
 import java.util.UUID;
 
-import javax.xml.ws.ServiceMode;
 
 import org.junit.Before;
 import org.junit.Test;
@@ -16,7 +15,6 @@ import org.neodatis.rdb.RDB;
 import org.neodatis.rdb.RDBFactory;
 import org.neodatis.rdb.Where;
 import org.neodatis.rdb.query.W;
-import org.neodatis.tools.SqlInjection;
 
 public class TestSqlInjection {
 
