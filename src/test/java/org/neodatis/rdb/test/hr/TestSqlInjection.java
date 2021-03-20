@@ -44,9 +44,26 @@ public class TestSqlInjection {
 	}
 
 	@Test
-	public void testWithWhere() throws Exception {
+	public void testWithWhereWithOr() throws Exception {
 		// This query , if there is sql injection vulnerability should return x users
 		Where w1 = W.equal(UserDBHelper.EMAIL, "' or 1=1 or '1");
+		List<User> users = User.DB.find(w1);
+		System.out.println("Users for Sql Injection with where.: " + w1.getSql(true) + " : " + users.size());
+		// should be 0
+		assertEquals(0, users.size());
+
+	}
+	
+	@Test
+	public void testWithWhereWithAnd() throws Exception {
+		
+		Where w0 = W.equal(UserDBHelper.EMAIL, EMAIL);
+		List<User> users0 = User.DB.find(w0);
+		// should return at least 1
+		assertTrue(users0.size() > 0);
+		
+		// This query , if there is sql injection vulnerability should return x users
+		Where w1 = W.equal(UserDBHelper.EMAIL, EMAIL+ "' and 1=1 ");
 		List<User> users = User.DB.find(w1);
 		System.out.println("Users for Sql Injection with where.: " + w1.getSql(true) + " : " + users.size());
 		// should be 0
@@ -155,4 +172,51 @@ public class TestSqlInjection {
 			// TODO: handle exception
 		}
 	}
+	
+	// Sleep 
+	@Test
+	public void testWithSleep() throws Exception {
+		try {
+			// This query , if there is sql injection vulnerability should return x users
+			Where w1 = W.equal(UserDBHelper.EMAIL, EMAIL +"') AND (SELECT * FROM (SELECT(SLEEP(5)))NFbt) AND ('myIe'='myIe]");
+			List<User> users = User.DB.find(w1);
+			System.out.println("Users for Sql Injection with sleep.: " + w1.getSql(true) + " : " + users.size());
+			// should be 0
+			assertEquals(0, users.size());
+		} catch (SQLSyntaxErrorException e) {
+			// TODO: handle exception
+		}
+	}// Sleep 
+	@Test
+	public void testWithAnd() throws Exception {
+		try {
+			// This query , if there is sql injection vulnerability should return x users
+			// &onlyValid=false%27+AND+1371%3D3983--+-&onlyActive=true
+			Where w1 = W.equal(UserDBHelper.EMAIL, EMAIL +"' AND 8584=8584-- -");
+			List<User> users = User.DB.find(w1);
+			System.out.println("Users for Sql Other part.: " + w1.getSql(true) + " : " + users.size());
+			// should be 0
+			assertEquals(0, users.size());
+		} catch (SQLSyntaxErrorException e) {
+			// TODO: handle exception
+		}
+	}
+	
+	@Test
+	public void testWithPercentSymbol() throws Exception {
+		try {
+			// This query , if there is sql injection vulnerability should return x users
+			// 4271b0be-25ff-439f-b964-4fcbf4b5707d%
+			Where w1 = W.equal(UserDBHelper.EMAIL, EMAIL +"%");
+			List<User> users = User.DB.find(w1);
+			System.out.println("Users for Sql % " + w1.getSql(true) + " : " + users.size());
+			// should be 0
+			assertEquals(0, users.size());
+		} catch (SQLSyntaxErrorException e) {
+			// TODO: handle exception
+		}
+	}
+
+	
+	
 }
