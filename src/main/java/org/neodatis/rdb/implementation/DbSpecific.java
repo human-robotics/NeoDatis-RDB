@@ -4,6 +4,7 @@ import java.text.SimpleDateFormat;
 import java.util.Date;
 
 import org.apache.log4j.Category;
+import org.neodatis.ConnectionPoolInfo.DatabaseType;
 import org.neodatis.rdb.Config;
 import org.neodatis.tools.Resource;
 import org.neodatis.tools.StringUtils;
@@ -25,11 +26,20 @@ public class DbSpecific {
 	protected String nextIdSelect;
 	protected String selectIdAfterInsert;
 	protected String databaseType;
+	/** some databases do not work well with prepared statement : like sql lite */
+	protected boolean usePreparedStatement;
+	
 
 	protected static DbSpecific instance;
 
-	public DbSpecific(String databaseType2) {
-		this.databaseType = databaseType2;
+	public DbSpecific(String databaseType) {
+		this.databaseType = databaseType;
+		// Default behavior is to use preparedStatements
+		this.usePreparedStatement = true;
+		
+		if(DatabaseType.sqlite.toString().equals(databaseType)) {
+			//this.usePreparedStatement = false;
+		}
 		init();
 	}
 
@@ -171,5 +181,13 @@ public class DbSpecific {
 		String s = selectIdAfterInsert;
 		s = StringUtils.replaceToken(s, "@", tableName, 1);
 		return s;
+	}
+	
+	public boolean usePreparedStatement() {
+		return usePreparedStatement;
+	}
+	
+	public void setUsePreparedStatement(boolean usePreparedStatement) {
+		this.usePreparedStatement = usePreparedStatement;
 	}
 }

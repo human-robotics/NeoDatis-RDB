@@ -7,10 +7,12 @@ import java.io.FileNotFoundException;
 import org.neodatis.tools.app.model.NeoDatisAppData;
 
 import com.thoughtworks.xstream.XStream;
+import com.thoughtworks.xstream.security.AnyTypePermission;
 
 public class NeoDatis {
 	public static NeoDatisAppData loadApplicationData(String file) throws FileNotFoundException{
 		XStream xstream = new XStream();
+		xstream.addPermission(AnyTypePermission.ANY);
 		xstream.alias("neodatis-app-data", NeoDatisAppData.class);
 		xstream.autodetectAnnotations(true);
 		NeoDatisAppData app = (NeoDatisAppData) xstream.fromXML(new FileInputStream(new File(file)));

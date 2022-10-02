@@ -1,0 +1,9 @@
+<neodatis-app-data name="hr">
+	<concept name="User"  extends="org.neodatis.rdb.DbObjectWithLongId"  packageName="org.neodatis.rdb.sqllite">
+		<attribute name="id" type="Long" is-nullable="true" is-primary-key="false" foreign-key="none" comment="null"/>
+		<attribute name="name" type="String" is-nullable="true" is-primary-key="false" foreign-key="none" comment="null"/>
+		<attribute name="gender" type="Long" is-nullable="true" is-primary-key="false" foreign-key="none" comment="null"/>
+		<attribute name="email" type="String" is-nullable="true" is-primary-key="false" foreign-key="none" comment="null"/>
+		<attribute name="birth_date" type="String" is-nullable="true" is-primary-key="false" foreign-key="none" comment="null"/>
+	</concept>
+</neodatis-app-data>

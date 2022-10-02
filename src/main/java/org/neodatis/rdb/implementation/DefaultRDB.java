@@ -11,6 +11,8 @@ import java.sql.ResultSet;
 import java.sql.ResultSetMetaData;
 import java.sql.SQLException;
 import java.sql.Types;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.HashMap;
@@ -48,7 +50,8 @@ import org.neodatis.tools.StringUtils;
  * @see br.com.jconcept.database.implementation.SqlQueryBuilder
  */
 public class DefaultRDB implements RDB {
-	
+
+	SimpleDateFormat DATE_FORMAT = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss.SSS");
 	public static final String NO_ALIAS_USE_NATURAL_FIELD = "__neodatis_no_alias_use_natural_field__";
 
 	/** Creates the root */
@@ -69,6 +72,7 @@ public class DefaultRDB implements RDB {
 		sql = new Sql("default");
 		defaultSqlQueryBuilder = new DefaultSqlQueryBuilder();
 		rdbReflection = new RdbReflection();
+		DATE_FORMAT.setLenient(true);
 
 	}
 
@@ -105,11 +109,9 @@ public class DefaultRDB implements RDB {
 	/**
 	 * Executes the query - INSERT , UPDATE AND DELETE
 	 * 
-	 * @param The
-	 *            query
+	 * @param The query
 	 * @return The number of afected rows
-	 * @exception SQLException
-	 *                If an sql exception occurs
+	 * @exception SQLException If an sql exception occurs
 	 */
 	protected int executeUpdate(Query query) throws Exception {
 		Class queryType = query.getClass();
@@ -134,11 +136,9 @@ public class DefaultRDB implements RDB {
 	/**
 	 * Executes the query returning a list of result - SELECT
 	 * 
-	 * @param The
-	 *            query
+	 * @param The query
 	 * @return The query result
-	 * @exception SQLException
-	 *                If an sql exception occurs
+	 * @exception SQLException If an sql exception occurs
 	 */
 	public QueryResult executeQuery(Query query) throws SQLException, APIInternalException {
 		Class queryType = query.getClass();
@@ -162,12 +162,9 @@ public class DefaultRDB implements RDB {
 	/**
 	 * Inserts data of the object
 	 * 
-	 * @param insertQuery
-	 *            Object describing insert
-	 * @exception SQLException
-	 *                If an sql exception occurs
-	 * @exception APIInternalException
-	 *                For internal problems
+	 * @param insertQuery Object describing insert
+	 * @exception SQLException         If an sql exception occurs
+	 * @exception APIInternalException For internal problems
 	 * @throws IllegalAccessException
 	 * @throws IllegalArgumentException
 	 */
@@ -175,9 +172,14 @@ public class DefaultRDB implements RDB {
 		String q = null;
 
 		try {
-			q = buildInsertQueryPreparedStatement(insertQuery);
+			if (DbSpecific.get().usePreparedStatement()) {
+				q = buildInsertQueryPreparedStatement(insertQuery);
+				return sql.insertPreparedStatement(q, insertQuery.getObject(), false);
+			} else {
+				q = buildInsertQuery(insertQuery);
+				return sql.insert(q);
+			}
 
-			return sql.insertPreparedStatement(q, insertQuery.getObject(), false);
 		} catch (SQLException e) {
 			e.printStackTrace();
 			throw e;
@@ -188,12 +190,9 @@ public class DefaultRDB implements RDB {
 	/**
 	 * Inserts data of the object
 	 * 
-	 * @param insertQuery
-	 *            Object describing insert
-	 * @exception SQLException
-	 *                If an sql exception occurs
-	 * @exception APIInternalException
-	 *                For internal problems
+	 * @param insertQuery Object describing insert
+	 * @exception SQLException         If an sql exception occurs
+	 * @exception APIInternalException For internal problems
 	 */
 	protected boolean insert2(InsertQuery insertQuery) throws SQLException, APIInternalException {
 		String sInsertQuery = null;
@@ -212,11 +211,9 @@ public class DefaultRDB implements RDB {
 	/**
 	 * Updates data of the object
 	 * 
-	 * @param updateQuery
-	 *            Object describing update
+	 * @param updateQuery Object describing update
 	 * @return The number of updated objects
-	 * @exception Occurs
-	 *                a problem while building the query
+	 * @exception Occurs a problem while building the query
 	 */
 	protected boolean update(UpdateQuery updateQuery) throws SQLException, APIInternalException {
 		String q = null;
@@ -242,11 +239,9 @@ public class DefaultRDB implements RDB {
 	/**
 	 * Deletes data of the object
 	 * 
-	 * @param deleteQuery
-	 *            Object describing update
+	 * @param deleteQuery Object describing update
 	 * @return The number of deleted objects
-	 * @exception SQLException
-	 *                If an sql exception occurs
+	 * @exception SQLException If an sql exception occurs
 	 */
 	public int delete(DeleteQuery deleteQuery) throws SQLException, APIInternalException {
 		String sDeleteQuery = null;
@@ -269,11 +264,9 @@ public class DefaultRDB implements RDB {
 	/**
 	 * Deletes data of the object
 	 *
-	 * @param deleteQuery
-	 *            Object describing update
+	 * @param deleteQuery Object describing update
 	 * @return The number of deleted objects
-	 * @exception SQLException
-	 *                If an sql exception occurs
+	 * @exception SQLException If an sql exception occurs
 	 */
 	public int delete(CustomDeleteQuery deleteQuery) throws SQLException, APIInternalException {
 		String sDeleteQuery = null;
@@ -296,12 +289,10 @@ public class DefaultRDB implements RDB {
 	/**
 	 * Selects data according to the DefaultSelectQuery object
 	 * 
-	 * @param selectQuery
-	 *            The Query object
+	 * @param selectQuery The Query object
 	 * @return A Query result object
 	 * @see DefaultSelectQuery
-	 * @exception SQLException
-	 *                If an sql exception occurs
+	 * @exception SQLException If an sql exception occurs
 	 */
 	public QueryResult select(SelectQuery selectQuery) throws SQLException, APIInternalException {
 		// The return list
@@ -353,12 +344,10 @@ public class DefaultRDB implements RDB {
 	/**
 	 * Selects data according to the CustomSelectQuery object
 	 * 
-	 * @param selectQuery
-	 *            The Query object
+	 * @param selectQuery The Query object
 	 * @return A Query result object
 	 * @see CustomSelectQuery
-	 * @exception SQLException
-	 *                If an sql exception occurs
+	 * @exception SQLException If an sql exception occurs
 	 */
 	public QueryResult select(CustomSelectQuery selectQuery) throws SQLException, APIInternalException {
 		// The return list
@@ -404,7 +393,7 @@ public class DefaultRDB implements RDB {
 
 			// Gets the column names
 			columnNames = getColumnAliasNamesFromMetadata(metadata);
-			
+
 			if (selectQuery.objectCallback() != null) {
 				selectQuery.objectCallback().setColumnNames(columnNames);
 			}
@@ -418,7 +407,7 @@ public class DefaultRDB implements RDB {
 
 					map.put(columnNames[nColumn], o);
 				}
-				
+
 				if (selectQuery.objectCallback() != null) {
 					// when using callbacks, objects are not added to the
 					// list
@@ -441,12 +430,10 @@ public class DefaultRDB implements RDB {
 	/**
 	 * Selects data according to the CustomSelectQuery object
 	 * 
-	 * @param selectQuery
-	 *            The Query object
+	 * @param selectQuery The Query object
 	 * @return A Query result object
 	 * @see CustomSelectQuery
-	 * @exception SQLException
-	 *                If an sql exception occurs
+	 * @exception SQLException If an sql exception occurs
 	 */
 	public QueryResult selectInClass(CustomSelectQuery selectQuery) throws SQLException, APIInternalException {
 		// The return list
@@ -510,11 +497,9 @@ public class DefaultRDB implements RDB {
 	/**
 	 * Build the column name list from metadata
 	 * 
-	 * @param metaData
-	 *            The ResultSetMetada
+	 * @param metaData The ResultSetMetada
 	 * @return String [] The array of column names
-	 * @exception SQLException
-	 *                If metadata access method throw exception
+	 * @exception SQLException If metadata access method throw exception
 	 */
 	protected String[] getColumnNamesFromMetadata(ResultSetMetaData metaData) throws SQLException {
 		String[] nameList = new String[metaData.getColumnCount()];
@@ -525,15 +510,13 @@ public class DefaultRDB implements RDB {
 
 		return nameList;
 	}
-	
+
 	/**
 	 * Build the column name list from metadata using alias
 	 * 
-	 * @param metaData
-	 *            The ResultSetMetada
+	 * @param metaData The ResultSetMetada
 	 * @return String [] The array of column names
-	 * @exception SQLException
-	 *                If metadata access method throw exception
+	 * @exception SQLException If metadata access method throw exception
 	 */
 	protected String[] getColumnAliasNamesFromMetadata(ResultSetMetaData metaData) throws SQLException {
 		String[] nameList = new String[metaData.getColumnCount()];
@@ -548,11 +531,9 @@ public class DefaultRDB implements RDB {
 	/**
 	 * Build a type list (list of class) from the metadata
 	 * 
-	 * @param metaData
-	 *            The ResultSetMetada
+	 * @param metaData The ResultSetMetada
 	 * @return Class [] The array of types
-	 * @exception SQLException
-	 *                If metadata access method throw exception
+	 * @exception SQLException If metadata access method throw exception
 	 */
 	protected Class[] getTypeListFromMetadata(ResultSetMetaData metaData) throws SQLException {
 		Class[] typeList = new Class[metaData.getColumnCount()];
@@ -600,12 +581,10 @@ public class DefaultRDB implements RDB {
 	/**
 	 * Checks if objects exists
 	 * 
-	 * @param selectQuery
-	 *            The Query object
+	 * @param selectQuery The Query object
 	 * @return boolean true if exist
 	 * @see DefaultSelectQuery
-	 * @exception SQLException
-	 *                If an sql exception occurs
+	 * @exception SQLException If an sql exception occurs
 	 */
 	public boolean exist(SelectQuery selectQuery) throws SQLException, APIInternalException {
 		return select(selectQuery).getNumberOfObjects() > 0;
@@ -614,12 +593,10 @@ public class DefaultRDB implements RDB {
 	/**
 	 * Counts the number of elememts
 	 * 
-	 * @param selectQuery
-	 *            The Query object
+	 * @param selectQuery The Query object
 	 * @return boolean true if exist
 	 * @see DefaultSelectQuery
-	 * @exception SQLException
-	 *                If an sql exception occurs
+	 * @exception SQLException If an sql exception occurs
 	 */
 	public long count(SelectQuery selectQuery) throws SQLException, APIInternalException {
 		return select(selectQuery).getNumberOfObjects();
@@ -630,12 +607,9 @@ public class DefaultRDB implements RDB {
 	/**
 	 * Inserts data of the object
 	 * 
-	 * @param insertQuery
-	 *            Object describing insert
-	 * @exception SQLException
-	 *                If an sql exception occurs
-	 * @exception APIInternalException
-	 *                For internal problems
+	 * @param insertQuery Object describing insert
+	 * @exception SQLException         If an sql exception occurs
+	 * @exception APIInternalException For internal problems
 	 */
 	protected String buildInsertQuery(InsertQuery insertQuery) throws SQLException, APIInternalException {
 		try {
@@ -648,14 +622,12 @@ public class DefaultRDB implements RDB {
 	/**
 	 * Inserts data of the object
 	 * 
-	 * @param insertQuery
-	 *            Object describing insert
-	 * @exception SQLException
-	 *                If an sql exception occurs
-	 * @exception APIInternalException
-	 *                For internal problems
+	 * @param insertQuery Object describing insert
+	 * @exception SQLException         If an sql exception occurs
+	 * @exception APIInternalException For internal problems
 	 */
-	protected String buildInsertQueryPreparedStatement(InsertQuery insertQuery) throws SQLException, APIInternalException {
+	protected String buildInsertQueryPreparedStatement(InsertQuery insertQuery)
+			throws SQLException, APIInternalException {
 		try {
 			return defaultSqlQueryBuilder.buildInsertPreparedStatement(insertQuery, this);
 		} catch (Exception e) {
@@ -664,13 +636,11 @@ public class DefaultRDB implements RDB {
 	}
 
 	/**
-	 * @deprecated Use the one with prepared statement
-	 * Builds the sql string to update the object
+	 * @deprecated Use the one with prepared statement Builds the sql string to
+	 *             update the object
 	 * 
-	 * @param updateQuery
-	 *            Object describing update
-	 * @exception Exception
-	 *                If an sql exception occurs or
+	 * @param updateQuery Object describing update
+	 * @exception Exception If an sql exception occurs or
 	 */
 	protected String buildUpdateQuery(UpdateQuery updateQuery) throws Exception {
 		String sUpdate = null;
@@ -684,30 +654,25 @@ public class DefaultRDB implements RDB {
 	/**
 	 * Builds the sql string to update the object
 	 * 
-	 * @param updateQuery
-	 *            Object describing update
-	 * @exception Exception
-	 *                If an sql exception occurs or
+	 * @param updateQuery Object describing update
+	 * @exception Exception If an sql exception occurs or
 	 */
 	protected String buildUpdateQueryPreparedStatement(UpdateQuery updateQuery) throws Exception {
 		return defaultSqlQueryBuilder.buildUpdatePrepraredStatement(updateQuery);
 	}
 
 	/**
-	 * Builds the sql string to delete the object The query object must contain
-	 * (The object) OR (The class and the where)
+	 * Builds the sql string to delete the object The query object must contain (The
+	 * object) OR (The class and the where)
 	 * 
-	 * @param deleteQuery
-	 *            Object describing delete
-	 * @exception SQLException
-	 *                If an sql exception occurs
-	 * @exception InstantiationException
-	 *                If occured problem while creating an instance of the
-	 *                object
-	 * @exception IllegalAccessException
-	 *                If deleteQuery was not well initialized
+	 * @param deleteQuery Object describing delete
+	 * @exception SQLException           If an sql exception occurs
+	 * @exception InstantiationException If occured problem while creating an
+	 *                                   instance of the object
+	 * @exception IllegalAccessException If deleteQuery was not well initialized
 	 */
-	protected String buildDeleteQuery(DeleteQuery deleteQuery) throws SQLException, InstantiationException, IllegalAccessException, Exception {
+	protected String buildDeleteQuery(DeleteQuery deleteQuery)
+			throws SQLException, InstantiationException, IllegalAccessException, Exception {
 		String sDelete = null;
 		sDelete = defaultSqlQueryBuilder.buildDelete(deleteQuery);
 		return sDelete;
@@ -716,14 +681,13 @@ public class DefaultRDB implements RDB {
 	/**
 	 * Selects data of the object
 	 * 
-	 * @param selectQuery
-	 *            The Query object
+	 * @param selectQuery The Query object
 	 * @return List The list obj found object. If no object is found, returns an
 	 *         empty list
-	 * @exception SQLException
-	 *                If an sql exception occurs
+	 * @exception SQLException If an sql exception occurs
 	 */
-	protected String buildSelectQuery(SelectQuery selectQuery) throws SQLException, IllegalAccessException, InstantiationException {
+	protected String buildSelectQuery(SelectQuery selectQuery)
+			throws SQLException, IllegalAccessException, InstantiationException {
 		return defaultSqlQueryBuilder.buildSelect(selectQuery);
 	}
 
@@ -732,7 +696,8 @@ public class DefaultRDB implements RDB {
 	 * 
 	 * @return boolean true if it's not the end
 	 */
-	protected Object fromDatabaseToObject(ResultSet rset, Class clazz, String alias) throws SQLException, IllegalAccessException, InstantiationException {
+	protected Object fromDatabaseToObject(ResultSet rset, Class clazz, String alias)
+			throws SQLException, IllegalAccessException, InstantiationException {
 		String sTemp = null;
 
 		Field field = null;
@@ -743,12 +708,12 @@ public class DefaultRDB implements RDB {
 		// Parses all fields.
 		for (int nField = 0; nField < fields.length; nField++) {
 			field = fields[nField];
-			
-			if(NO_ALIAS_USE_NATURAL_FIELD.equals(alias)) {
+
+			if (NO_ALIAS_USE_NATURAL_FIELD.equals(alias)) {
 				object = manageOneFieldUsingNaturalFieldName(rset, object, field, alias, nField);
 			} else {
 				object = manageOneField(rset, object, field, alias, nField);
-				
+
 			}
 		}
 
@@ -757,26 +722,22 @@ public class DefaultRDB implements RDB {
 
 	/**
 	 * Puts data of result set in objects. This method can achieve joined select
-	 * object retrieving 1) Creates an instance of each class 2) Gets the fields
-	 * of each class 3) For each class, use the resultset to populate its
-	 * instanciated object *
+	 * object retrieving 1) Creates an instance of each class 2) Gets the fields of
+	 * each class 3) For each class, use the resultset to populate its instanciated
+	 * object *
 	 * 
-	 * @param The
-	 *            resultset
-	 * @param The
-	 *            array of class : objects types we must return
-	 * @return A Map of objects. For each class the method received in the
-	 *         array, it will put a populated object in the map. The key is the
-	 *         class
-	 * @exception SQLException
-	 *                If fails while retrieving data from result set
-	 * @exception IllegalAccessException
-	 *                If fails to access an instantiated object
-	 * @exception InstantiationException
-	 *                If fails to instanciate a class
+	 * @param The resultset
+	 * @param The array of class : objects types we must return
+	 * @return A Map of objects. For each class the method received in the array, it
+	 *         will put a populated object in the map. The key is the class
+	 * @exception SQLException           If fails while retrieving data from result
+	 *                                   set
+	 * @exception IllegalAccessException If fails to access an instantiated object
+	 * @exception InstantiationException If fails to instanciate a class
 	 * @return boolean true if it's not the end
 	 */
-	protected Map fromDatabaseToObjects(ResultSet rset, Class[] classes, String[] aliases) throws SQLException, IllegalAccessException, InstantiationException {
+	protected Map fromDatabaseToObjects(ResultSet rset, Class[] classes, String[] aliases)
+			throws SQLException, IllegalAccessException, InstantiationException {
 		Field field = null;
 
 		// Create the array of object
@@ -823,7 +784,8 @@ public class DefaultRDB implements RDB {
 		return allObjects;
 	}
 
-	protected Object manageOneField(ResultSet rset, Object object, Field field, String alias, int fieldIndex) throws SQLException, IllegalAccessException {
+	protected Object manageOneField(ResultSet rset, Object object, Field field, String alias, int fieldIndex)
+			throws SQLException, IllegalAccessException {
 		Object fieldObject = null;
 		// Prevent from IllegalAccessException
 		field.setAccessible(true);
@@ -875,13 +837,32 @@ public class DefaultRDB implements RDB {
 			// fieldObject = in_rset.getDate(in_nColumnIndex+1) ;
 			try {
 				fieldObject = rset.getTimestamp(sFieldName);
-			} catch (SQLException e) {
+			} catch (SQLException e1) {
 				logger.error("Could not obtain Timestamp - getting a Date object");
-				fieldObject = rset.getDate(sFieldName);
+				try {
+					fieldObject = rset.getDate(sFieldName);
+				} catch (Exception e2) {
+					fieldObject = rset.getString(sFieldName);
+					try {
+						// try as a long (value in milliseconds)
+						Date date = new Date(Long.parseLong(String.valueOf(fieldObject)));
+						fieldObject = date;
+					} catch (Exception e) {
+						// now try as string 
+						try {
+							Date date = DATE_FORMAT.parse(String.valueOf(fieldObject));
+							fieldObject = date;
+						} catch (ParseException e3) {
+							fieldObject = new Date();
+						}
+					}
+				}
 
 			}
 		}
-		if (Blob.class.isAssignableFrom(field.getType())) {
+		if (Blob.class.isAssignableFrom(field.getType()))
+
+		{
 			fieldObject = rset.getBytes(sFieldName);
 			byte[] bb = (byte[]) fieldObject;
 		}
@@ -892,20 +873,21 @@ public class DefaultRDB implements RDB {
 			if (fieldObject != null) {
 				field.set(object, fieldObject);
 			}
-		} catch (IllegalArgumentException e) {
-			e.printStackTrace();
-		} catch (IllegalAccessException e) {
-			e.printStackTrace();
+		} catch (Exception e) {
+			logger.error(
+					"Error setting value of field " + field.getName() + "(" + field.getType().getName() + ") : value="
+							+ String.valueOf(fieldObject) + " | Value type=" + fieldObject.getClass().getSimpleName());
 		}
 
 		if (logger.isDebugEnabled()) {
-			logger.debug("Field Type is " + field.getType().getName() + " / Field name = " + sFieldName + "(" + field.getName() + ") Value is : "
-					+ (fieldObject == null ? "null" : fieldObject.toString()));
+			logger.debug("Field Type is " + field.getType().getName() + " / Field name = " + sFieldName + "("
+					+ field.getName() + ") Value is : " + (fieldObject == null ? "null" : fieldObject.toString()));
 		}
 		return object;
 	}
-	
-	protected Object manageOneFieldUsingNaturalFieldName(ResultSet rset, Object object, Field field, String alias, int fieldIndex) throws SQLException, IllegalAccessException {
+
+	protected Object manageOneFieldUsingNaturalFieldName(ResultSet rset, Object object, Field field, String alias,
+			int fieldIndex) throws SQLException, IllegalAccessException {
 		Object fieldObject = null;
 		// Prevent from IllegalAccessException
 		field.setAccessible(true);
@@ -981,24 +963,24 @@ public class DefaultRDB implements RDB {
 		}
 
 		if (logger.isDebugEnabled()) {
-			logger.debug("Field Type is " + field.getType().getName() + " / Field name = " + sFieldName + "(" + field.getName() + ") Value is : "
-					+ (fieldObject == null ? "null" : fieldObject.toString()));
+			logger.debug("Field Type is " + field.getType().getName() + " / Field name = " + sFieldName + "("
+					+ field.getName() + ") Value is : " + (fieldObject == null ? "null" : fieldObject.toString()));
 		}
 		return object;
 	}
 
 	private String toDbName(String name) {
-		
-		if(name.startsWith("db")){
+
+		if (name.startsWith("db")) {
 			return name.substring(2);
 		}
 		String dbName = "";
-		for(int i=0;i<name.length();i++) {
+		for (int i = 0; i < name.length(); i++) {
 			char c = name.charAt(i);
-			if(Character.isUpperCase(c)){
+			if (Character.isUpperCase(c)) {
 				dbName += "_";
 			}
-			
+
 			dbName += Character.toUpperCase(c);
 		}
 		return dbName;
@@ -1021,13 +1003,10 @@ public class DefaultRDB implements RDB {
 	 * 
 	 * </pre>
 	 * 
-	 * @param objectMapping
-	 *            The object to get the next id
+	 * @param objectMapping The object to get the next id
 	 * @return Long The Next id
-	 * @exception SQLException
-	 *                If the selec execution fails
-	 * @exception APIINternalException
-	 *                For other errors
+	 * @exception SQLException         If the selec execution fails
+	 * @exception APIINternalException For other errors
 	 * 
 	 */
 	public Long getNextId(DbObjectMapping objectMapping) throws SQLException, APIInternalException {
@@ -1035,7 +1014,8 @@ public class DefaultRDB implements RDB {
 		CustomSelectQueryResult queryResult = null;
 
 		try {
-			nextIdSelect = DbSpecific.get().getNextIdSelect(Util.getTableName(objectMapping), objectMapping.getPrimaryKey().getName());
+			nextIdSelect = DbSpecific.get().getNextIdSelect(Util.getTableName(objectMapping),
+					objectMapping.getPrimaryKey().getName());
 
 			if (nextIdSelect.equals("native")) {
 				return null;
@@ -1083,7 +1063,7 @@ public class DefaultRDB implements RDB {
 	public Sql getSql() {
 		return sql;
 	}
-	
+
 	public ConnectionPoolInfo getConnectionPoolInfo() {
 		return sql.getConnecitonPool().getConnectionPoolInfo();
 	}

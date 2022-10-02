@@ -1,5 +1,6 @@
 package org.neodatis.tools.app.database.generation.xml;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Properties;
 
@@ -75,14 +76,19 @@ public class MainXmlBuilder {
 
 		DatabaseMetaInformation databaseMetaInformation = new DatabaseMetaInformation();
 		List<String> tables = databaseMetaInformation.getTableNames(null, DatabaseMetaInformation.TABLE_TYPE_TABLE);
-
+		List<String> views = databaseMetaInformation.getTableNames(null, DatabaseMetaInformation.TABLE_TYPE_VIEW);
+		
+		List<String> objects = new ArrayList<String>();
+		objects.addAll(tables);
+		objects.addAll(views);
+		
 		int nbClasses = 0;
 		// parse all properties : all tables
-		for (String tableName : tables) {
+		for (String objectName : objects) {
 
-			if (filter == null || (filter!= null && filter.match(tableName))) {
+			if (filter == null || (filter!= null && filter.match(objectName))) {
 				// Manages this table
-				manageOneTable(tableName, databaseMetaInformation);
+				manageOneTable(objectName, databaseMetaInformation);
 				nbClasses++;
 			}
 

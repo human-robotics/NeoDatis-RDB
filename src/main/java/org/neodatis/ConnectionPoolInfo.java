@@ -28,10 +28,8 @@ public class ConnectionPoolInfo {
 		mysql,
 		derby,
 		postgresql,
-		sqlserver
-		
-		
-		
+		sqlserver,
+		sqlite		
 	}
 
 	

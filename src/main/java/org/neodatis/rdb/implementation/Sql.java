@@ -60,8 +60,7 @@ public class Sql {
 	/**
 	 * Constructor
 	 * 
-	 * @param in_sObjectCallerName
-	 *            name of the object that called it
+	 * @param in_sObjectCallerName name of the object that called it
 	 * @throws Exception
 	 */
 	public Sql(String in_sObjectCallerName) throws Exception {
@@ -185,17 +184,18 @@ public class Sql {
 		return (simpleExecute(in_sQuery) == 1);
 	}
 
-	public boolean insertPreparedStatement(String query, DbObjectMapping o, boolean isUpdate) throws Exception, IllegalAccessException {
+	public boolean insertPreparedStatement(String query, DbObjectMapping o, boolean isUpdate)
+			throws Exception, IllegalAccessException {
 		boolean log = logger.isInfoEnabled();
 		StringBuilder builder = null;
-		log  =true;
+		log = true;
 		if (log) {
 			logger.info("Executing SQL : " + query);
 			builder = new StringBuilder();
 		}
 		PreparedStatement pstatement = null;
-		
-		log  =true;
+
+		log = true;
 
 		try {
 			pstatement = connection.prepareStatement(query);
@@ -246,8 +246,8 @@ public class Sql {
 				} else if (v instanceof BigDecimal) {
 					BigDecimal bd = (BigDecimal) v;
 					if (log) {
-						builder.append(fields[i].getName()).append(" BigDecimal with scale ").append(bd.scale()).append(" = ").append(bd.toEngineeringString())
-								.append(" , ");
+						builder.append(fields[i].getName()).append(" BigDecimal with scale ").append(bd.scale())
+								.append(" = ").append(bd.toEngineeringString()).append(" , ");
 					}
 
 					pstatement.setBigDecimal(nField, bd);
@@ -328,22 +328,18 @@ public class Sql {
 	/**
 	 * Selects objects using the user custom clause Select,Where,GroupBy,OrderBy
 	 * 
-	 * @param in_sSelect
-	 *            The select clause.
-	 * @param in_sTable
-	 *            The name of the table
-	 * @param in_sWhere
-	 *            Where Clause
-	 * @param in_sGroupBy
-	 *            The group by clause
-	 * @param in_sOrderBy
-	 *            The order by clause
+	 * @param in_sSelect  The select clause.
+	 * @param in_sTable   The name of the table
+	 * @param in_sWhere   Where Clause
+	 * @param in_sGroupBy The group by clause
+	 * @param in_sOrderBy The order by clause
 	 * @return ResultSet The result set selected
-	 * @example : select sum(age) from test where name like 'jj%' group by age
-	 *          order by age would call object.customSelect(
-	 *          "sum(age) from test " , "name like 'jj%'" , "age" , "age" );
+	 * @example : select sum(age) from test where name like 'jj%' group by age order
+	 *          by age would call object.customSelect( "sum(age) from test " , "name
+	 *          like 'jj%'" , "age" , "age" );
 	 **/
-	public ResultSet customSelect(String in_sSelect, String in_sTable, String in_sWhere, String in_sGroupBy, String in_sOrderBy) throws SQLException
+	public ResultSet customSelect(String in_sSelect, String in_sTable, String in_sWhere, String in_sGroupBy,
+			String in_sOrderBy) throws SQLException
 
 	{
 
