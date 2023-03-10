@@ -1,5 +1,6 @@
 package org.neodatis.rdb.implementation;
 
+import java.io.FileInputStream;
 import java.io.InputStream;
 import java.io.PrintWriter;
 import java.io.StringWriter;
@@ -356,7 +357,8 @@ public class DefaultConnectionPool implements ConnectionPool {
 			}
 			if (propertyUrl != null) {
 				logger.error("Loading property file from url " + propertyUrl);
-				is = new URL(propertyUrl).openStream();
+				//is = new URL(propertyUrl).openStream();
+				is = new FileInputStream(propertyUrl);
 			} else {
 				logger.debug("Looking for database config file : " + configFile + " in classpath ");
 				URL url = DefaultConnectionPool.class.getResource(configFile);
@@ -372,6 +374,7 @@ public class DefaultConnectionPool implements ConnectionPool {
 			_resource.load(is);
 			resourceIsOk = true;
 		} catch (Exception e) {
+			logger.error("Error loading ConnectionPool",e);
 			resourceIsOk = false;
 			if (!usedSpecificFileName) {
 				logger.fatal("Default Resource not found : " + configFile + ". Trying by using ip address");
